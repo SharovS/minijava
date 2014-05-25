@@ -1,6 +1,7 @@
-# pragma once
-# include "stdio.h"
-# include <string>
+#pragma once
+#include "stdio.h"
+#include <string>
+#include <sstream>
 
 class CProgram;
 class CMainClass;
@@ -219,7 +220,8 @@ private:
 class CMainClass : public IMainClass {
 public:
 	CMainClass( const std::string _a, const std::string _b, const IStm *_n ) :
-		a( _a ), b( _b ), n( _n ) {}
+		a( _a ), b( _b ), n( _n )
+	{}
 	~CMainClass() {}
 	const std::string GetIdFirst() const { return a; }
 	const std::string GetIDSecond() const { return b; }
@@ -237,7 +239,8 @@ private:
 class CClassDecl : public IClassDecl {
 public:
 	CClassDecl( const std::string _a, const IVarDeclList* _m, const IMethodDeclList* _n ) :
-		a( _a ), m( _m ), n( _n ) {}
+		a( _a ), m( _m ), n( _n )
+	{}
 	~CClassDecl() {}
 	const std::string GetId() const { return a; }
 	const IVarDeclList* GetVarDeclList() const { return m; }
@@ -255,7 +258,8 @@ private:
 class CExClassDecl : public IClassDecl {
 public:
 	CExClassDecl( const std::string _a, const std::string _b, const IVarDeclList *_m, const IMethodDeclList *_n ) :
-		a( _a ), b( _b ), m( _m ), n( _n ) {}
+		a( _a ), b( _b ), m( _m ), n( _n )
+	{}
 	~CExClassDecl() {}
 	const std::string GetId() const { return a; }
 	const std::string GetIDExtend() const { return b; }
@@ -290,7 +294,8 @@ private:
 class CMethodDecl : public IMethodDecl {
 public:
 	CMethodDecl( const std::string _m, const std::string _a, const IFormalList *_n, const IVarDeclList *_l, const IStmList *_k, const IExp *_p ) :
-		m( _m ), a( _a ), n( _n ), l( _l ), k( _k ), p( _p ) {}
+		m( _m ), a( _a ), n( _n ), l( _l ), k( _k ), p( _p )
+	{}
 	~CMethodDecl() {}
 	const std::string GetType() const { return m; }
 	const std::string GetId() const { return a; }
@@ -480,7 +485,13 @@ class CStrExp :public IExp {
 public:
 	CStrExp( const char* _a ) : a( _a ) {}
 	~CStrExp() {}
-	const char* GetStr() const { return a; }
+	const std::string GetStr() const { return std::string(a); }
+	const std::string GetId() const
+	{
+		std::ostringstream ss;
+		ss << std::hash<std::string>()(a);
+		return ss.str();
+	}
 	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
 private:
 	const char* a;
@@ -615,7 +626,8 @@ private:
 class CFormalList : public IFormalList {
 public:
 	CFormalList( const std::string _a, const std::string _b, const IFormalList * _c ) :
-		a( _a ), b( _b ), c( _c ) {};
+		a( _a ), b( _b ), c( _c )
+	{};
 	~CFormalList() {}
 	const std::string GetType() const { return a; }
 	const std::string GetId() const { return b; }

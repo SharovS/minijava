@@ -371,7 +371,7 @@ namespace Translation
 				id,
 				new Tree::BINOP( Tree::BINOP::MUL,
 				new Tree::BINOP( Tree::BINOP::PLUS, Previous->unEx(), new Tree::CONST( 1 ) ),
-				new Tree::CONST( sizeof(int) ) ) ) );
+				new Tree::CONST( sizeof( int ) ) ) ) );
 			p.GetExpSecond()->Accept( this );
 			// записываем значение в переменную и возвращаем statement
 			Previous = new Nx( new Tree::MOVE( id, Previous->unEx() ) );
@@ -440,7 +440,7 @@ namespace Translation
 			Previous->unEx(),
 			new Tree::BINOP( Tree::BINOP::MUL,
 			new Tree::BINOP( Tree::BINOP::PLUS, exSecond->unEx(), new Tree::CONST( 1 ) ),
-			new Tree::CONST( sizeof(int) ) ) ) );
+			new Tree::CONST( sizeof( int ) ) ) ) );
 		// возвращаем exp
 		Previous = new Ex( res );
 
@@ -490,10 +490,11 @@ namespace Translation
 
 	void Translator::Visit( const CStrExp& p ) //str
 	{
-		// заполняем константу 
-		Tree::IExp* res = new Tree::CONST( const_cast<char*>(p.GetStr()) );
+		Temp::CLabel* stringLabel = new Temp::CLabel("L" + p.GetId() );
+		Tree::IExp* length = new Tree::CONST( p.GetStr().length() );
+		Tree::IExp* res = /*new Tree::EXP( new Tree::NAME( stringLabel ) );*/ ExternalCall( new Tree::NAME( stringLabel ), new Tree::ExpList( length, 0 ) );
 		// возвращаем exp
-		Previous = new Ex( res );
+		Previous = new Ex( res/*new Tree::ESEQ(res, length)*/ );
 	}
 
 	void Translator::Visit( const CTrExp& p ) //true
@@ -598,7 +599,7 @@ namespace Translation
 		// определяем, сколько места нужно выделить
 		Tree::IExp* size = new Tree::BINOP( Tree::BINOP::MUL,
 			new Tree::CONST( sz ),
-			new Tree::CONST( CurrFrame->wordSize() ) );
+			new Tree::CONST(CurrFrame->wordSize()));
 		// initClass - имя внешней функции, которая создаст объект класса
 		Temp::CLabel* initClass = new Temp::CLabel( "initClass" );
 		// вызываем функцию с параметром size и сохраняем ее в переменной
