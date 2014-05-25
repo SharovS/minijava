@@ -364,8 +364,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 44
-#define YY_END_OF_BUFFER 45
+#define YY_NUM_RULES 45
+#define YY_END_OF_BUFFER 46
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -373,24 +373,24 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static yyconst flex_int16_t yy_accept[144] =
+static yyconst flex_int16_t yy_accept[146] =
     {   0,
-        0,    0,   45,   43,   42,   42,   26,   43,   43,   28,
-       29,   37,   34,   27,   35,   23,   36,   21,   21,   24,
-       38,   25,   20,   20,   30,   31,   20,   20,   20,   20,
-       20,   20,   20,   20,   20,   20,   20,   20,   20,   20,
-       32,   33,    0,   22,    0,   39,    0,    0,   21,   20,
-       20,   20,   20,   20,   20,   20,   20,    1,   20,   20,
-       20,   20,   20,   20,   20,   20,   20,   20,   20,    0,
-        0,    0,    0,   40,   20,   20,   20,   20,   20,   20,
-       20,   11,   20,   20,   18,   20,   20,   20,   20,   20,
-       20,   20,   41,   20,   20,   20,   20,    2,   20,   20,
+        0,    0,   46,   44,   43,   43,   27,   44,   44,   29,
+       30,   38,   35,   28,   36,   24,   37,   22,   22,   25,
+       39,   26,   21,   21,   31,   32,   21,   21,   21,   21,
+       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
+       33,   34,    0,   23,    0,   40,    0,    0,   22,   21,
+       21,   21,   21,   21,   21,   21,   21,   21,    1,   21,
+       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
+        0,    0,    0,    0,   41,   21,   21,   21,   21,   21,
+       21,   21,    4,   12,   21,   21,   19,   21,   21,   21,
+       21,   21,   21,   21,   42,   21,   21,   21,   21,    2,
 
-       20,    6,   20,   20,   20,   17,   15,   13,   20,   20,
-       20,   20,    5,   20,   16,   20,   20,   20,   20,    3,
-       14,   20,   12,   20,   20,    7,    9,    8,    0,   10,
-       19,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-        0,    4,    0
+       21,   21,   21,    7,   21,   21,   21,   18,   16,   14,
+       21,   21,   21,   21,    6,   21,   17,   21,   21,   21,
+       21,    3,   15,   21,   13,   21,   21,    8,   10,    9,
+        0,   11,   20,    0,    0,    0,    0,    0,    0,    0,
+        0,    0,    0,    5,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -434,100 +434,102 @@ static yyconst flex_int32_t yy_meta[50] =
         3,    3,    3,    3,    3,    3,    3,    1,    1
     } ;
 
-static yyconst flex_int16_t yy_base[148] =
+static yyconst flex_int16_t yy_base[150] =
     {   0,
-        0,    0,  169,  170,  170,  170,  170,   44,  161,  170,
-      170,  170,  170,  170,  170,  170,   41,  170,   36,  170,
-      170,  170,    0,   12,  170,  170,  129,  131,   20,  139,
-       26,  134,  137,  132,  118,  130,  117,   25,  120,  124,
-      170,  170,   54,  170,   55,  170,  146,  152,   53,    0,
-      114,  112,  114,  125,  109,  107,  113,    0,  105,  109,
-      111,   99,  116,  100,  115,  106,   96,  104,  103,   56,
-      126,   57,  132,  170,  100,   91,   97,   90,  100,   99,
-       87,    0,   95,   89,    0,   90,   81,   81,   81,   91,
-       91,   84,  108,   80,   86,   85,   73,    0,   76,   82,
+        0,    0,  171,  172,  172,  172,  172,   44,  163,  172,
+      172,  172,  172,  172,  172,  172,   41,  172,   36,  172,
+      172,  172,    0,   12,  172,  172,  131,  133,   20,   31,
+       27,  137,  140,  135,  121,  133,  120,   27,  123,  127,
+      172,  172,   55,  172,   56,  172,  149,  155,   54,    0,
+      117,  115,  117,  128,  112,  110,  116,  110,    0,  107,
+      111,  113,  101,  118,  102,  117,  108,   98,  106,  105,
+       57,  128,   62,  134,  172,  102,   93,   99,   92,  102,
+      101,   89,    0,    0,   97,   91,    0,   92,   83,   83,
+       83,   93,   93,   86,  110,   82,   88,   87,   75,    0,
 
-       69,    0,   76,   69,   74,    0,    0,    0,   77,   70,
-       60,   57,    0,   64,    0,   58,   62,   52,   60,    0,
-        0,   73,    0,   45,   81,    0,    0,    0,   46,    0,
-      170,   40,   40,   67,   40,   37,   42,   38,   32,   38,
-       34,  170,  170,   97,   61,  100,  103
+       78,   84,   71,    0,   78,   71,   76,    0,    0,    0,
+       79,   76,   67,   60,    0,   66,    0,   61,   64,   54,
+       62,    0,    0,   75,    0,   47,   83,    0,    0,    0,
+       48,    0,  172,   42,   42,   69,   43,   40,   44,   39,
+       33,   39,   36,  172,  172,   98,   62,  101,  104
     } ;
 
-static yyconst flex_int16_t yy_def[148] =
+static yyconst flex_int16_t yy_def[150] =
     {   0,
-      143,    1,  143,  143,  143,  143,  143,  144,  143,  143,
-      143,  143,  143,  143,  143,  143,  143,  143,  143,  143,
-      143,  143,  145,  145,  143,  143,  145,  145,  145,  145,
+      145,    1,  145,  145,  145,  145,  145,  146,  145,  145,
       145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
-      143,  143,  144,  143,  143,  143,  146,  147,  143,  145,
-      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
-      145,  145,  145,  145,  145,  145,  145,  145,  145,  144,
-      146,  146,  147,  143,  145,  145,  145,  145,  145,  145,
-      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
-      145,  145,  146,  145,  145,  145,  145,  145,  145,  145,
+      145,  145,  147,  147,  145,  145,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      145,  145,  146,  145,  145,  145,  148,  149,  145,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      146,  148,  148,  149,  145,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  148,  147,  147,  147,  147,  147,
 
-      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
-      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
-      145,  145,  145,  145,  145,  145,  145,  145,  143,  145,
-      143,  143,  143,  143,  143,  143,  143,  143,  143,  143,
-      143,  143,    0,  143,  143,  143,  143
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      147,  147,  147,  147,  147,  147,  147,  147,  147,  147,
+      145,  147,  145,  145,  145,  145,  145,  145,  145,  145,
+      145,  145,  145,  145,    0,  145,  145,  145,  145
     } ;
 
-static yyconst flex_int16_t yy_nxt[220] =
+static yyconst flex_int16_t yy_nxt[222] =
     {   0,
         4,    5,    6,    5,    7,    8,    9,   10,   11,   12,
        13,   14,   15,   16,   17,   18,   19,   20,   21,   22,
        23,   24,   25,    4,   26,   23,   27,   28,   23,   29,
        30,   23,   23,   31,   32,   33,   34,   23,   35,   36,
        37,   38,   23,   39,   40,   23,   23,   41,   42,   44,
-       47,   49,   49,   51,   55,   48,   58,   66,   52,   44,
-       70,   44,   59,   50,   67,   56,   72,   45,   49,   49,
-      142,   93,  141,  140,  139,  138,  137,   45,  136,   45,
-      135,  134,  133,  132,  131,  130,  129,  128,  127,  126,
-      125,   70,  124,  123,   70,  122,   70,   43,   43,   43,
+       47,   49,   49,   51,   55,   48,   57,   59,   52,   67,
+       44,   71,   44,   60,   50,   56,   68,   45,   58,   49,
+       49,   73,  144,  143,  142,  141,   95,  140,   45,  139,
+       45,  138,  137,  136,  135,  134,  133,  132,  131,  130,
+      129,  128,   71,  127,  126,   71,  125,   71,   43,   43,
 
-       71,  121,   71,   73,   73,   73,  120,  119,  118,  117,
-      116,  115,  114,  113,  112,  111,  110,   72,  109,  108,
-      107,  106,  105,  104,  103,  102,  101,  100,   99,   98,
-       97,   96,   95,   94,   74,   72,   92,   91,   90,   89,
-       88,   87,   86,   85,   84,   83,   82,   81,   80,   79,
-       78,   77,   76,   75,   74,   72,   69,   68,   65,   64,
-       63,   62,   61,   60,   57,   54,   53,   46,  143,    3,
-      143,  143,  143,  143,  143,  143,  143,  143,  143,  143,
-      143,  143,  143,  143,  143,  143,  143,  143,  143,  143,
-      143,  143,  143,  143,  143,  143,  143,  143,  143,  143,
+       43,   72,  124,   72,   74,   74,   74,  123,  122,  121,
+      120,  119,  118,  117,  116,  115,  114,  113,  112,   73,
+      111,  110,  109,  108,  107,  106,  105,  104,  103,  102,
+      101,  100,   99,   98,   97,   96,   75,   73,   94,   93,
+       92,   91,   90,   89,   88,   87,   86,   85,   84,   83,
+       82,   81,   80,   79,   78,   77,   76,   75,   73,   70,
+       69,   66,   65,   64,   63,   62,   61,   54,   53,   46,
+      145,    3,  145,  145,  145,  145,  145,  145,  145,  145,
+      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
+      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
 
-      143,  143,  143,  143,  143,  143,  143,  143,  143,  143,
-      143,  143,  143,  143,  143,  143,  143,  143,  143
+      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
+      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
+      145
     } ;
 
-static yyconst flex_int16_t yy_chk[220] =
+static yyconst flex_int16_t yy_chk[222] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    8,
-       17,   19,   19,   24,   29,   17,   31,   38,   24,   43,
-       45,   70,   31,  145,   38,   29,   72,    8,   49,   49,
-      141,   72,  140,  139,  138,  137,  136,   43,  135,   70,
-      134,  133,  132,  129,  125,  124,  122,  119,  118,  117,
-      116,   45,  114,  112,   45,  111,   45,  144,  144,  144,
+       17,   19,   19,   24,   29,   17,   30,   31,   24,   38,
+       43,   45,   71,   31,  147,   29,   38,    8,   30,   49,
+       49,   73,  143,  142,  141,  140,   73,  139,   43,  138,
+       71,  137,  136,  135,  134,  131,  127,  126,  124,  121,
+      120,  119,   45,  118,  116,   45,  114,   45,  146,  146,
 
-      146,  110,  146,  147,  147,  147,  109,  105,  104,  103,
-      101,  100,   99,   97,   96,   95,   94,   93,   92,   91,
-       90,   89,   88,   87,   86,   84,   83,   81,   80,   79,
-       78,   77,   76,   75,   73,   71,   69,   68,   67,   66,
-       65,   64,   63,   62,   61,   60,   59,   57,   56,   55,
-       54,   53,   52,   51,   48,   47,   40,   39,   37,   36,
-       35,   34,   33,   32,   30,   28,   27,    9,    3,  143,
-      143,  143,  143,  143,  143,  143,  143,  143,  143,  143,
-      143,  143,  143,  143,  143,  143,  143,  143,  143,  143,
-      143,  143,  143,  143,  143,  143,  143,  143,  143,  143,
+      146,  148,  113,  148,  149,  149,  149,  112,  111,  107,
+      106,  105,  103,  102,  101,   99,   98,   97,   96,   95,
+       94,   93,   92,   91,   90,   89,   88,   86,   85,   82,
+       81,   80,   79,   78,   77,   76,   74,   72,   70,   69,
+       68,   67,   66,   65,   64,   63,   62,   61,   60,   58,
+       57,   56,   55,   54,   53,   52,   51,   48,   47,   40,
+       39,   37,   36,   35,   34,   33,   32,   28,   27,    9,
+        3,  145,  145,  145,  145,  145,  145,  145,  145,  145,
+      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
+      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
 
-      143,  143,  143,  143,  143,  143,  143,  143,  143,  143,
-      143,  143,  143,  143,  143,  143,  143,  143,  143
+      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
+      145,  145,  145,  145,  145,  145,  145,  145,  145,  145,
+      145
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -544,9 +546,9 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 1 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 #include <stdio.h>
-#line 5 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 5 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 #include <interface.h>
 #include <Syntax.hpp>
 #pragma warning(disable:4273) // isatty
@@ -556,7 +558,7 @@ char *yytext;
 static int line_number = 1;
 static int column_number = 1;
 void updateLocation();
-#line 560 "Lexical.cpp"
+#line 562 "Lexical.cpp"
 
 #define INITIAL 0
 
@@ -738,11 +740,11 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 16 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 16 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 
 
 
-#line 746 "Lexical.cpp"
+#line 748 "Lexical.cpp"
 
 	if ( !(yy_init) )
 		{
@@ -795,13 +797,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 144 )
+				if ( yy_current_state >= 146 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 170 );
+		while ( yy_base[yy_current_state] != 172 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -827,102 +829,107 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 19 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 19 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 updateLocation(); return _IF;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 20 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 20 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 updateLocation(); return _ELSE;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 21 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 21 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 updateLocation(); return _WHILE;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 22 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _SYSTEMOP;
+#line 22 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _FOR;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 24 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _CLASS;
+#line 23 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _SYSTEMOP;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 25 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _MAIN;
+#line 25 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _CLASS;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 26 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _PUBLIC;
+#line 26 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _MAIN;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 27 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _STATIC;
+#line 27 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _PUBLIC;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 28 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _RETURN;
+#line 28 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _STATIC;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 29 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _EXTENDS;
+#line 29 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _RETURN;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 31 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _INT;
+#line 30 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _EXTENDS;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 32 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _BOOLEAN;
+#line 32 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _INT;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 33 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _VOID;
+#line 33 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _BOOLEAN;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 34 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _STRING;
+#line 34 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _VOID;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 36 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _TRUE;
+#line 35 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _STRING;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 37 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _FALSE;
+#line 37 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _TRUE;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 38 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _THIS;
+#line 38 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _FALSE;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 39 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _NEW;
+#line 39 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _THIS;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 40 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _LENGTH;
+#line 40 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _NEW;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 42 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 41 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _LENGTH;
+	YY_BREAK
+case 21:
+YY_RULE_SETUP
+#line 43 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 { updateLocation(); 
 		yylval.SymbolTable = new char[yyleng + 1];
 		strncpy_s(yylval.SymbolTable, yyleng + 1, yytext, yyleng);
@@ -930,134 +937,134 @@ YY_RULE_SETUP
 		return _ID;
 	}
 	YY_BREAK
-case 21:
+case 22:
 YY_RULE_SETUP
-#line 48 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 49 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 { updateLocation(); 
                 yylval.IntV = atoi(yytext);
                 return _NUM;}
 	YY_BREAK
-case 22:
-/* rule 22 can match eol */
+case 23:
+/* rule 23 can match eol */
 YY_RULE_SETUP
-#line 52 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 53 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 { updateLocation(); 
 									strncpy_s(yylval.StringV, yyleng + 1, yytext, yyleng);
 									return _STR;}
 	YY_BREAK
-case 23:
-YY_RULE_SETUP
-#line 56 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _POINT;
-	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 57 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _SEMICOLUMN;
+#line 57 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _POINT;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 58 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _ASSIGNMENT;
+#line 58 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _SEMICOLUMN;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 59 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _WOW;
+#line 59 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _ASSIGNMENT;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 60 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return __COMMA;
+#line 60 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _WOW;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 61 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _RL_BRACKET;
+#line 61 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return __COMMA;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 62 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _RR_BRACKET;
+#line 62 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _RL_BRACKET;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 63 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _SL_BRACKET;
+#line 63 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _RR_BRACKET;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 64 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _SR_BRACKET;
+#line 64 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _SL_BRACKET;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 65 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _FL_BRACKET;
+#line 65 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _SR_BRACKET;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 66 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _FR_BRACKET;
+#line 66 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _FL_BRACKET;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 67 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPPLUS;
+#line 67 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _FR_BRACKET;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 68 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPMINUS;
+#line 68 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPPLUS;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 69 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPDIV;
+#line 69 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPMINUS;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 70 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPMULT;
+#line 70 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPDIV;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 71 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPLESS;
+#line 71 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPMULT;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 72 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPAND;
+#line 72 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPLESS;
 	YY_BREAK
 case 40:
-/* rule 40 can match eol */
 YY_RULE_SETUP
-#line 76 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); 
+#line 73 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPAND;
 	YY_BREAK
 case 41:
+/* rule 41 can match eol */
 YY_RULE_SETUP
-#line 77 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 77 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 updateLocation(); 
 	YY_BREAK
 case 42:
-/* rule 42 can match eol */
 YY_RULE_SETUP
-#line 78 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); // blanks
+#line 78 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); 
 	YY_BREAK
 case 43:
+/* rule 43 can match eol */
 YY_RULE_SETUP
-#line 80 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); printf("error token at [%d,%d]!\n", yylloc.first_line, yylloc.first_column);
+#line 79 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); // blanks
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 82 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 81 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); printf("error token at [%d,%d]!\n", yylloc.first_line, yylloc.first_column);
+	YY_BREAK
+case 45:
+YY_RULE_SETUP
+#line 83 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 ECHO;
 	YY_BREAK
-#line 1061 "Lexical.cpp"
+#line 1068 "Lexical.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1349,7 +1356,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 144 )
+			if ( yy_current_state >= 146 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1377,11 +1384,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 144 )
+		if ( yy_current_state >= 146 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 143);
+	yy_is_jam = (yy_current_state == 145);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -2051,7 +2058,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 82 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 83 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\lexical.txt"
 
 
 

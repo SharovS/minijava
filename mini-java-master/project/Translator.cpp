@@ -297,6 +297,46 @@ namespace Translation
 
 	}
 
+	void Translator::Visit( const CForStm& p ) //for ( Statement, Exp, Statement ) Statement
+	{
+		// считываем выражения 
+		p.GetInitStm()->Accept( this );
+		Exp* initStm = Previous;
+		p.GetCheckExp()->Accept( this );
+		Exp* checkExp = Previous;
+		p.GetUpdateStm()->Accept( this );
+		Exp* updateStm = Previous;
+		p.GetBodyStm()->Accept( this );
+		Exp* bodyStm = Previous;
+		// создаем метки body и end
+		Temp::CLabel * body = new Temp::CLabel();
+		Temp::CLabel * end = new Temp::CLabel();
+		// создаем ветку body
+		Tree::IStm* bodySeq = new Tree::SEQ( 
+			new Tree::LABEL( body ), 
+			new Tree::SEQ(
+				bodyStm->unNx(),
+				updateStm->unNx()
+			)
+		);
+		// выполняем условный переход
+		Tree::IStm* res = new Tree::SEQ( 
+			initStm->unNx(),
+			new Tree::SEQ(
+				new Tree::SEQ( 
+					checkExp->unCx( body, end ),
+					bodySeq
+				),
+				new Tree::SEQ( 
+					checkExp->unCx( body, end ),
+					new Tree::LABEL(end)
+				)
+			)
+		);
+		// возвращаем обратно statement
+		Previous = new Nx( res );
+	}
+
 	void Translator::Visit( const CSOPStm& p ) //System.out.println ( Exp ) ;
 	{
 		p.GetExp()->Accept( this );
@@ -491,7 +531,7 @@ namespace Translation
 	void Translator::Visit( const CStrExp& p ) //str
 	{
 		// заполняем константу 
-		Tree::IExp* res = new Tree::CONST( p.GetStr() );
+		Tree::IExp* res = new Tree::CONST( 0 ); // заглушка
 		// возвращаем exp
 		Previous = new Ex( res );
 	}
@@ -702,5 +742,8 @@ namespace Translation
 		Previous = new Translation::Nx( exp );
 	}
 
-
+	void Translator::Visit( const CEmptyStm& p )
+	{
+		Previous = new Translation::Nx( new Tree::LABEL(new Temp::CLabel() )); // fake label
+	}
 }

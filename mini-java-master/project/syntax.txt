@@ -16,6 +16,7 @@
 %token _IF
 %token _ELSE
 %token _WHILE
+%token _FOR
 %token _SYSTEMOP
 
 %token _CLASS
@@ -74,6 +75,7 @@
 %type <FormalList> FormalList
 %type <FormalList> FormalRest
 %type <SymbolTable> Type
+%type <Stm> SimpleStm
 %type <Stm> Stm
 %type <StmList> StmList
 %type <Exp> Exp 
@@ -144,12 +146,18 @@ Type:           _INT _SL_BRACKET _SR_BRACKET {$$ = "int[]";}
                |_INT {$$ = "int";}
                |_ID {$$ = $1;}
 ;
+
+SimpleStm:     /*empty*/ {$$ = new CEmptyStm();}
+			   |_SYSTEMOP _RL_BRACKET Exp _RR_BRACKET {$$ = new CSOPStm ($3);}
+               |_ID _ASSIGNMENT Exp {$$ = new CAsStm($1, $3);}
+               |_ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp {$$ = new CAsExpStm ($1, $3, $6);}
+;
+
 Stm:           _FL_BRACKET StmList _FR_BRACKET {$$ = new CCompStm($2);}
                |_IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm {$$ = new CIfStm ($3, $5, $7);}
                |_WHILE _RL_BRACKET Exp _RR_BRACKET Stm {$$ = new CWhStm ($3, $5);}
-               |_SYSTEMOP _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN {$$ = new CSOPStm ($3);}
-               |_ID _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CAsStm($1, $3);}
-               |_ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CAsExpStm ($1, $3, $6);}
+			   |_FOR _RL_BRACKET SimpleStm _SEMICOLUMN Exp _SEMICOLUMN SimpleStm _RR_BRACKET Stm {$$ = new CForStm ($3, $5, $7, $9);}
+               |SimpleStm _SEMICOLUMN {$$ = $1;}
 ;
 
 Exp: Exp _OPPLUS Exp     { $$ = new COpExp ($1, B_Plus, $3) ;} 

@@ -8,9 +8,11 @@ class CClassDecl;
 class CExClassDecl;
 class CVarDecl;
 class CMethodDecl;
+class CEmptyStm;
 class CCompStm;
 class CIfStm;
 class CWhStm;
+class CForStm;
 class CSOPStm;
 class CAsStm;
 class CAsExpStm;
@@ -48,6 +50,7 @@ public:
 	virtual void Visit( const CCompStm& p ) = 0;
 	virtual void Visit( const CIfStm& p ) = 0;
 	virtual void Visit( const CWhStm& p ) = 0;
+	virtual void Visit( const CForStm& p ) = 0;
 	virtual void Visit( const CSOPStm& p ) = 0;
 	virtual void Visit( const CAsStm& p ) = 0;
 	virtual void Visit( const CAsExpStm& p ) = 0;
@@ -72,6 +75,7 @@ public:
 	virtual void Visit( const CVarDeclList& p ) = 0;
 	virtual void Visit( const CMethodDeclList& p ) = 0;
 	virtual void Visit( const CStmList& p ) = 0;
+	virtual void Visit( const CEmptyStm& p ) = 0;
 };
 
 //--------------------------------------------------------------------------------------
@@ -310,6 +314,16 @@ private:
 
 //--------------------------------------------------------------------------------------
 
+//empty statement, such as ";" or as initial\update statements in for(;a<b;)
+class CEmptyStm : public IStm {
+public:
+	CEmptyStm() {}
+	~CEmptyStm() {}
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+};
+
+//--------------------------------------------------------------------------------------
+
 //{ Statement* }
 class CCompStm : public IStm {
 public:
@@ -351,6 +365,25 @@ public:
 private:
 	const IExp *m;
 	const IStm *n;
+};
+
+//--------------------------------------------------------------------------------------
+
+//for ( Statament; Exp; Statement ) Statement
+class CForStm : public IStm {
+public:
+	CForStm( const IStm *_init, const IExp *_check, const IStm *_update, const IStm *_body ) : init(_init), check(_check), update(_update), body(_body) {};
+	CForStm() {}
+	const IStm* GetInitStm() const { return init; }
+	const IExp* GetCheckExp() const { return check; }
+	const IStm* GetUpdateStm() const { return update; }
+	const IStm* GetBodyStm() const { return body; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const IStm *init;
+	const IExp *check;
+	const IStm *update;
+	const IStm *body;
 };
 
 //--------------------------------------------------------------------------------------

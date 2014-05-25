@@ -597,6 +597,11 @@ void CSTVisitor::Visit( const CWhStm& p )
 	assert( false );
 }
 
+void CSTVisitor::Visit( const CForStm& p )
+{
+	assert( false );
+}
+
 void CSTVisitor::Visit( const CSOPStm& p )
 {
 	assert( false );
@@ -730,6 +735,11 @@ void CSTVisitor::Visit( const CMethodDeclList& p )
 }
 
 void CSTVisitor::Visit( const CStmList& p )
+{
+	assert( false );
+}
+
+void CSTVisitor::Visit( const CEmptyStm& p )
 {
 	assert( false );
 }

@@ -119,12 +119,30 @@ void CTypeCheckerVisitor::Visit( const CWhStm& p )
 	p.GetStm()->Accept( this );
 }
 
+//for ( Statement; Exp; Statement ) Statement
+
+void CTypeCheckerVisitor::Visit( const CForStm& p )
+{
+	p.GetInitStm()->Accept(this);
+	p.GetCheckExp()->Accept( this );//Должен быть bool
+	if( lastType != "boolean" ) {
+		isError = true;
+		std::string methodName( (table->getCurrMethod())->getName() );
+		std::string className( (table->getCurrClass())->getName() );
+		const char* mN = methodName.c_str();
+		const char* cN = className.c_str();
+		printf( "Error in for(Exp): incorrect type of Exp \n Location: method %s in Class %s\n\n", mN, cN );
+	}
+	p.GetUpdateStm()->Accept(this);
+	p.GetBodyStm()->Accept( this );
+}
+
 //System.out.println ( Exp ) ;
 
 void CTypeCheckerVisitor::Visit( const CSOPStm& p )
 {
 	p.GetExp()->Accept( this );
-	if( lastType != "int" || lastType != "string" ) {
+	if( lastType != "int" && lastType != "string" ) {
 		isError = true;
 		std::string methodName( (table->getCurrMethod())->getName() );
 		std::string className( (table->getCurrClass())->getName() );
@@ -493,6 +511,11 @@ void CTypeCheckerVisitor::Visit( const CStmList& p )
 	if( p.GetTail() ) {
 		p.GetTail()->Accept( this );
 	}
+}
+
+void CTypeCheckerVisitor::Visit( const CEmptyStm& p )
+{
+	// do nothing
 }
 
 bool CTypeCheckerVisitor::wasError()
