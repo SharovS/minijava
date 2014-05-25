@@ -53,40 +53,41 @@ extern int yydebug;
      _ELSE = 262,
      _WHILE = 263,
      _SYSTEMOP = 264,
-     _CLASS = 265,
-     _MAIN = 266,
-     _PUBLIC = 267,
-     _STATIC = 268,
-     _RETURN = 269,
-     _EXTENDS = 270,
-     _INT = 271,
-     _BOOLEAN = 272,
-     _VOID = 273,
-     _STRING = 274,
-     _TRUE = 275,
-     _FALSE = 276,
-     _THIS = 277,
-     _NEW = 278,
-     _LENGTH = 279,
-     _POINT = 280,
-     _SEMICOLUMN = 281,
-     _STAR = 282,
-     _ASSIGNMENT = 283,
-     _WOW = 284,
-     __COMMA = 285,
-     _RL_BRACKET = 286,
-     _RR_BRACKET = 287,
-     _SL_BRACKET = 288,
-     _SR_BRACKET = 289,
-     _FL_BRACKET = 290,
-     _FR_BRACKET = 291,
-     _OPPLUS = 292,
-     _OPMINUS = 293,
-     _OPMULT = 294,
-     _OPDIV = 295,
-     _OPAND = 296,
-     _OPLESS = 297,
-     NEG = 298
+     _SYSTEMOPWOLN = 265,
+     _CLASS = 266,
+     _MAIN = 267,
+     _PUBLIC = 268,
+     _STATIC = 269,
+     _RETURN = 270,
+     _EXTENDS = 271,
+     _INT = 272,
+     _BOOLEAN = 273,
+     _VOID = 274,
+     _STRING = 275,
+     _TRUE = 276,
+     _FALSE = 277,
+     _THIS = 278,
+     _NEW = 279,
+     _LENGTH = 280,
+     _POINT = 281,
+     _SEMICOLUMN = 282,
+     _STAR = 283,
+     _ASSIGNMENT = 284,
+     _WOW = 285,
+     __COMMA = 286,
+     _RL_BRACKET = 287,
+     _RR_BRACKET = 288,
+     _SL_BRACKET = 289,
+     _SR_BRACKET = 290,
+     _FL_BRACKET = 291,
+     _FR_BRACKET = 292,
+     _OPPLUS = 293,
+     _OPMINUS = 294,
+     _OPMULT = 295,
+     _OPDIV = 296,
+     _OPAND = 297,
+     _OPLESS = 298,
+     NEG = 299
    };
 #endif
 
@@ -95,7 +96,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 83 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 84 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt"
 
  int IntV;
  char* StringV;
@@ -119,7 +120,7 @@ typedef union YYSTYPE
 
 
 /* Line 2058 of yacc.c  */
-#line 123 "syntax.hpp"
+#line 124 "syntax.hpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

@@ -75,6 +75,7 @@ namespace Translation
 		void Visit( const CVarDeclList& p );//done
 		void Visit( const CMethodDeclList& p );//done
 		void Visit( const CStmList& p );//done
+		void Visit( const CVarDeclExp& p );
 		bool checkClassVariable( Exp* prv, std::string name );
 	private:
 		CProgramFragment * Frag;

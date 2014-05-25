@@ -49,10 +49,6 @@ void updateLocation();
                 yylval.IntV = atoi(yytext);
                 return _NUM;}
 
-[\"]([^\\\"]*([\\][\"ntr])*)*[\"] { updateLocation(); 
-									strncpy_s(yylval.StringV, yyleng + 1, yytext, yyleng);
-									return _STR;}
-
 "." updateLocation(); return _POINT;
 ";" updateLocation(); return _SEMICOLUMN;
 "=" updateLocation(); return _ASSIGNMENT;

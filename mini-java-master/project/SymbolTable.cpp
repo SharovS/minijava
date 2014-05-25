@@ -568,6 +568,18 @@ void CSTVisitor::Visit( const CVarDecl& p )
 	}
 }
 
+void CSTVisitor::Visit( const CVarDeclExp& p ) 
+{
+	CVar* var = new CVar( p.GetType(), p.GetId(), 0 );
+	if( CurrClass == 0 ) {
+		assert( false );
+	} else if( CurrMethod == 0 ) {
+		CurrClass->addVar( var );
+	} else {
+		CurrMethod->addLoc( var );
+	}
+}
+
 void CSTVisitor::Visit( const CMethodDecl& p )
 {
 	CMethod* meth = new CMethod( p.GetType(), p.GetId(), 0, 0, 0 );

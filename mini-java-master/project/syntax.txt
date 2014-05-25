@@ -17,6 +17,7 @@
 %token _ELSE
 %token _WHILE
 %token _SYSTEMOP
+%token _SYSTEMOPWOLN
 
 %token _CLASS
 %token _MAIN
@@ -124,6 +125,7 @@ VarDeclList: VarDeclList VarDecl {$$ = new CVarDeclList($2, $1);}
              | /*empty*/ {$$=0}
 ;
 VarDecl: Type _ID _SEMICOLUMN {$$ = new CVarDecl($1, $2);}
+	   
 ;
 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET 
             _FL_BRACKET VarDeclList StmList _RETURN Exp _SEMICOLUMN _FR_BRACKET 
@@ -148,8 +150,10 @@ Stm:           _FL_BRACKET StmList _FR_BRACKET {$$ = new CCompStm($2);}
                |_IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm {$$ = new CIfStm ($3, $5, $7);}
                |_WHILE _RL_BRACKET Exp _RR_BRACKET Stm {$$ = new CWhStm ($3, $5);}
                |_SYSTEMOP _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN {$$ = new CSOPStm ($3);}
+			   |_SYSTEMOPWOLN _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN {$$ = new CSOPStm ($3);}
                |_ID _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CAsStm($1, $3);}
                |_ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CAsExpStm ($1, $3, $6);}
+			   | Type _ID _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CVarDeclExp($1, new CAsStm($2, $4));}
 ;
 
 Exp: Exp _OPPLUS Exp     { $$ = new COpExp ($1, B_Plus, $3) ;} 

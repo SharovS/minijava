@@ -56,6 +56,13 @@ void PrettyPrintVisitor::Visit( const CVarDecl& p ) //Type id
 	printf( "%s%s %s ;\n", identt.c_str(), p.GetType().c_str(), p.GetId().c_str() );
 }
 
+void PrettyPrintVisitor::Visit( const CVarDeclExp& p ) // Type id = Exp
+{
+	printf( "%s%s %s = ", identt.c_str(), p.GetType().c_str(), p.GetId().c_str() );
+	p.GetExp()->Accept( this );
+	printf( ";\n" );
+}
+
 void PrettyPrintVisitor::Visit( const CMethodDecl& p ) //public Type id ( FormalList ) { VarDecl* Statement* return Exp ;}
 {
 	printf( "%spublic %s %s ( ", identt.c_str(), p.GetType().c_str(), p.GetId().c_str() );

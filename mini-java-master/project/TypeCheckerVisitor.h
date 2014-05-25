@@ -40,6 +40,7 @@ public:
 	void Visit( const CVarDeclList& p );
 	void Visit( const CMethodDeclList& p );
 	void Visit( const CStmList& p );
+	void Visit( const CVarDeclExp& p );
 
 	bool wasError();
 private:

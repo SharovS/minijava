@@ -308,6 +308,11 @@ namespace Translation
 		Previous = new Nx( call );
 	}
 
+	void Translator::Visit( const CVarDeclExp& p ) {
+		variables.insert( make_pair( p.GetId(), CurrFrame->allocLocal() ) );
+		Visit( *p.GetAsStm() );
+	}
+
 	void Translator::Visit( const CAsStm& p ) //id = Exp ;
 	{
 		// проверяем, что есть такая переменная
@@ -490,10 +495,17 @@ namespace Translation
 
 	void Translator::Visit( const CStrExp& p ) //str
 	{
+		/*
 		// заполняем константу 
+<<<<<<< Updated upstream
 		Tree::IExp* res = new Tree::CONST( p.GetStr() );
+=======
+	//doesn't work
+		Tree::IExp* res = new Tree::CONST( const_cast<int*>(p.GetStr()) );
+>>>>>>> Stashed changes
 		// возвращаем exp
 		Previous = new Ex( res );
+	*/
 	}
 
 	void Translator::Visit( const CTrExp& p ) //true

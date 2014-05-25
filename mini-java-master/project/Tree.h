@@ -180,7 +180,6 @@ namespace Tree
 	class CONST : public  IExp {
 	public:
 		CONST( int _value ) : value( _value ) {}
-		CONST( char* _strvalue ) : strvalue( _strvalue ) {}
 		~CONST() {}
 		virtual const ExpList* Kids() const
 		{
@@ -192,7 +191,6 @@ namespace Tree
 		}
 		void Accept( ITreeVisitor* visitor ) const { visitor->Visit( *this ); }
 		int getInt() const { return value; }
-		char* getStr() const { return strvalue; }
 		std::string toString() const
 		{
 			char buffer[16] = {0};
@@ -201,7 +199,6 @@ namespace Tree
 		}
 	private:
 		int value;
-		char* strvalue;
 	};
 
 	//--------------------------------------------------------------------------------------

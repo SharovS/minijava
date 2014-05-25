@@ -35,6 +35,7 @@ class CClassDeclList;
 class CVarDeclList;
 class CMethodDeclList;
 class CStmList;
+class CVarDeclExp;
 
 class IVisitor {
 public:
@@ -72,6 +73,7 @@ public:
 	virtual void Visit( const CVarDeclList& p ) = 0;
 	virtual void Visit( const CMethodDeclList& p ) = 0;
 	virtual void Visit( const CStmList& p ) = 0;
+	virtual void Visit( const CVarDeclExp& p ) = 0;
 };
 
 //--------------------------------------------------------------------------------------
@@ -274,7 +276,9 @@ private:
 //Type id
 class CVarDecl : public IVarDecl {
 public:
-	CVarDecl( const std::string _m, const std::string _a ) : m( _m ), a( _a ) {}
+	CVarDecl( const std::string _m, const std::string _a ) : m( _m ), a( _a ) {
+		hasExp = false;
+	}
 	~CVarDecl() {}
 	const std::string GetType() const { return m; }
 	const std::string GetId() const { return a; }
@@ -282,6 +286,7 @@ public:
 private:
 	const std::string m;
 	const std::string a;
+	bool hasExp;
 };
 
 //--------------------------------------------------------------------------------------
@@ -380,6 +385,29 @@ private:
 	const std::string a;
 	const IExp* m;
 };
+
+//--------------------------------------------------------------------------------------
+
+//Type id = Exp ;
+class CVarDeclExp : public IStm {
+public:
+	CVarDeclExp( const std::string _a, const CAsStm *_m ) : a( _a ),  m( _m ) {		
+	};
+	~CVarDeclExp() {}
+	const std::string GetType() const { return a; }
+	const std::string GetId() const { return m->GetId(); }
+	const IExp* GetExp() const { return m->GetExp(); }
+	void Accept( IVisitor* visitor ) const { 
+		//visitor->Visit( new CVarDecl( a, b ) );
+		visitor->Visit( *this ); 
+	}
+	const CAsStm* GetAsStm() const { return m; } 
+private:
+	const std::string a;
+	const std::string b;
+	const CAsStm* m;
+};
+
 
 //--------------------------------------------------------------------------------------
 

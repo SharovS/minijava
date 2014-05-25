@@ -1,26 +1,49 @@
-﻿Построение начато 25.05.2014 14:56:34.
-     1>Проект "C:\Users\Серёга\Desktop\mini-java-master\mini-java-master\project\newOne.vcxproj" в узле 2 (целевые объекты Build).
-       Файл проекта содержит ToolsVersion="12.0". Возможно, этот набор инструментов неизвестен или отсутствует (в этом случае проблему можно устранить, установив подходящую версию MSBuild), либо для данной сборки определено конкретное значение ToolsVersion в параметрах политики. Проект обрабатывается как имеющий ToolsVersion="4.0". Дополнительные сведения см. по ссылке http://go.microsoft.com/fwlink/?LinkId=291333.
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt BasicBlocks.cpp Canon.cpp Codegen.cpp Frame.cpp IntermediateTreePrinter.cpp TraceSchedule.cpp Translator.cpp main.cpp
-         Translator.cpp
-     1>c:\users\серёга\desktop\mini-java-master\mini-java-master\project\translator.cpp(494): error C2664: Tree::CONST::CONST(int): невозможно преобразовать параметр 1 из "const char *" в "int"
-                 Не существует контекста, в котором такое преобразование возможно
-         Создание кода...
-         Компиляция...
-         BasicBlocks.cpp
-         Создание кода...
-         Компиляция...
-         Codegen.cpp
-         Создание кода...
-         Пропуск... (изменения не обнаружены)
+﻿Build started 25.05.2014 20:50:59.
+     1>Project "C:\Users\Антон\Documents\GitHub\minijava\mini-java-master\project\newOne.vcxproj" on node 2 (Build target(s)).
+       Project file contains ToolsVersion="12.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
+     1>CustomBuild:
+         Performing Custom Build Tools
+         C:\\Users\\└эЄюэ\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt:119.23: warning: a ';' might be needed at the end of action code
+         C:\\Users\\└эЄюэ\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt:119.23:     future versions of Bison will not add the ';'
+         C:\\Users\\└эЄюэ\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt:122.34: warning: a ';' might be needed at the end of action code
+         C:\\Users\\└эЄюэ\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt:122.34:     future versions of Bison will not add the ';'
+         C:\\Users\\└эЄюэ\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt:125.31: warning: a ';' might be needed at the end of action code
+         C:\\Users\\└эЄюэ\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt:125.31:     future versions of Bison will not add the ';'
+         C:\\Users\\└эЄюэ\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt:135.33: warning: a ';' might be needed at the end of action code
+         C:\\Users\\└эЄюэ\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt:135.33:     future versions of Bison will not add the ';'
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Codegen.cpp Lexical.cpp PrettyPrintVisitor.cpp SymbolTable.cpp Syntax.cpp Translator.cpp TypeCheckerVisitor.cpp main.cpp
          main.cpp
-         TraceSchedule.cpp
-         IntermediateTreePrinter.cpp
-         Frame.cpp
-         Canon.cpp
-     1>Построение проекта "C:\Users\Серёга\Desktop\mini-java-master\mini-java-master\project\newOne.vcxproj" завершено (целевые объекты Build) с ошибкой.
+         TypeCheckerVisitor.cpp
+         Translator.cpp
+         Syntax.cpp
+     1>c:\users\антон\documents\github\minijava\mini-java-master\project\syntax.cpp(1366): warning C4065: switch statement contains 'default' but no 'case' labels
+         SymbolTable.cpp
+         PrettyPrintVisitor.cpp
+         Generating Code...
+     1>c:\users\антон\documents\github\minijava\mini-java-master\project\codegen.h(69): warning C4715: 'Codegen::munchExp' : not all control paths return a value
+         Skipping... (no relevant changes detected)
+         Codegen.cpp
+         Lexical.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Антон\Documents\GitHub\minijava\mini-java-master\project\Debug\mj.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Антон\Documents\GitHub\minijava\mini-java-master\project\Debug\mj.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Антон\Documents\GitHub\minijava\mini-java-master\project\Debug\mj.lib" /MACHINE:X86 /SAFESEH Debug\AssemblerGenerator.obj
+         Debug\BasicBlocks.obj
+         Debug\Canon.obj
+         Debug\Codegen.obj
+         Debug\Frame.obj
+         Debug\IntermediateTreePrinter.obj
+         Debug\Lexical.obj
+         Debug\main.obj
+         Debug\PrettyPrintVisitor.obj
+         Debug\SymbolTable.obj
+         Debug\Syntax.obj
+         Debug\Temp.obj
+         Debug\TraceSchedule.obj
+         Debug\Translator.obj
+         Debug\TypeCheckerVisitor.obj
+         newOne.vcxproj -> C:\Users\Антон\Documents\GitHub\minijava\mini-java-master\project\Debug\mj.exe
+     1>Done Building Project "C:\Users\Антон\Documents\GitHub\minijava\mini-java-master\project\newOne.vcxproj" (Build target(s)).
 
-Сбой построения.
+Build succeeded.
 
-Затраченное время: 00:00:04.14
+Time Elapsed 00:00:02.92
