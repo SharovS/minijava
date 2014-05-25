@@ -1,0 +1,104 @@
+%option noyywrap
+        #include <stdio.h>
+
+%{
+#include <interface.h>
+#include <Syntax.hpp>
+#include<string>
+#pragma warning(disable:4273) // isatty
+#pragma warning(disable:4996) // fileno/isatty
+
+// Положение в тексте программы
+static int line_number = 1;
+static int column_number = 1;
+void updateLocation();
+%}
+
+%%
+
+
+"if" updateLocation(); return _IF;
+"else" updateLocation(); return _ELSE;
+"while" updateLocation(); return _WHILE;
+"System.out.println" updateLocation(); return _SYSTEMOP;
+
+"class" updateLocation(); return _CLASS;
+"main" updateLocation(); return _MAIN;
+"public" updateLocation(); return _PUBLIC;
+"static" updateLocation(); return _STATIC;
+"return" updateLocation(); return _RETURN;
+"extends" updateLocation(); return _EXTENDS;
+
+"int" updateLocation(); return _INT;
+"boolen" updateLocation(); return _BOOLEAN;
+"void" updateLocation(); return _VOID;
+"String" updateLocation(); return _STRING;
+
+"true" updateLocation(); return _TRUE;
+"false" updateLocation(); return _FALSE;
+"this" updateLocation(); return _THIS;
+"new" updateLocation(); return _NEW;
+"length " updateLocation(); return _LENGTH;
+
+[a-zA-Z_][a-zA-Z0-9_]*	{ updateLocation(); 
+		yylval.SymbolTable = new char[yyleng + 1];
+		strncpy_s(yylval.SymbolTable, yyleng + 1, yytext, yyleng);
+		yylval.SymbolTable[yyleng] = 0;
+		return _ID;
+	}
+[1-9][0-9]*|0 { updateLocation(); 
+                yylval.IntV = atoi(yytext);
+                return _NUM;}
+
+[\"]([^\\\"]*([\\][\"ntr])*)*[\"] { updateLocation(); 
+									strncpy_s(yylval.StringV, yyleng + 1, yytext, yyleng);
+									return _STR;}
+
+"." updateLocation(); return _POINT;
+";" updateLocation(); return _SEMICOLUMN;
+"=" updateLocation(); return _ASSIGNMENT;
+"!" updateLocation(); return _WOW;
+"," updateLocation(); return __COMMA;
+"(" updateLocation(); return _RL_BRACKET;
+")" updateLocation(); return _RR_BRACKET;
+"[" updateLocation(); return _SL_BRACKET;
+"]" updateLocation(); return _SR_BRACKET;
+"{" updateLocation(); return _FL_BRACKET;
+"}" updateLocation(); return _FR_BRACKET;
+"+" updateLocation(); return _OPPLUS;
+"-" updateLocation(); return _OPMINUS;
+"/" updateLocation(); return _OPDIV;
+"*" updateLocation(); return _OPMULT;
+"<" updateLocation(); return _OPLESS;
+"&&" updateLocation(); return _OPAND;
+
+ 
+
+"//".*\n updateLocation(); 
+"/*".*"*/" updateLocation(); 
+[[:space:]] updateLocation(); // blanks
+
+.       updateLocation(); printf("error token at [%d,%d]!\n", yylloc.first_line, yylloc.first_column);
+
+%%
+
+static void updateLocation()
+{
+	// Начало токена
+	yylloc.first_line = line_number;
+	yylloc.first_column = column_number;
+
+	// Новое смещение
+	for( unsigned i = 0; i < yyleng; i++ ) {
+		if( yytext[i] == '\n' ) {
+			line_number++;
+			column_number = 1;
+		} else {
+			column_number++;
+		}
+	}
+
+	// Конец токена
+	yylloc.last_line = line_number;
+	yylloc.last_column = column_number;
+}

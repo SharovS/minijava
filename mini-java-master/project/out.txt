@@ -1,0 +1,97 @@
+class Factorial { 
+   public static Void main ( String [] a ) { 
+       System.out.println ( new Fac (). ComputeFac ( 0 , 100  ) ) ;
+   }
+}
+
+class Fac { 
+    public int ComputeFac ( int from , int to ) { 
+        int res ;
+        while ( from < to )
+            {
+                res = from - from / 2 * 2;
+                if ( 0 < res )
+                    res = res;
+                else
+                    System.out.println ( from ) ;
+                from = from + 1;
+            }
+
+        return 0;
+    }
+
+}
+
+
+-------------------------------------------
+
+Unfounded method: ComputeFac
+Factorial
+
+
+
+void main
+(
+string a
+)
+
+
+_________
+Fac
+
+
+
+int ComputeFac
+(
+int from
+int to
+)
+int res
+
+
+_________
+
+
+------------Type cheking completed-----------
+
+-----------CODE BEFORE CANONIZING--------------
+FacComputeFac
+ESEQ(SEQ(SEQ( L3, 
+    CJUMP( < , MEM(BINOP( + , TEMP(fp), 
+        CONST(5))), 
+        MEM(BINOP( + , TEMP(fp), 
+            CONST(1))), 
+        L4, 
+        L5)), 
+    SEQ(SEQ( L4, 
+        SEQ(MOVE(TEMP(T1), 
+            BINOP( - , MEM(BINOP( + , TEMP(fp), 
+                CONST(5))), 
+                BINOP( * , BINOP( / , MEM(BINOP( + , TEMP(fp), 
+                    CONST(5))), 
+                    CONST(2)), 
+                    CONST(2)))), 
+            SEQ(SEQ(CJUMP( < , CONST(0), 
+                TEMP(T1), 
+                L0, 
+                L1), 
+                SEQ(SEQ(SEQ( L0, 
+                    MOVE(TEMP(T1), 
+                        TEMP(T1))), 
+                    JUMP(L2, 
+                        )), 
+                    SEQ(SEQ( L1, 
+                        EXP(CALL(NAME(system.out.println), 
+                            MEM(BINOP( + , TEMP(fp), 
+                                CONST(5)))))), 
+                         L2))), 
+                MOVE(MEM(BINOP( + , TEMP(fp), 
+                    CONST(5))), 
+                    BINOP( + , MEM(BINOP( + , TEMP(fp), 
+                        CONST(5))), 
+                        CONST(1)))))), 
+        SEQ(JUMP(L3, 
+            ), 
+             L5))), 
+    CONST(0))
+--------------CANONIZING FINISHED-----------------

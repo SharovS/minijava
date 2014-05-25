@@ -1,0 +1,188 @@
+%{
+  #include <math.h>
+  #include <stdio.h>
+  #include <interface.h>
+  #include <syntax.hpp>
+  #include<string>
+  int yylex (void);
+  void yyerror (char const *);
+  extern IProgram* yyprogram=0;
+%}
+
+
+/* Bison declarations.  */
+%token <SymbolTable> _ID
+%token <IntV> _NUM
+%token <StringV> _STR
+%token _IF
+%token _ELSE
+%token _WHILE
+%token _SYSTEMOP
+
+%token _CLASS
+%token _MAIN
+%token _PUBLIC
+%token _STATIC
+%token _RETURN
+%token _EXTENDS
+
+%token <SymbolTable> _INT
+%token <SymbolTable> _BOOLEAN
+%token <SymbolTable> _VOID
+%token <SymbolTable> _STRING
+
+%token _TRUE
+%token _FALSE
+%token _THIS
+%token _NEW
+%token _LENGTH
+
+%token _POINT
+%token _SEMICOLUMN
+%token _STAR
+%token _ASSIGNMENT
+%token _WOW
+%token __COMMA
+%token _RL_BRACKET
+%token _RR_BRACKET
+%token _SL_BRACKET
+%token _SR_BRACKET
+%token _FL_BRACKET
+%token _FR_BRACKET
+%token <Binop> _OPPLUS
+%token <Binop> _OPMINUS
+%token <Binop> _OPMULT
+%token <Binop> _OPDIV
+%token <Binop> _OPAND
+%token <Binop> _OPLESS
+
+%left _OPMINUS _OPPLUS
+%left _OPMULT _OPDIV
+%left _OPAND
+%left _OPLESS
+%left NEG     /* negation--unary minus */
+%nonassoc _WOW
+%left _POINT _SL_BRACKET
+
+%type <Program> Program
+%type <MainClass> MainClass
+%type <ClassDecl> ClassDecl
+%type <ClassDeclList> ClassDeclList
+%type <VarDecl> VarDecl
+%type <VarDeclList> VarDeclList
+%type <MethodDecl> MethodDecl
+%type <MethodDeclList> MethodDeclList
+%type <FormalList> FormalList
+%type <FormalList> FormalRest
+%type <SymbolTable> Type
+%type <Stm> Stm
+%type <StmList> StmList
+%type <Exp> Exp 
+%type <ExpList> ExpList 
+%type <ExpList> ExpRest
+
+%union{
+ int IntV;
+ char* StringV;
+ CBinop Binop;
+ //CT IdType;
+ char* SymbolTable;
+ IProgram* Program;
+ IMainClass* MainClass;
+ IClassDecl* ClassDecl;
+ IClassDeclList* ClassDeclList;
+ IVarDecl* VarDecl;
+ IVarDeclList* VarDeclList;
+ IMethodDecl* MethodDecl;
+ IMethodDeclList* MethodDeclList;
+ IFormalList* FormalList;
+ IType* Type;    
+ IStm* Stm;
+ IStmList* StmList;
+ IExp* Exp ;
+ IExpList* ExpList ;
+}
+
+%% /* The grammar rules.  */
+Program:   MainClass ClassDeclList {yyprogram = $$ = new CProgram ($1, $2);}
+;
+MainClass: _CLASS _ID _FL_BRACKET _PUBLIC _STATIC _VOID _MAIN 
+           _RL_BRACKET _STRING _SL_BRACKET _SR_BRACKET _ID _RR_BRACKET 
+           _FL_BRACKET Stm _FR_BRACKET _FR_BRACKET {$$ = new CMainClass ($2, $12, $15);}
+;
+ClassDecl: _CLASS _ID _FL_BRACKET error _FR_BRACKET
+            { fprintf( stderr, "[%d, %d] Class error!", @3.first_line, @3.first_column ); }
+	      | _CLASS _ID _FL_BRACKET VarDeclList  MethodDeclList _FR_BRACKET {$$ = new CClassDecl ($2, $4, $5);}
+          | _CLASS _ID _EXTENDS _ID _FL_BRACKET VarDeclList MethodDeclList _FR_BRACKET   {$$ =  new CExClassDecl ($2, $4, $6, $7);}   
+;
+ClassDeclList: ClassDecl ClassDeclList {$$ = new CClassDeclList($1, $2);}
+               | {$$=0}
+; 
+MethodDeclList: MethodDecl MethodDeclList {$$ = new CMethodDeclList($1, $2);}
+                | /*empty*/ {$$=0}
+;
+VarDeclList: VarDeclList VarDecl {$$ = new CVarDeclList($2, $1);}
+             | /*empty*/ {$$=0}
+;
+VarDecl: Type _ID _SEMICOLUMN {$$ = new CVarDecl($1, $2);}
+;
+MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET 
+            _FL_BRACKET VarDeclList StmList _RETURN Exp _SEMICOLUMN _FR_BRACKET 
+            {$$ = new CMethodDecl($2, $3, $5, $8, $9, $11);}
+;
+StmList: Stm StmList {$$ = new CStmList($1, $2);}
+               | /*empty*/ {$$=0}
+;
+FormalList:     Type _ID FormalRest {$$ = new CFormalList($1, $2, $3);}
+               | {$$=0;}
+;
+FormalRest:     __COMMA Type _ID FormalRest {$$ = new CFormalList($2, $3, $4);}
+               | {$$=0;}
+;
+
+Type:           _INT _SL_BRACKET _SR_BRACKET {$$ = "int[]";}
+               |_BOOLEAN {$$ = "boolean";}
+               |_INT {$$ = "int";}
+               |_ID {$$ = $1;}
+;
+Stm:           _FL_BRACKET StmList _FR_BRACKET {$$ = new CCompStm($2);}
+               |_IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm {$$ = new CIfStm ($3, $5, $7);}
+               |_WHILE _RL_BRACKET Exp _RR_BRACKET Stm {$$ = new CWhStm ($3, $5);}
+               |_SYSTEMOP _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN {$$ = new CSOPStm ($3);}
+               |_ID _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CAsStm($1, $3);}
+               |_ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CAsExpStm ($1, $3, $6);}
+;
+
+Exp: Exp _OPPLUS Exp     { $$ = new COpExp ($1, B_Plus, $3) ;} 
+     | Exp _OPMINUS Exp    { $$ = new COpExp($1, B_Minus , $3); } 
+     | Exp _OPMULT Exp     { $$ = new COpExp($1, B_Mult, $3); } 
+     | Exp _OPDIV Exp        {$$ = new COpExp($1, B_Div, $3);}
+     | Exp _OPLESS Exp {$$ = new COpExp($1, B_Less, $3);}
+     | Exp _OPAND Exp {$$ = new COpExp($1, B_And, $3);}
+     | Exp _SL_BRACKET Exp _SR_BRACKET {$$ = new CExExp($1, $3);}
+     | Exp _POINT _LENGTH {$$ = new CLenExp($1);}
+     | Exp _POINT _ID _RL_BRACKET ExpList _RR_BRACKET {$$ = new CIdClExp ($1, $3, $5);}
+     | _NUM { $$ = new CNExp ($1); }
+	 | _STR { $$ = new CStrExp ($1); }
+     | _TRUE {$$ = new CTrExp();}
+     | _FALSE {$$ = new CFExp();}
+     | _ID { $$ = new CIdExp ($1);}
+     | _THIS {$$ = new CThExp();}
+     | _NEW _INT _SL_BRACKET Exp _SR_BRACKET {$$ = new CNewIntExp($4);}
+     | _NEW _ID _RL_BRACKET _RR_BRACKET {$$ = new CNewIdExp($2);}
+     | _WOW Exp {$$ = new CNotExp($2);}
+     | _RL_BRACKET Exp _RR_BRACKET {$$ = new CBrExp($2);}
+;
+ExpList:        Exp ExpRest {$$ = new CExpList($1, $2);}
+		       | {$$=0;}
+;
+ExpRest:        __COMMA Exp ExpRest {$$ = new CExpList($2, $3);}
+               | {$$=0;}
+;
+%%
+ 
+void yyerror (char const * msg)
+{
+	fprintf( stderr, "[%d,%d-%d,%d] %s\n", yylloc.first_line, yylloc.first_column,
+		yylloc.last_line, yylloc.last_column, msg );
+}
