@@ -95,6 +95,7 @@
     <ClCompile Include="Codegen.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="IntermediateTreePrinter.cpp" />
+    <ClCompile Include="Lexical.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PrettyPrintVisitor.cpp" />
     <ClCompile Include="SymbolTable.cpp" />

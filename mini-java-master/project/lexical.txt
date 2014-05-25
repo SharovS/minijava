@@ -4,7 +4,6 @@
 %{
 #include <interface.h>
 #include <Syntax.hpp>
-#include<string>
 #pragma warning(disable:4273) // isatty
 #pragma warning(disable:4996) // fileno/isatty
 

@@ -3,7 +3,6 @@
   #include <stdio.h>
   #include <interface.h>
   #include <syntax.hpp>
-  #include<string>
   int yylex (void);
   void yyerror (char const *);
   extern IProgram* yyprogram=0;

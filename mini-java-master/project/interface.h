@@ -478,12 +478,12 @@ private:
 //str
 class CStrExp :public IExp {
 public:
-	CStrExp( std::string _a ) : a( _a ) {}
+	CStrExp( const char* _a ) : a( _a ) {}
 	~CStrExp() {}
-	const std::string GetStr() const { return a; }
+	const char* GetStr() const { return a; }
 	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
 private:
-	const std::string a; 
+	const char* a;
 };
 
 //--------------------------------------------------------------------------------------

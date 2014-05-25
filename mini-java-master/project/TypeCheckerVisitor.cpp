@@ -124,7 +124,7 @@ void CTypeCheckerVisitor::Visit( const CWhStm& p )
 void CTypeCheckerVisitor::Visit( const CSOPStm& p )
 {
 	p.GetExp()->Accept( this );
-	if( lastType != "int" || lastType != "string") {
+	if( lastType != "int" || lastType != "string" ) {
 		isError = true;
 		std::string methodName( (table->getCurrMethod())->getName() );
 		std::string className( (table->getCurrClass())->getName() );

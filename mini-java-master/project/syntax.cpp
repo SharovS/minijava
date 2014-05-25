@@ -69,13 +69,12 @@
   #include <stdio.h>
   #include <interface.h>
   #include <syntax.hpp>
-  #include<string>
   int yylex (void);
   void yyerror (char const *);
   extern IProgram* yyprogram=0;
 
 /* Line 371 of yacc.c  */
-#line 79 "syntax.cpp"
+#line 78 "syntax.cpp"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -160,7 +159,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 387 of yacc.c  */
-#line 84 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 83 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
 
  int IntV;
  char* StringV;
@@ -184,7 +183,7 @@ typedef union YYSTYPE
 
 
 /* Line 387 of yacc.c  */
-#line 188 "syntax.cpp"
+#line 187 "syntax.cpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -225,7 +224,7 @@ int yyparse ();
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 229 "syntax.cpp"
+#line 228 "syntax.cpp"
 
 #ifdef short
 # undef short
@@ -543,12 +542,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,   107,   107,   109,   113,   115,   116,   118,   119,   121,
-     122,   124,   125,   127,   129,   133,   134,   136,   137,   139,
-     140,   143,   144,   145,   146,   148,   149,   150,   151,   152,
-     153,   156,   157,   158,   159,   160,   161,   162,   163,   164,
-     165,   166,   167,   168,   169,   170,   171,   172,   173,   174,
-     176,   177,   179,   180
+       0,   106,   106,   108,   112,   114,   115,   117,   118,   120,
+     121,   123,   124,   126,   128,   132,   133,   135,   136,   138,
+     139,   142,   143,   144,   145,   147,   148,   149,   150,   151,
+     152,   155,   156,   157,   158,   159,   160,   161,   162,   163,
+     164,   165,   166,   167,   168,   169,   170,   171,   172,   173,
+     175,   176,   178,   179
 };
 #endif
 
@@ -1664,319 +1663,319 @@ yyreduce:
     {
         case 2:
 /* Line 1792 of yacc.c  */
-#line 107 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 106 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {yyprogram = (yyval.Program) = new CProgram ((yyvsp[(1) - (2)].MainClass), (yyvsp[(2) - (2)].ClassDeclList));}
     break;
 
   case 3:
 /* Line 1792 of yacc.c  */
-#line 111 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 110 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.MainClass) = new CMainClass ((yyvsp[(2) - (17)].SymbolTable), (yyvsp[(12) - (17)].SymbolTable), (yyvsp[(15) - (17)].Stm));}
     break;
 
   case 4:
 /* Line 1792 of yacc.c  */
-#line 114 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 113 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     { fprintf( stderr, "[%d, %d] Class error!", (yylsp[(3) - (5)]).first_line, (yylsp[(3) - (5)]).first_column ); }
     break;
 
   case 5:
 /* Line 1792 of yacc.c  */
-#line 115 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 114 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.ClassDecl) = new CClassDecl ((yyvsp[(2) - (6)].SymbolTable), (yyvsp[(4) - (6)].VarDeclList), (yyvsp[(5) - (6)].MethodDeclList));}
     break;
 
   case 6:
 /* Line 1792 of yacc.c  */
-#line 116 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 115 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.ClassDecl) =  new CExClassDecl ((yyvsp[(2) - (8)].SymbolTable), (yyvsp[(4) - (8)].SymbolTable), (yyvsp[(6) - (8)].VarDeclList), (yyvsp[(7) - (8)].MethodDeclList));}
     break;
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 118 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 117 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.ClassDeclList) = new CClassDeclList((yyvsp[(1) - (2)].ClassDecl), (yyvsp[(2) - (2)].ClassDeclList));}
     break;
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 119 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 118 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.ClassDeclList)=0;}
     break;
 
   case 9:
 /* Line 1792 of yacc.c  */
-#line 121 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 120 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.MethodDeclList) = new CMethodDeclList((yyvsp[(1) - (2)].MethodDecl), (yyvsp[(2) - (2)].MethodDeclList));}
     break;
 
   case 10:
 /* Line 1792 of yacc.c  */
-#line 122 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 121 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.MethodDeclList)=0;}
     break;
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 124 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 123 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.VarDeclList) = new CVarDeclList((yyvsp[(2) - (2)].VarDecl), (yyvsp[(1) - (2)].VarDeclList));}
     break;
 
   case 12:
 /* Line 1792 of yacc.c  */
-#line 125 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 124 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.VarDeclList)=0;}
     break;
 
   case 13:
 /* Line 1792 of yacc.c  */
-#line 127 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 126 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.VarDecl) = new CVarDecl((yyvsp[(1) - (3)].SymbolTable), (yyvsp[(2) - (3)].SymbolTable));}
     break;
 
   case 14:
 /* Line 1792 of yacc.c  */
-#line 131 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 130 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.MethodDecl) = new CMethodDecl((yyvsp[(2) - (13)].SymbolTable), (yyvsp[(3) - (13)].SymbolTable), (yyvsp[(5) - (13)].FormalList), (yyvsp[(8) - (13)].VarDeclList), (yyvsp[(9) - (13)].StmList), (yyvsp[(11) - (13)].Exp));}
     break;
 
   case 15:
 /* Line 1792 of yacc.c  */
-#line 133 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 132 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.StmList) = new CStmList((yyvsp[(1) - (2)].Stm), (yyvsp[(2) - (2)].StmList));}
     break;
 
   case 16:
 /* Line 1792 of yacc.c  */
-#line 134 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 133 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.StmList)=0;}
     break;
 
   case 17:
 /* Line 1792 of yacc.c  */
-#line 136 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 135 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.FormalList) = new CFormalList((yyvsp[(1) - (3)].SymbolTable), (yyvsp[(2) - (3)].SymbolTable), (yyvsp[(3) - (3)].FormalList));}
     break;
 
   case 18:
 /* Line 1792 of yacc.c  */
-#line 137 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 136 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.FormalList)=0;}
     break;
 
   case 19:
 /* Line 1792 of yacc.c  */
-#line 139 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 138 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.FormalList) = new CFormalList((yyvsp[(2) - (4)].SymbolTable), (yyvsp[(3) - (4)].SymbolTable), (yyvsp[(4) - (4)].FormalList));}
     break;
 
   case 20:
 /* Line 1792 of yacc.c  */
-#line 140 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 139 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.FormalList)=0;}
     break;
 
   case 21:
 /* Line 1792 of yacc.c  */
-#line 143 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 142 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.SymbolTable) = "int[]";}
     break;
 
   case 22:
 /* Line 1792 of yacc.c  */
-#line 144 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 143 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.SymbolTable) = "boolean";}
     break;
 
   case 23:
 /* Line 1792 of yacc.c  */
-#line 145 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 144 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.SymbolTable) = "int";}
     break;
 
   case 24:
 /* Line 1792 of yacc.c  */
-#line 146 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 145 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.SymbolTable) = (yyvsp[(1) - (1)].SymbolTable);}
     break;
 
   case 25:
 /* Line 1792 of yacc.c  */
-#line 148 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 147 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Stm) = new CCompStm((yyvsp[(2) - (3)].StmList));}
     break;
 
   case 26:
 /* Line 1792 of yacc.c  */
-#line 149 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 148 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Stm) = new CIfStm ((yyvsp[(3) - (7)].Exp), (yyvsp[(5) - (7)].Stm), (yyvsp[(7) - (7)].Stm));}
     break;
 
   case 27:
 /* Line 1792 of yacc.c  */
-#line 150 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 149 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Stm) = new CWhStm ((yyvsp[(3) - (5)].Exp), (yyvsp[(5) - (5)].Stm));}
     break;
 
   case 28:
 /* Line 1792 of yacc.c  */
-#line 151 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 150 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Stm) = new CSOPStm ((yyvsp[(3) - (5)].Exp));}
     break;
 
   case 29:
 /* Line 1792 of yacc.c  */
-#line 152 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 151 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Stm) = new CAsStm((yyvsp[(1) - (4)].SymbolTable), (yyvsp[(3) - (4)].Exp));}
     break;
 
   case 30:
 /* Line 1792 of yacc.c  */
-#line 153 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 152 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Stm) = new CAsExpStm ((yyvsp[(1) - (7)].SymbolTable), (yyvsp[(3) - (7)].Exp), (yyvsp[(6) - (7)].Exp));}
     break;
 
   case 31:
 /* Line 1792 of yacc.c  */
-#line 156 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 155 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     { (yyval.Exp) = new COpExp ((yyvsp[(1) - (3)].Exp), B_Plus, (yyvsp[(3) - (3)].Exp)) ;}
     break;
 
   case 32:
 /* Line 1792 of yacc.c  */
-#line 157 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 156 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     { (yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Minus , (yyvsp[(3) - (3)].Exp)); }
     break;
 
   case 33:
 /* Line 1792 of yacc.c  */
-#line 158 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 157 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     { (yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Mult, (yyvsp[(3) - (3)].Exp)); }
     break;
 
   case 34:
 /* Line 1792 of yacc.c  */
-#line 159 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 158 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Div, (yyvsp[(3) - (3)].Exp));}
     break;
 
   case 35:
 /* Line 1792 of yacc.c  */
-#line 160 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 159 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Less, (yyvsp[(3) - (3)].Exp));}
     break;
 
   case 36:
 /* Line 1792 of yacc.c  */
-#line 161 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 160 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_And, (yyvsp[(3) - (3)].Exp));}
     break;
 
   case 37:
 /* Line 1792 of yacc.c  */
-#line 162 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 161 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new CExExp((yyvsp[(1) - (4)].Exp), (yyvsp[(3) - (4)].Exp));}
     break;
 
   case 38:
 /* Line 1792 of yacc.c  */
-#line 163 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 162 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new CLenExp((yyvsp[(1) - (3)].Exp));}
     break;
 
   case 39:
 /* Line 1792 of yacc.c  */
-#line 164 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 163 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new CIdClExp ((yyvsp[(1) - (6)].Exp), (yyvsp[(3) - (6)].SymbolTable), (yyvsp[(5) - (6)].ExpList));}
     break;
 
   case 40:
 /* Line 1792 of yacc.c  */
-#line 165 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 164 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     { (yyval.Exp) = new CNExp ((yyvsp[(1) - (1)].IntV)); }
     break;
 
   case 41:
 /* Line 1792 of yacc.c  */
-#line 166 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 165 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     { (yyval.Exp) = new CStrExp ((yyvsp[(1) - (1)].StringV)); }
     break;
 
   case 42:
 /* Line 1792 of yacc.c  */
-#line 167 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 166 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new CTrExp();}
     break;
 
   case 43:
 /* Line 1792 of yacc.c  */
-#line 168 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 167 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new CFExp();}
     break;
 
   case 44:
 /* Line 1792 of yacc.c  */
-#line 169 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 168 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     { (yyval.Exp) = new CIdExp ((yyvsp[(1) - (1)].SymbolTable));}
     break;
 
   case 45:
 /* Line 1792 of yacc.c  */
-#line 170 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 169 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new CThExp();}
     break;
 
   case 46:
 /* Line 1792 of yacc.c  */
-#line 171 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 170 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new CNewIntExp((yyvsp[(4) - (5)].Exp));}
     break;
 
   case 47:
 /* Line 1792 of yacc.c  */
-#line 172 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 171 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new CNewIdExp((yyvsp[(2) - (4)].SymbolTable));}
     break;
 
   case 48:
 /* Line 1792 of yacc.c  */
-#line 173 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 172 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new CNotExp((yyvsp[(2) - (2)].Exp));}
     break;
 
   case 49:
 /* Line 1792 of yacc.c  */
-#line 174 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 173 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.Exp) = new CBrExp((yyvsp[(2) - (3)].Exp));}
     break;
 
   case 50:
 /* Line 1792 of yacc.c  */
-#line 176 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 175 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.ExpList) = new CExpList((yyvsp[(1) - (2)].Exp), (yyvsp[(2) - (2)].ExpList));}
     break;
 
   case 51:
 /* Line 1792 of yacc.c  */
-#line 177 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 176 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.ExpList)=0;}
     break;
 
   case 52:
 /* Line 1792 of yacc.c  */
-#line 179 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 178 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.ExpList) = new CExpList((yyvsp[(2) - (3)].Exp), (yyvsp[(3) - (3)].ExpList));}
     break;
 
   case 53:
 /* Line 1792 of yacc.c  */
-#line 180 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 179 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
     {(yyval.ExpList)=0;}
     break;
 
 
 /* Line 1792 of yacc.c  */
-#line 1980 "syntax.cpp"
+#line 1979 "syntax.cpp"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2215,7 +2214,7 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 182 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 181 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
 
  
 void yyerror (char const * msg)

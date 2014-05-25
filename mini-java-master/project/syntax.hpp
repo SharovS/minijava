@@ -95,7 +95,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 84 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
+#line 83 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\syntax.txt"
 
  int IntV;
  char* StringV;
