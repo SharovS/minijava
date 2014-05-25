@@ -319,7 +319,6 @@ namespace Translation
 				updateStm->unNx()
 			)
 		);
-		// выполняем условный переход
 		Tree::IStm* res = new Tree::SEQ( 
 			initStm->unNx(),
 			new Tree::SEQ(
@@ -466,6 +465,73 @@ namespace Translation
 				break;
 		}
 
+	}
+
+	void Translator::Visit( const CPreUnOpExp& p ) //++id, --id
+	{
+		// проверяем, что есть такая переменная
+		int offset( 0 );
+		if( variables.find( p.GetId() ) != variables.end() ) {
+			// считываем переменную
+			const Tree::IExp* id = variables[p.GetId()]->getVariable();
+			// записываем значение в переменную и возвращаем
+			Previous = new Ex( new Tree::ESEQ(
+				new Tree::MOVE( id, new Tree::BINOP(Tree::BINOP::PLUS, id, new Tree::CONST(p.GetValue()) )),
+				id
+			));
+		} else if( table->getCurrClass()->lookUpVarOffset( p.GetId(), table, offset ) ) {
+			// считываем переменную
+			const Tree::IExp* id = new Tree::MEM( new Tree::BINOP( Tree::BINOP::PLUS, new Tree::TEMP( CurrFrame->getThis() ),
+				new Tree::BINOP( Tree::BINOP::MUL, new Tree::CONST( CurrFrame->wordSize() ), new Tree::CONST( offset ) ) ) );
+
+			Previous = new Ex( new Tree::ESEQ(
+				new Tree::MOVE( id, new Tree::BINOP(Tree::BINOP::PLUS, id, new Tree::CONST(p.GetValue()) )),
+				id
+			));
+		} else // переменной вообще нет!
+		{
+			assert( false );
+		}
+	}
+
+	void Translator::Visit( const CPostUnOpExp& p ) //id++, id--
+	{
+		// проверяем, что есть такая переменная
+		int offset( 0 );
+		if( variables.find( p.GetId() ) != variables.end() ) {
+			// считываем переменную
+			const Tree::IExp* id = variables[p.GetId()]->getVariable();
+			//создаем временную и копируем в нее
+			Tree::IExp* temp = new Tree::TEMP( new Temp::CTemp );
+			Tree::IStm* copy = new Tree::MOVE( temp, new Tree::MEM( id ) );
+			// записываем значение в переменную и возвращаем временную
+			Previous = new Ex( new Tree::ESEQ(
+				new Tree::SEQ(
+					copy,
+					new Tree::MOVE( id, new Tree::BINOP(Tree::BINOP::PLUS, id, new Tree::CONST(p.GetValue()) ))
+				),
+				temp
+			));
+		} else if( table->getCurrClass()->lookUpVarOffset( p.GetId(), table, offset ) ) {
+			// считываем переменную
+			const Tree::IExp* id = new Tree::MEM( new Tree::BINOP( Tree::BINOP::PLUS, new Tree::TEMP( CurrFrame->getThis() ),
+				new Tree::BINOP( Tree::BINOP::MUL, new Tree::CONST( CurrFrame->wordSize() ), new Tree::CONST( offset ) ) ) );
+
+			//создаем временную и копируем в нее
+			Tree::IExp* temp = new Tree::TEMP( new Temp::CTemp );
+			Tree::IStm* copy = new Tree::MOVE( temp, new Tree::MEM( id ) );
+			// записываем значение в переменную и возвращаем временную
+			Previous = new Ex( new Tree::ESEQ(
+				new Tree::SEQ(
+					copy,
+					new Tree::MOVE( id, new Tree::BINOP(Tree::BINOP::PLUS, id, new Tree::CONST(p.GetValue()) ))
+				),
+				temp
+			));
+		} else // переменной вообще нет!
+		{
+			assert( false );
+		}
 	}
 
 	void Translator::Visit( const CExExp& p )//Exp [ Exp ]
@@ -745,5 +811,11 @@ namespace Translation
 	void Translator::Visit( const CEmptyStm& p )
 	{
 		Previous = new Translation::Nx( new Tree::LABEL(new Temp::CLabel() )); // fake label
+	}
+
+	void Translator::Visit( const CExpStm& p )
+	{
+		p.GetExp()->Accept( this );
+		Previous = new Translation::Nx( Previous->unNx() );
 	}
 }

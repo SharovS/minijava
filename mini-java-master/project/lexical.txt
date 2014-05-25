@@ -65,6 +65,8 @@ void updateLocation();
 "]" updateLocation(); return _SR_BRACKET;
 "{" updateLocation(); return _FL_BRACKET;
 "}" updateLocation(); return _FR_BRACKET;
+"++" updateLocation(); return _OPINC;
+"--" updateLocation(); return _OPDEC;
 "+" updateLocation(); return _OPPLUS;
 "-" updateLocation(); return _OPMINUS;
 "/" updateLocation(); return _OPDIV;

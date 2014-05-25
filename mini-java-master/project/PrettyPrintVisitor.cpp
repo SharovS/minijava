@@ -171,6 +171,24 @@ void PrettyPrintVisitor::Visit( const COpExp& p )//Exp op Exp
 	p.GetExpSecond()->Accept( this );
 }
 
+void PrettyPrintVisitor::Visit( const CPreUnOpExp& p )//++id, --id
+{
+	if(p.GetValue() == 1) {
+		printf( "%s++%s", identt.c_str(), p.GetId().c_str() );
+	} else if(p.GetValue() == -1) {
+		printf( "%s--%s", identt.c_str(), p.GetId().c_str() );
+	}
+}
+
+void PrettyPrintVisitor::Visit( const CPostUnOpExp& p )//++id, --id
+{
+	if(p.GetValue() == 1) {
+		printf( "%s%s++", identt.c_str(), p.GetId().c_str() );
+	} else if(p.GetValue() == -1) {
+		printf( "%s%s--", identt.c_str(), p.GetId().c_str() );
+	}
+}
+
 void PrettyPrintVisitor::Visit( const CExExp& p )//Exp [ Exp ]
 {
 	p.GetExpFirst()->Accept( this );
@@ -312,4 +330,11 @@ void PrettyPrintVisitor::Visit( const CStmList& p )
 void PrettyPrintVisitor::Visit( const CEmptyStm& p )
 {
 	// do nothing
+}
+
+void PrettyPrintVisitor::Visit( const CExpStm& p )
+{
+	printf( "%s", identt.c_str() );
+	p.GetExp()->Accept(this);
+	printf( ";" );
 }

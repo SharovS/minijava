@@ -9,6 +9,7 @@ class CExClassDecl;
 class CVarDecl;
 class CMethodDecl;
 class CEmptyStm;
+class CExpStm;
 class CCompStm;
 class CIfStm;
 class CWhStm;
@@ -16,6 +17,8 @@ class CForStm;
 class CSOPStm;
 class CAsStm;
 class CAsExpStm;
+class CPreUnOpExp;
+class CPostUnOpExp;
 class COpExp;
 class CExExp;
 class CLenExp;
@@ -54,6 +57,8 @@ public:
 	virtual void Visit( const CSOPStm& p ) = 0;
 	virtual void Visit( const CAsStm& p ) = 0;
 	virtual void Visit( const CAsExpStm& p ) = 0;
+	virtual void Visit( const CPreUnOpExp& p ) = 0;
+	virtual void Visit( const CPostUnOpExp& p ) = 0;
 	virtual void Visit( const COpExp& p ) = 0;
 	virtual void Visit( const CExExp& p ) = 0;
 	virtual void Visit( const CLenExp& p ) = 0;
@@ -76,6 +81,7 @@ public:
 	virtual void Visit( const CMethodDeclList& p ) = 0;
 	virtual void Visit( const CStmList& p ) = 0;
 	virtual void Visit( const CEmptyStm& p ) = 0;
+	virtual void Visit( const CExpStm& p ) = 0;
 };
 
 //--------------------------------------------------------------------------------------
@@ -324,6 +330,19 @@ public:
 
 //--------------------------------------------------------------------------------------
 
+// Exp;
+class CExpStm : public IStm {
+public:
+	CExpStm(const IExp *_exp): exp(_exp) {}
+	~CExpStm() {}
+	const IExp* GetExp() const { return exp; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const IExp *exp;
+};
+
+//-------------------------------------------------------------------------------------
+
 //{ Statement* }
 class CCompStm : public IStm {
 public:
@@ -433,6 +452,36 @@ private:
 
 //--------------------------------------------------------------------------------------
 
+//id++, id--
+class CPostUnOpExp :public IExp {
+public:
+	CPostUnOpExp( const std::string _id, int _value ) : id( _id ), value(_value) {}
+	~CPostUnOpExp() {}
+	const std::string GetId() const { return id; }
+	const int GetValue() const { return value; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const std::string id;
+	const int value;
+};
+
+//--------------------------------------------------------------------------------------
+
+//++id, --id
+class CPreUnOpExp :public IExp {
+public:
+	CPreUnOpExp( const std::string _id, int _value ) : id( _id ), value(_value) {}
+	~CPreUnOpExp() {}
+	const std::string GetId() const { return id; }
+	const int GetValue() const { return value; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const std::string id;
+	const int value;
+};
+
+//--------------------------------------------------------------------------------------
+
 //Exp op Exp
 class COpExp :public IExp {
 public:
@@ -447,6 +496,7 @@ private:
 	CBinop op;
 	const IExp *c;
 };
+
 
 //--------------------------------------------------------------------------------------
 

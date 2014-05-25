@@ -622,6 +622,16 @@ void CSTVisitor::Visit( const COpExp& p )
 	assert( false );
 }
 
+void CSTVisitor::Visit( const CPreUnOpExp& p )
+{
+	assert( false );
+}
+
+void CSTVisitor::Visit( const CPostUnOpExp& p )
+{
+	assert( false );
+}
+
 void CSTVisitor::Visit( const CExExp& p )
 {
 	assert( false );
@@ -740,6 +750,11 @@ void CSTVisitor::Visit( const CStmList& p )
 }
 
 void CSTVisitor::Visit( const CEmptyStm& p )
+{
+	assert( false );
+}
+
+void CSTVisitor::Visit( const CExpStm& p )
 {
 	assert( false );
 }

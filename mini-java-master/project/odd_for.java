@@ -12,8 +12,8 @@ class Fac {
         		res = res;
         	else
         		System.out.println( from );
-        	from = from + 1;
+        	from++;
         }
-        return 0;
+        return res;
     }
 }

@@ -232,6 +232,38 @@ void CTypeCheckerVisitor::Visit( const COpExp& p )
 	//}
 }
 
+//++id, --id
+
+void CTypeCheckerVisitor::Visit( const CPreUnOpExp& p )
+{
+	if(table->getCurrMethod()->findTVar(p.GetId()) != "int" && table->getCurrClass()->findTVar(p.GetId(), table) != "int") {
+		isError = true;
+		std::string methodName( (table->getCurrMethod())->getName() );
+		std::string className( (table->getCurrClass())->getName() );
+		const char* mN = methodName.c_str();
+		const char* cN = className.c_str();
+		printf( "Error in unary operation: %s expected to be int\n -Location: id %s, method %s in Class %s\n\n",
+			p.GetId(), p.GetId(), mN, cN );
+	}
+	lastType = "int";
+}
+
+//id++, id--
+
+void CTypeCheckerVisitor::Visit( const CPostUnOpExp& p )
+{
+	if(table->getCurrMethod()->findTVar(p.GetId()) != "int" && table->getCurrClass()->findTVar(p.GetId(), table) != "int") {
+		isError = true;
+		std::string methodName( (table->getCurrMethod())->getName() );
+		std::string className( (table->getCurrClass())->getName() );
+		const char* mN = methodName.c_str();
+		const char* cN = className.c_str();
+		printf( "Error in unary operation: %s expected to be int\n -Location: id %s, method %s in Class %s\n\n",
+			p.GetId(), p.GetId(), mN, cN );
+	}
+	lastType = "int";
+}
+
 //Exp [ Exp ]
 
 void CTypeCheckerVisitor::Visit( const CExExp& p )
@@ -516,6 +548,11 @@ void CTypeCheckerVisitor::Visit( const CStmList& p )
 void CTypeCheckerVisitor::Visit( const CEmptyStm& p )
 {
 	// do nothing
+}
+
+void CTypeCheckerVisitor::Visit( const CExpStm& p )
+{
+	p.GetExp()->Accept( this );
 }
 
 bool CTypeCheckerVisitor::wasError()
