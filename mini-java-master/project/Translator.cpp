@@ -491,7 +491,7 @@ namespace Translation
 	void Translator::Visit( const CStrExp& p ) //str
 	{
 		// заполняем константу 
-		Tree::IExp* res = new Tree::CONST( p.GetStr() );
+		Tree::IExp* res = new Tree::CONST( const_cast<char*>(p.GetStr()) );
 		// возвращаем exp
 		Previous = new Ex( res );
 	}
