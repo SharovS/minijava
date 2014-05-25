@@ -301,7 +301,7 @@ namespace Translation
 	{
 		p.GetExp()->Accept( this );
 		// system.out.println - имя вызываемой внешней функции
-		Temp::CLabel* systemOutPrintln = new Temp::CLabel( "system.out.println" );
+		Temp::CLabel* systemOutPrintln = new Temp::CLabel( "System.out.println" );
 		// вызываем функцию с параметром Exp
 		Tree::IStm* call = new Tree::EXP( ExternalCall( new Tree::NAME( systemOutPrintln ), new Tree::ExpList( Previous->unEx(), 0 ) ) );
 		// возвращаем обратно statement

@@ -117,6 +117,6 @@ int main()
 			cout << "----------------ASSEMBLER CODE FINISHED-------------------" << endl;
 		}
 	}
-	system( "Pause" );
+	getchar();
 	return 0;
 }

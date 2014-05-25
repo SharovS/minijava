@@ -1,6 +1,6 @@
 %option noyywrap
         #include <stdio.h>
-
+		#include <malloc.h>
 %{
 #include <interface.h>
 #include <Syntax.hpp>
@@ -51,7 +51,18 @@ void updateLocation();
                 return _NUM;}
 
 [\"]([^\\\"]*([\\][\"ntr])*)*[\"] { updateLocation(); 
-									strncpy_s(yylval.StringV, yyleng + 1, yytext, yyleng);
+									//yylval.StringV = yytext[1];
+									char* it = &yytext[1];
+									int num = 0;
+									while(*it != '"') {
+										it++;
+										num++;
+									}
+									printf("%d\n", num);
+									yylval.StringV = (char*)malloc(num);
+									strncpy(yylval.StringV, &yytext[1], num);
+									yylval.StringV[num] = 0;
+									//strncpy_s(yylval.StringV, yyleng + 1, yytext, yyleng);
 									return _STR;}
 
 "." updateLocation(); return _POINT;
