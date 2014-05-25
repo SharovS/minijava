@@ -17,6 +17,7 @@
 %token _ELSE
 %token _WHILE
 %token _SYSTEMOP
+%token _SYSTEMOPWOLN
 
 %token _CLASS
 %token _MAIN
@@ -148,6 +149,7 @@ Stm:           _FL_BRACKET StmList _FR_BRACKET {$$ = new CCompStm($2);}
                |_IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm {$$ = new CIfStm ($3, $5, $7);}
                |_WHILE _RL_BRACKET Exp _RR_BRACKET Stm {$$ = new CWhStm ($3, $5);}
                |_SYSTEMOP _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN {$$ = new CSOPStm ($3);}
+			   |_SYSTEMOPWOLN _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN {$$ = new CSOPStm ($3);}
                |_ID _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CAsStm($1, $3);}
                |_ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CAsExpStm ($1, $3, $6);}
 ;

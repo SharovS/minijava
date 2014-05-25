@@ -364,8 +364,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 44
-#define YY_END_OF_BUFFER 45
+#define YY_NUM_RULES 45
+#define YY_END_OF_BUFFER 46
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -375,21 +375,21 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[144] =
     {   0,
-        0,    0,   45,   43,   42,   42,   26,   43,   43,   28,
-       29,   37,   34,   27,   35,   23,   36,   21,   21,   24,
-       38,   25,   20,   20,   30,   31,   20,   20,   20,   20,
-       20,   20,   20,   20,   20,   20,   20,   20,   20,   20,
-       32,   33,    0,   22,    0,   39,    0,    0,   21,   20,
-       20,   20,   20,   20,   20,   20,   20,    1,   20,   20,
-       20,   20,   20,   20,   20,   20,   20,   20,   20,    0,
-        0,    0,    0,   40,   20,   20,   20,   20,   20,   20,
-       20,   11,   20,   20,   18,   20,   20,   20,   20,   20,
-       20,   20,   41,   20,   20,   20,   20,    2,   20,   20,
+        0,    0,   46,   44,   43,   43,   27,   44,   44,   29,
+       30,   38,   35,   28,   36,   24,   37,   22,   22,   25,
+       39,   26,   21,   21,   31,   32,   21,   21,   21,   21,
+       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
+       33,   34,    0,   23,    0,   40,    0,    0,   22,   21,
+       21,   21,   21,   21,   21,   21,   21,    1,   21,   21,
+       21,   21,   21,   21,   21,   21,   21,   21,   21,    0,
+        0,    0,    0,   41,   21,   21,   21,   21,   21,   21,
+       21,   12,   21,   21,   19,   21,   21,   21,   21,   21,
+       21,   21,   42,   21,   21,   21,   21,    2,   21,   21,
 
-       20,    6,   20,   20,   20,   17,   15,   13,   20,   20,
-       20,   20,    5,   20,   16,   20,   20,   20,   20,    3,
-       14,   20,   12,   20,   20,    7,    9,    8,    0,   10,
-       19,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+       21,    7,   21,   21,   21,   18,   16,   14,   21,   21,
+       21,   21,    6,   21,   17,   21,   21,   21,   21,    3,
+       15,   21,   13,   21,   21,    8,   10,    9,    0,   11,
+       20,    0,    0,    0,    0,    0,    0,    0,    0,    5,
         0,    4,    0
     } ;
 
@@ -544,9 +544,9 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 1 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 #include <stdio.h>
-#line 5 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 5 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 #include <interface.h>
 #include <Syntax.hpp>
 #pragma warning(disable:4273) // isatty
@@ -738,7 +738,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 16 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 16 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 
 
 
@@ -827,102 +827,107 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 19 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 19 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 updateLocation(); return _IF;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 20 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 20 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 updateLocation(); return _ELSE;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 21 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 21 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 updateLocation(); return _WHILE;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 22 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 22 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 updateLocation(); return _SYSTEMOP;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 24 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _CLASS;
+#line 23 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _SYSTEMOPWOLN;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 25 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _MAIN;
+#line 25 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _CLASS;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 26 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _PUBLIC;
+#line 26 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _MAIN;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 27 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _STATIC;
+#line 27 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _PUBLIC;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 28 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _RETURN;
+#line 28 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _STATIC;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 29 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _EXTENDS;
+#line 29 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _RETURN;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 31 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _INT;
+#line 30 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _EXTENDS;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 32 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _BOOLEAN;
+#line 32 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _INT;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 33 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _VOID;
+#line 33 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _BOOLEAN;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 34 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _STRING;
+#line 34 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _VOID;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 36 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _TRUE;
+#line 35 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _STRING;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 37 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _FALSE;
+#line 37 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _TRUE;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 38 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _THIS;
+#line 38 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _FALSE;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 39 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _NEW;
+#line 39 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _THIS;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 40 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _LENGTH;
+#line 40 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _NEW;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 42 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 41 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _LENGTH;
+	YY_BREAK
+case 21:
+YY_RULE_SETUP
+#line 43 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 { updateLocation(); 
 		yylval.SymbolTable = new char[yyleng + 1];
 		strncpy_s(yylval.SymbolTable, yyleng + 1, yytext, yyleng);
@@ -930,134 +935,134 @@ YY_RULE_SETUP
 		return _ID;
 	}
 	YY_BREAK
-case 21:
+case 22:
 YY_RULE_SETUP
-#line 48 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 49 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 { updateLocation(); 
                 yylval.IntV = atoi(yytext);
                 return _NUM;}
 	YY_BREAK
-case 22:
-/* rule 22 can match eol */
+case 23:
+/* rule 23 can match eol */
 YY_RULE_SETUP
-#line 52 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 53 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 { updateLocation(); 
 									strncpy_s(yylval.StringV, yyleng + 1, yytext, yyleng);
 									return _STR;}
 	YY_BREAK
-case 23:
-YY_RULE_SETUP
-#line 56 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _POINT;
-	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 57 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _SEMICOLUMN;
+#line 57 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _POINT;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 58 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _ASSIGNMENT;
+#line 58 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _SEMICOLUMN;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 59 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _WOW;
+#line 59 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _ASSIGNMENT;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 60 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return __COMMA;
+#line 60 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _WOW;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 61 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _RL_BRACKET;
+#line 61 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return __COMMA;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 62 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _RR_BRACKET;
+#line 62 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _RL_BRACKET;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 63 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _SL_BRACKET;
+#line 63 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _RR_BRACKET;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 64 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _SR_BRACKET;
+#line 64 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _SL_BRACKET;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 65 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _FL_BRACKET;
+#line 65 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _SR_BRACKET;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 66 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _FR_BRACKET;
+#line 66 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _FL_BRACKET;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 67 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPPLUS;
+#line 67 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _FR_BRACKET;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 68 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPMINUS;
+#line 68 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPPLUS;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 69 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPDIV;
+#line 69 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPMINUS;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 70 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPMULT;
+#line 70 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPDIV;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 71 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPLESS;
+#line 71 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPMULT;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 72 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); return _OPAND;
+#line 72 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPLESS;
 	YY_BREAK
 case 40:
-/* rule 40 can match eol */
 YY_RULE_SETUP
-#line 76 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); 
+#line 73 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); return _OPAND;
 	YY_BREAK
 case 41:
+/* rule 41 can match eol */
 YY_RULE_SETUP
-#line 77 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 77 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 updateLocation(); 
 	YY_BREAK
 case 42:
-/* rule 42 can match eol */
 YY_RULE_SETUP
-#line 78 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); // blanks
+#line 78 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); 
 	YY_BREAK
 case 43:
+/* rule 43 can match eol */
 YY_RULE_SETUP
-#line 80 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
-updateLocation(); printf("error token at [%d,%d]!\n", yylloc.first_line, yylloc.first_column);
+#line 79 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); // blanks
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 82 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 81 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
+updateLocation(); printf("error token at [%d,%d]!\n", yylloc.first_line, yylloc.first_column);
+	YY_BREAK
+case 45:
+YY_RULE_SETUP
+#line 83 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 ECHO;
 	YY_BREAK
-#line 1061 "Lexical.cpp"
+#line 1066 "Lexical.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2051,7 +2056,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 82 "C:\\Users\\Серёга\\Desktop\\mini-java-master\\mini-java-master\\project\\lexical.txt"
+#line 83 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\lexical.txt"
 
 
 

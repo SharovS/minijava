@@ -20,6 +20,7 @@ void updateLocation();
 "else" updateLocation(); return _ELSE;
 "while" updateLocation(); return _WHILE;
 "System.out.println" updateLocation(); return _SYSTEMOP;
+"System.out.print" updateLocation(); return _SYSTEMOPWOLN;
 
 "class" updateLocation(); return _CLASS;
 "main" updateLocation(); return _MAIN;
