@@ -51,6 +51,21 @@ void updateLocation();
                 yylval.IntV = atoi(yytext);
                 return _NUM;}
 
+[\"]([^\\\"]*([\\][\"ntr])*)*[\"] { updateLocation(); 
+									//yylval.StringV = yytext[1];
+									char* it = &yytext[1];
+									int num = 0;
+									while(*it != '"') {
+									it++;
+									num++;
+									}
+									printf("%d\n", num);
+									yylval.StringV = (char*)malloc(num);
+									strncpy(yylval.StringV, &yytext[1], num);
+									yylval.StringV[num] = 0;
+									//strncpy_s(yylval.StringV, yyleng + 1, yytext, yyleng);
+									return _STR;}
+
 "." updateLocation(); return _POINT;
 ";" updateLocation(); return _SEMICOLUMN;
 "=" updateLocation(); return _ASSIGNMENT;

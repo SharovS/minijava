@@ -227,7 +227,7 @@ void PrettyPrintVisitor::Visit( const CNExp& p )//num
 
 void PrettyPrintVisitor::Visit( const CStrExp& p )//str
 {
-	printf( "\"%s\"", p.GetStr() );
+	printf( "\"%s\"", p.GetStr().c_str() );
 }
 
 void PrettyPrintVisitor::Visit( const CTrExp& p )//true

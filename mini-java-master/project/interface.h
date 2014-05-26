@@ -597,8 +597,7 @@ public:
 	CStrExp( const char* _a ) : a( _a ) {}
 	~CStrExp() {}
 	const std::string GetStr() const { return std::string(a); }
-	const std::string GetId() const
-	{
+	const std::string GetId() const {
 		std::ostringstream ss;
 		ss << std::hash<std::string>()(a);
 		return ss.str();

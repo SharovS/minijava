@@ -1,0 +1,326 @@
+4
+class Factorial { 
+   public static Void main ( String [] a ) { 
+       System.out.println ( new Fac (). ComputeFac ( 0 , 100  ) ) ;
+   }
+}
+
+class Fac { 
+    public int ComputeFac ( int from , int to ) { 
+        int res1 ;
+        int res = 0;
+        res1 = res++;
+        for ( 
+             res = 1;
+             true; 
+        )
+        {
+            res = from - from / 2 * 2;
+            if ( 0 < res )
+                res = res - 2;
+            else
+                System.out.println ( from ) ;
+        }
+    System.out.println ( "hola" ) ;
+
+    return res1;
+}
+
+}
+
+
+-------------------------------------------
+
+Unfounded method: ComputeFac
+Factorial
+
+
+
+void main
+(
+string a
+)
+
+
+_________
+Fac
+
+
+
+int ComputeFac
+(
+int from
+int to
+)
+int res1
+int res
+
+
+_________
+
+
+------------Type cheking completed-----------
+
+-----------CODE BEFORE CANONIZING--------------
+FacComputeFac
+ESEQ(SEQ(MOVE(TEMP(T2), 
+    CONST(0)), 
+    SEQ(MOVE(TEMP(T1), 
+        ESEQ(SEQ(MOVE(TEMP(T3), 
+            MEM(TEMP(T2))), 
+            MOVE(TEMP(T2), 
+                BINOP( + , TEMP(T2), 
+                    CONST(1)))), 
+            TEMP(T3))), 
+        SEQ(SEQ(MOVE(TEMP(T2), 
+            CONST(1)), 
+            SEQ(SEQ(CJUMP( != , CONST(1), 
+                CONST(0), 
+                L4, 
+                L5), 
+                SEQ( L4, 
+                    SEQ(SEQ(MOVE(TEMP(T2), 
+                        BINOP( - , MEM(BINOP( + , TEMP(fp), 
+                            CONST(5))), 
+                            BINOP( * , BINOP( / , MEM(BINOP( + , TEMP(fp), 
+                                CONST(5))), 
+                                CONST(2)), 
+                                CONST(2)))), 
+                        SEQ(CJUMP( < , CONST(0), 
+                            TEMP(T2), 
+                            L1, 
+                            L2), 
+                            SEQ(SEQ(SEQ( L1, 
+                                MOVE(TEMP(T2), 
+                                    BINOP( - , TEMP(T2), 
+                                        CONST(2)))), 
+                                JUMP(L3, 
+                                    )), 
+                                SEQ(SEQ( L2, 
+                                    EXP(CALL(NAME(System.out.println), 
+                                        MEM(BINOP( + , TEMP(fp), 
+                                            CONST(5)))))), 
+                                     L3)))), 
+                         L0))), 
+                SEQ(CJUMP( != , CONST(1), 
+                    CONST(0), 
+                    L4, 
+                    L5), 
+                     L5))), 
+            EXP(CALL(NAME(System.out.println), 
+                NAME(L2999341463)))))), 
+    TEMP(T1))
+--------------CANONIZING FINISHED-----------------
+
+--------------------BLOCK-------------------------
+ L7MOVE(TEMP(T2), 
+    CONST(0))MOVE(TEMP(T3), 
+    MEM(TEMP(T2)))MOVE(TEMP(T2), 
+    BINOP( + , TEMP(T2), 
+        CONST(1)))MOVE(TEMP(T1), 
+    TEMP(T3))MOVE(TEMP(T2), 
+    CONST(1))CJUMP( != , CONST(1), 
+    CONST(0), 
+    L4, 
+    L5)
+----------------END OF BLOCK----------------
+
+--------------------BLOCK-------------------------
+ L4MOVE(TEMP(T2), 
+    BINOP( - , MEM(BINOP( + , TEMP(fp), 
+        CONST(5))), 
+        BINOP( * , BINOP( / , MEM(BINOP( + , TEMP(fp), 
+            CONST(5))), 
+            CONST(2)), 
+            CONST(2))))CJUMP( < , CONST(0), 
+    TEMP(T2), 
+    L1, 
+    L2)
+----------------END OF BLOCK----------------
+
+--------------------BLOCK-------------------------
+ L1MOVE(TEMP(T2), 
+    BINOP( - , TEMP(T2), 
+        CONST(2)))JUMP(L3, 
+    )
+----------------END OF BLOCK----------------
+
+--------------------BLOCK-------------------------
+ L2EXP(CALL(NAME(System.out.println), 
+    MEM(BINOP( + , TEMP(fp), 
+        CONST(5)))))JUMP(L3, 
+    )
+----------------END OF BLOCK----------------
+
+--------------------BLOCK-------------------------
+ L3JUMP(L0, 
+    )
+----------------END OF BLOCK----------------
+
+--------------------BLOCK-------------------------
+ L0CJUMP( != , CONST(1), 
+    CONST(0), 
+    L4, 
+    L5)
+----------------END OF BLOCK----------------
+
+--------------------BLOCK-------------------------
+ L5EXP(CALL(NAME(System.out.println), 
+    NAME(L2999341463)))JUMP(L6, 
+    )
+----------------END OF BLOCK----------------
+ L7MOVE(TEMP(T2), 
+    CONST(0))MOVE(TEMP(T3), 
+    MEM(TEMP(T2)))MOVE(TEMP(T2), 
+    BINOP( + , TEMP(T2), 
+        CONST(1)))MOVE(TEMP(T1), 
+    TEMP(T3))MOVE(TEMP(T2), 
+    CONST(1))CJUMP( != , CONST(1), 
+    CONST(0), 
+    L4, 
+    L5) L5EXP(CALL(NAME(System.out.println), 
+    NAME(L2999341463)))JUMP(L6, 
+    ) L4MOVE(TEMP(T2), 
+    BINOP( - , MEM(BINOP( + , TEMP(fp), 
+        CONST(5))), 
+        BINOP( * , BINOP( / , MEM(BINOP( + , TEMP(fp), 
+            CONST(5))), 
+            CONST(2)), 
+            CONST(2))))CJUMP( < , CONST(0), 
+    TEMP(T2), 
+    L1, 
+    L2) L2EXP(CALL(NAME(System.out.println), 
+    MEM(BINOP( + , TEMP(fp), 
+        CONST(5)))))JUMP(L3, 
+    ) L3JUMP(L0, 
+    ) L0CJUMP( != , CONST(1), 
+    CONST(0), 
+    L4, 
+    L8) L8JUMP(L5, 
+    ) L1MOVE(TEMP(T2), 
+    BINOP( - , TEMP(T2), 
+        CONST(2)))JUMP(L3, 
+    ) L6
+--------------CANONIZING CODE END------------
+
+----------------ASSEMBLER CODE---------------------
+.word 4
+L2999341463: .ascii "hola"
+
+L7:
+ADDI T4 <- 'r0+0
+ADD T2 <- T4 + r0
+LOAD T5 <- M[T2+0]
+ADD T3 <- T5 + r0
+ADDI T6 <- T2+1
+ADD T2 <- T6 + r0
+ADD T1 <- T3 + r0
+ADDI T7 <- 'r0+1
+ADD T2 <- T7 + r0
+ADDI T10 <- 'r0+0
+SUBI T9 <- T10-1
+ADD T8 <- T9 + r0
+CJmpNE T8 L4
+L5:
+ADD T11 <- L2999341463 + r0
+CALL System.out.println
+JMP L6
+L4:
+ADDI T14 <- 'r0+2
+ADDI T16 <- 'r0+2
+LOAD T17 <- M[fp+5]
+DIV T15 <- T17/T16
+MUL T13 <- T15*T14
+SUB T12 <- T17-T13
+ADD T2 <- T12 + r0
+SUBI T19 <- T2-0
+ADD T18 <- T19 + r0
+CJmpLT T18 L1
+L2:
+ADD T20 <- T17 + r0
+CALL System.out.println
+L3:
+L0:
+ADDI T23 <- 'r0+0
+SUBI T22 <- T23-1
+ADD T21 <- T22 + r0
+CJmpNE T21 L4
+L8:
+JMP L5
+L1:
+SUBI T24 <- T2-2
+ADD T2 <- T24 + r0
+JMP L3
+L6:
+MOVE rv <- T1
+
+----------------ASSEMBLER CODE FINISHED-------------------
+
+-----------CODE BEFORE CANONIZING--------------
+main
+ESEQ(EXP(CALL(NAME(System.out.println), 
+    CALL(NAME(ComputeFac), 
+        CONST(100)CONST(0)ESEQ(SEQ(MOVE(TEMP(T0), 
+            CALL(NAME(initClass), 
+                BINOP( * , CONST(1), 
+                    CONST(4)))), 
+            MOVE(TEMP(T0), 
+                BINOP( * , CONST(1), 
+                    CONST(4)))), 
+            TEMP(T0))))), 
+    CONST(0))
+--------------CANONIZING FINISHED-----------------
+
+--------------------BLOCK-------------------------
+ L10MOVE(TEMP(T0), 
+    CALL(NAME(initClass), 
+        BINOP( * , CONST(1), 
+            CONST(4))))MOVE(TEMP(T0), 
+    BINOP( * , CONST(1), 
+        CONST(4)))MOVE(TEMP(T25), 
+    CALL(NAME(ComputeFac), 
+        CONST(100)CONST(0)TEMP(T0)))EXP(CALL(NAME(System.out.println), 
+    TEMP(T25)))JUMP(L9, 
+    )
+----------------END OF BLOCK----------------
+ L10MOVE(TEMP(T0), 
+    CALL(NAME(initClass), 
+        BINOP( * , CONST(1), 
+            CONST(4))))MOVE(TEMP(T0), 
+    BINOP( * , CONST(1), 
+        CONST(4)))MOVE(TEMP(T25), 
+    CALL(NAME(ComputeFac), 
+        CONST(100)CONST(0)TEMP(T0)))EXP(CALL(NAME(System.out.println), 
+    TEMP(T25)))JUMP(L9, 
+    ) L9
+--------------CANONIZING CODE END------------
+
+----------------ASSEMBLER CODE---------------------
+.word 4
+L2999341463: .ascii "hola"
+
+L10:
+ADDI T28 <- 'r0+4
+ADDI T29 <- 'r0+1
+MUL T27 <- T29*T28
+ADD T26 <- T27 + r0
+CALL initClass
+ADD T0 <- 'r0 + rv
+ADDI T31 <- 'r0+4
+ADDI T32 <- 'r0+1
+MUL T30 <- T32*T31
+ADD T0 <- T30 + r0
+ADDI T34 <- 'r0+100
+ADD T33 <- T34 + r0
+ADDI T36 <- 'r0+0
+ADD T35 <- T36 + r0
+ADD T37 <- T0 + r0
+CALL ComputeFac
+ADD T25 <- 'r0 + rv
+ADD T38 <- T25 + r0
+CALL System.out.println
+L9:
+ADDI T39 <- 'r0+0
+MOVE rv <- T39
+
+----------------ASSEMBLER CODE FINISHED-------------------
