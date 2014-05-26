@@ -297,11 +297,50 @@ namespace Translation
 
 	}
 
+	void Translator::Visit( const CForStm& p ) //for ( Statement, Exp, Statement ) Statement
+	{
+		// считываем выражения 
+		p.GetInitStm()->Accept( this );
+		Exp* initStm = Previous;
+		p.GetCheckExp()->Accept( this );
+		Exp* checkExp = Previous;
+		p.GetUpdateStm()->Accept( this );
+		Exp* updateStm = Previous;
+		p.GetBodyStm()->Accept( this );
+		Exp* bodyStm = Previous;
+		// создаем метки body и end
+		Temp::CLabel * body = new Temp::CLabel();
+		Temp::CLabel * end = new Temp::CLabel();
+		// создаем ветку body
+		Tree::IStm* bodySeq = new Tree::SEQ( 
+			new Tree::LABEL( body ), 
+			new Tree::SEQ(
+				bodyStm->unNx(),
+				updateStm->unNx()
+			)
+		);
+		Tree::IStm* res = new Tree::SEQ( 
+			initStm->unNx(),
+			new Tree::SEQ(
+				new Tree::SEQ( 
+					checkExp->unCx( body, end ),
+					bodySeq
+				),
+				new Tree::SEQ( 
+					checkExp->unCx( body, end ),
+					new Tree::LABEL(end)
+				)
+			)
+		);
+		// возвращаем обратно statement
+		Previous = new Nx( res );
+	}
+
 	void Translator::Visit( const CSOPStm& p ) //System.out.println ( Exp ) ;
 	{
 		p.GetExp()->Accept( this );
 		// system.out.println - имя вызываемой внешней функции
-		Temp::CLabel* systemOutPrintln = new Temp::CLabel( "System.out.println" );
+		Temp::CLabel* systemOutPrintln = new Temp::CLabel( "system.out.println" );
 		// вызываем функцию с параметром Exp
 		Tree::IStm* call = new Tree::EXP( ExternalCall( new Tree::NAME( systemOutPrintln ), new Tree::ExpList( Previous->unEx(), 0 ) ) );
 		// возвращаем обратно statement
@@ -371,7 +410,7 @@ namespace Translation
 				id,
 				new Tree::BINOP( Tree::BINOP::MUL,
 				new Tree::BINOP( Tree::BINOP::PLUS, Previous->unEx(), new Tree::CONST( 1 ) ),
-				new Tree::CONST( sizeof( int ) ) ) ) );
+				new Tree::CONST( sizeof(int) ) ) ) );
 			p.GetExpSecond()->Accept( this );
 			// записываем значение в переменную и возвращаем statement
 			Previous = new Nx( new Tree::MOVE( id, Previous->unEx() ) );
@@ -428,6 +467,73 @@ namespace Translation
 
 	}
 
+	void Translator::Visit( const CPreUnOpExp& p ) //++id, --id
+	{
+		// проверяем, что есть такая переменная
+		int offset( 0 );
+		if( variables.find( p.GetId() ) != variables.end() ) {
+			// считываем переменную
+			const Tree::IExp* id = variables[p.GetId()]->getVariable();
+			// записываем значение в переменную и возвращаем
+			Previous = new Ex( new Tree::ESEQ(
+				new Tree::MOVE( id, new Tree::BINOP(Tree::BINOP::PLUS, id, new Tree::CONST(p.GetValue()) )),
+				id
+			));
+		} else if( table->getCurrClass()->lookUpVarOffset( p.GetId(), table, offset ) ) {
+			// считываем переменную
+			const Tree::IExp* id = new Tree::MEM( new Tree::BINOP( Tree::BINOP::PLUS, new Tree::TEMP( CurrFrame->getThis() ),
+				new Tree::BINOP( Tree::BINOP::MUL, new Tree::CONST( CurrFrame->wordSize() ), new Tree::CONST( offset ) ) ) );
+
+			Previous = new Ex( new Tree::ESEQ(
+				new Tree::MOVE( id, new Tree::BINOP(Tree::BINOP::PLUS, id, new Tree::CONST(p.GetValue()) )),
+				id
+			));
+		} else // переменной вообще нет!
+		{
+			assert( false );
+		}
+	}
+
+	void Translator::Visit( const CPostUnOpExp& p ) //id++, id--
+	{
+		// проверяем, что есть такая переменная
+		int offset( 0 );
+		if( variables.find( p.GetId() ) != variables.end() ) {
+			// считываем переменную
+			const Tree::IExp* id = variables[p.GetId()]->getVariable();
+			//создаем временную и копируем в нее
+			Tree::IExp* temp = new Tree::TEMP( new Temp::CTemp );
+			Tree::IStm* copy = new Tree::MOVE( temp, new Tree::MEM( id ) );
+			// записываем значение в переменную и возвращаем временную
+			Previous = new Ex( new Tree::ESEQ(
+				new Tree::SEQ(
+					copy,
+					new Tree::MOVE( id, new Tree::BINOP(Tree::BINOP::PLUS, id, new Tree::CONST(p.GetValue()) ))
+				),
+				temp
+			));
+		} else if( table->getCurrClass()->lookUpVarOffset( p.GetId(), table, offset ) ) {
+			// считываем переменную
+			const Tree::IExp* id = new Tree::MEM( new Tree::BINOP( Tree::BINOP::PLUS, new Tree::TEMP( CurrFrame->getThis() ),
+				new Tree::BINOP( Tree::BINOP::MUL, new Tree::CONST( CurrFrame->wordSize() ), new Tree::CONST( offset ) ) ) );
+
+			//создаем временную и копируем в нее
+			Tree::IExp* temp = new Tree::TEMP( new Temp::CTemp );
+			Tree::IStm* copy = new Tree::MOVE( temp, new Tree::MEM( id ) );
+			// записываем значение в переменную и возвращаем временную
+			Previous = new Ex( new Tree::ESEQ(
+				new Tree::SEQ(
+					copy,
+					new Tree::MOVE( id, new Tree::BINOP(Tree::BINOP::PLUS, id, new Tree::CONST(p.GetValue()) ))
+				),
+				temp
+			));
+		} else // переменной вообще нет!
+		{
+			assert( false );
+		}
+	}
+
 	void Translator::Visit( const CExExp& p )//Exp [ Exp ]
 	{
 		// считываем оба exp
@@ -440,7 +546,7 @@ namespace Translation
 			Previous->unEx(),
 			new Tree::BINOP( Tree::BINOP::MUL,
 			new Tree::BINOP( Tree::BINOP::PLUS, exSecond->unEx(), new Tree::CONST( 1 ) ),
-			new Tree::CONST( sizeof( int ) ) ) ) );
+			new Tree::CONST( sizeof(int) ) ) ) );
 		// возвращаем exp
 		Previous = new Ex( res );
 
@@ -490,11 +596,10 @@ namespace Translation
 
 	void Translator::Visit( const CStrExp& p ) //str
 	{
-		Temp::CLabel* stringLabel = new Temp::CLabel("L" + p.GetId() );
-		Tree::IExp* length = new Tree::CONST( p.GetStr().length() );
-		Tree::IExp* res = /*new Tree::EXP( new Tree::NAME( stringLabel ) );*/ ExternalCall( new Tree::NAME( stringLabel ), new Tree::ExpList( length, 0 ) );
+		// заполняем константу 
+		Tree::IExp* res = new Tree::CONST( 0 ); // заглушка
 		// возвращаем exp
-		Previous = new Ex( res/*new Tree::ESEQ(res, length)*/ );
+		Previous = new Ex( res );
 	}
 
 	void Translator::Visit( const CTrExp& p ) //true
@@ -599,7 +704,7 @@ namespace Translation
 		// определяем, сколько места нужно выделить
 		Tree::IExp* size = new Tree::BINOP( Tree::BINOP::MUL,
 			new Tree::CONST( sz ),
-			new Tree::CONST(CurrFrame->wordSize()));
+			new Tree::CONST( CurrFrame->wordSize() ) );
 		// initClass - имя внешней функции, которая создаст объект класса
 		Temp::CLabel* initClass = new Temp::CLabel( "initClass" );
 		// вызываем функцию с параметром size и сохраняем ее в переменной
@@ -703,5 +808,14 @@ namespace Translation
 		Previous = new Translation::Nx( exp );
 	}
 
+	void Translator::Visit( const CEmptyStm& p )
+	{
+		Previous = new Translation::Nx( new Tree::LABEL(new Temp::CLabel() )); // fake label
+	}
 
+	void Translator::Visit( const CExpStm& p )
+	{
+		p.GetExp()->Accept( this );
+		Previous = new Translation::Nx( Previous->unNx() );
+	}
 }

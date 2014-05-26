@@ -52,8 +52,8 @@ extern int yydebug;
      _IF = 261,
      _ELSE = 262,
      _WHILE = 263,
-     _SYSTEMOP = 264,
-     _SYSTEMOPWOLN = 265,
+     _FOR = 264,
+     _SYSTEMOP = 265,
      _CLASS = 266,
      _MAIN = 267,
      _PUBLIC = 268,
@@ -81,13 +81,15 @@ extern int yydebug;
      _SR_BRACKET = 290,
      _FL_BRACKET = 291,
      _FR_BRACKET = 292,
-     _OPPLUS = 293,
-     _OPMINUS = 294,
-     _OPMULT = 295,
-     _OPDIV = 296,
-     _OPAND = 297,
-     _OPLESS = 298,
-     NEG = 299
+     _OPINC = 293,
+     _OPDEC = 294,
+     _OPPLUS = 295,
+     _OPMINUS = 296,
+     _OPMULT = 297,
+     _OPDIV = 298,
+     _OPAND = 299,
+     _OPLESS = 300,
+     NEG = 301
    };
 #endif
 
@@ -96,7 +98,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 84 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 88 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
 
  int IntV;
  char* StringV;
@@ -120,7 +122,7 @@ typedef union YYSTYPE
 
 
 /* Line 2058 of yacc.c  */
-#line 124 "syntax.hpp"
+#line 126 "syntax.hpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

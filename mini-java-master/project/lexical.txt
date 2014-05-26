@@ -1,6 +1,6 @@
 %option noyywrap
         #include <stdio.h>
-		#include <malloc.h>
+
 %{
 #include <interface.h>
 #include <Syntax.hpp>
@@ -19,8 +19,8 @@ void updateLocation();
 "if" updateLocation(); return _IF;
 "else" updateLocation(); return _ELSE;
 "while" updateLocation(); return _WHILE;
+"for" updateLocation(); return _FOR;
 "System.out.println" updateLocation(); return _SYSTEMOP;
-"System.out.print" updateLocation(); return _SYSTEMOPWOLN;
 
 "class" updateLocation(); return _CLASS;
 "main" updateLocation(); return _MAIN;
@@ -51,18 +51,7 @@ void updateLocation();
                 return _NUM;}
 
 [\"]([^\\\"]*([\\][\"ntr])*)*[\"] { updateLocation(); 
-									//yylval.StringV = yytext[1];
-									char* it = &yytext[1];
-									int num = 0;
-									while(*it != '"') {
-										it++;
-										num++;
-									}
-									printf("%d\n", num);
-									yylval.StringV = (char*)malloc(num);
-									strncpy(yylval.StringV, &yytext[1], num);
-									yylval.StringV[num] = 0;
-									//strncpy_s(yylval.StringV, yyleng + 1, yytext, yyleng);
+									strncpy_s(yylval.StringV, yyleng + 1, yytext, yyleng);
 									return _STR;}
 
 "." updateLocation(); return _POINT;
@@ -76,6 +65,8 @@ void updateLocation();
 "]" updateLocation(); return _SR_BRACKET;
 "{" updateLocation(); return _FL_BRACKET;
 "}" updateLocation(); return _FR_BRACKET;
+"++" updateLocation(); return _OPINC;
+"--" updateLocation(); return _OPDEC;
 "+" updateLocation(); return _OPPLUS;
 "-" updateLocation(); return _OPMINUS;
 "/" updateLocation(); return _OPDIV;

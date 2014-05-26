@@ -63,7 +63,7 @@
 
 /* Copy the first part of user declarations.  */
 /* Line 371 of yacc.c  */
-#line 1 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 1 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
 
   #include <math.h>
   #include <stdio.h>
@@ -116,8 +116,8 @@ extern int yydebug;
      _IF = 261,
      _ELSE = 262,
      _WHILE = 263,
-     _SYSTEMOP = 264,
-     _SYSTEMOPWOLN = 265,
+     _FOR = 264,
+     _SYSTEMOP = 265,
      _CLASS = 266,
      _MAIN = 267,
      _PUBLIC = 268,
@@ -145,13 +145,15 @@ extern int yydebug;
      _SR_BRACKET = 290,
      _FL_BRACKET = 291,
      _FR_BRACKET = 292,
-     _OPPLUS = 293,
-     _OPMINUS = 294,
-     _OPMULT = 295,
-     _OPDIV = 296,
-     _OPAND = 297,
-     _OPLESS = 298,
-     NEG = 299
+     _OPINC = 293,
+     _OPDEC = 294,
+     _OPPLUS = 295,
+     _OPMINUS = 296,
+     _OPMULT = 297,
+     _OPDIV = 298,
+     _OPAND = 299,
+     _OPLESS = 300,
+     NEG = 301
    };
 #endif
 
@@ -160,7 +162,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 387 of yacc.c  */
-#line 84 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 88 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
 
  int IntV;
  char* StringV;
@@ -184,7 +186,7 @@ typedef union YYSTYPE
 
 
 /* Line 387 of yacc.c  */
-#line 188 "syntax.cpp"
+#line 190 "syntax.cpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -225,7 +227,7 @@ int yyparse ();
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 229 "syntax.cpp"
+#line 231 "syntax.cpp"
 
 #ifdef short
 # undef short
@@ -447,20 +449,20 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   253
+#define YYLAST   343
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  45
+#define YYNTOKENS  47
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  17
+#define YYNNTS  18
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  54
+#define YYNRULES  61
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  152
+#define YYNSTATES  162
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   299
+#define YYMAXUTOK   301
 
 #define YYTRANSLATE(YYX)						\
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -497,7 +499,8 @@ static const yytype_uint8 yytranslate[] =
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38,    39,    40,    41,    42,    43,    44
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
+      45,    46
 };
 
 #if YYDEBUG
@@ -507,49 +510,53 @@ static const yytype_uint8 yyprhs[] =
 {
        0,     0,     3,     6,    24,    30,    37,    46,    49,    50,
       53,    54,    57,    58,    62,    76,    79,    80,    84,    85,
-      90,    91,    95,    97,    99,   101,   105,   113,   119,   125,
-     131,   136,   144,   148,   152,   156,   160,   164,   168,   173,
-     177,   184,   186,   188,   190,   192,   194,   196,   202,   207,
-     210,   214,   217,   218,   222
+      90,    91,    95,    97,    99,   101,   102,   104,   109,   113,
+     120,   124,   132,   138,   148,   151,   154,   157,   160,   163,
+     167,   171,   175,   179,   183,   187,   192,   196,   203,   205,
+     207,   209,   211,   213,   215,   221,   226,   229,   233,   236,
+     237,   241
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      46,     0,    -1,    47,    49,    -1,    11,     3,    36,    13,
+      48,     0,    -1,    49,    51,    -1,    11,     3,    36,    13,
       14,    19,    12,    32,    20,    34,    35,     3,    33,    36,
-      58,    37,    37,    -1,    11,     3,    36,     1,    37,    -1,
-      11,     3,    36,    51,    50,    37,    -1,    11,     3,    16,
-       3,    36,    51,    50,    37,    -1,    48,    49,    -1,    -1,
-      53,    50,    -1,    -1,    51,    52,    -1,    -1,    57,     3,
-      27,    -1,    13,    57,     3,    32,    55,    33,    36,    51,
-      54,    15,    59,    27,    37,    -1,    58,    54,    -1,    -1,
-      57,     3,    56,    -1,    -1,    31,    57,     3,    56,    -1,
+      61,    37,    37,    -1,    11,     3,    36,     1,    37,    -1,
+      11,     3,    36,    53,    52,    37,    -1,    11,     3,    16,
+       3,    36,    53,    52,    37,    -1,    50,    51,    -1,    -1,
+      55,    52,    -1,    -1,    53,    54,    -1,    -1,    59,     3,
+      27,    -1,    13,    59,     3,    32,    57,    33,    36,    53,
+      56,    15,    62,    27,    37,    -1,    61,    56,    -1,    -1,
+      59,     3,    58,    -1,    -1,    31,    59,     3,    58,    -1,
       -1,    17,    34,    35,    -1,    18,    -1,    17,    -1,     3,
-      -1,    36,    54,    37,    -1,     6,    32,    59,    33,    58,
-       7,    58,    -1,     8,    32,    59,    33,    58,    -1,     9,
-      32,    59,    33,    27,    -1,    10,    32,    59,    33,    27,
-      -1,     3,    29,    59,    27,    -1,     3,    34,    59,    35,
-      29,    59,    27,    -1,    59,    38,    59,    -1,    59,    39,
-      59,    -1,    59,    40,    59,    -1,    59,    41,    59,    -1,
-      59,    43,    59,    -1,    59,    42,    59,    -1,    59,    34,
-      59,    35,    -1,    59,    26,    25,    -1,    59,    26,     3,
-      32,    60,    33,    -1,     4,    -1,     5,    -1,    21,    -1,
-      22,    -1,     3,    -1,    23,    -1,    24,    17,    34,    59,
-      35,    -1,    24,     3,    32,    33,    -1,    30,    59,    -1,
-      32,    59,    33,    -1,    59,    61,    -1,    -1,    31,    59,
-      61,    -1,    -1
+      -1,    -1,    62,    -1,    10,    32,    62,    33,    -1,     3,
+      29,    62,    -1,     3,    34,    62,    35,    29,    62,    -1,
+      36,    56,    37,    -1,     6,    32,    62,    33,    61,     7,
+      61,    -1,     8,    32,    62,    33,    61,    -1,     9,    32,
+      60,    27,    62,    27,    60,    33,    61,    -1,    60,    27,
+      -1,     3,    38,    -1,    38,     3,    -1,     3,    39,    -1,
+      39,     3,    -1,    62,    40,    62,    -1,    62,    41,    62,
+      -1,    62,    42,    62,    -1,    62,    43,    62,    -1,    62,
+      45,    62,    -1,    62,    44,    62,    -1,    62,    34,    62,
+      35,    -1,    62,    26,    25,    -1,    62,    26,     3,    32,
+      63,    33,    -1,     4,    -1,     5,    -1,    21,    -1,    22,
+      -1,     3,    -1,    23,    -1,    24,    17,    34,    62,    35,
+      -1,    24,     3,    32,    33,    -1,    30,    62,    -1,    32,
+      62,    33,    -1,    62,    64,    -1,    -1,    31,    62,    64,
+      -1,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,   107,   107,   109,   113,   115,   116,   118,   119,   121,
-     122,   124,   125,   127,   129,   133,   134,   136,   137,   139,
-     140,   143,   144,   145,   146,   148,   149,   150,   151,   152,
-     153,   154,   157,   158,   159,   160,   161,   162,   163,   164,
-     165,   166,   167,   168,   169,   170,   171,   172,   173,   174,
-     175,   177,   178,   180,   181
+       0,   111,   111,   113,   117,   119,   120,   122,   123,   125,
+     126,   128,   129,   131,   133,   137,   138,   140,   141,   143,
+     144,   147,   148,   149,   150,   153,   154,   155,   156,   157,
+     160,   161,   162,   163,   164,   167,   168,   169,   170,   171,
+     172,   173,   174,   175,   176,   177,   178,   179,   180,   181,
+     182,   183,   184,   185,   186,   187,   188,   189,   191,   192,
+     194,   195
 };
 #endif
 
@@ -559,15 +566,16 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "_ID", "_NUM", "_STR", "_IF", "_ELSE",
-  "_WHILE", "_SYSTEMOP", "_SYSTEMOPWOLN", "_CLASS", "_MAIN", "_PUBLIC",
-  "_STATIC", "_RETURN", "_EXTENDS", "_INT", "_BOOLEAN", "_VOID", "_STRING",
-  "_TRUE", "_FALSE", "_THIS", "_NEW", "_LENGTH", "_POINT", "_SEMICOLUMN",
-  "_STAR", "_ASSIGNMENT", "_WOW", "__COMMA", "_RL_BRACKET", "_RR_BRACKET",
-  "_SL_BRACKET", "_SR_BRACKET", "_FL_BRACKET", "_FR_BRACKET", "_OPPLUS",
-  "_OPMINUS", "_OPMULT", "_OPDIV", "_OPAND", "_OPLESS", "NEG", "$accept",
-  "Program", "MainClass", "ClassDecl", "ClassDeclList", "MethodDeclList",
-  "VarDeclList", "VarDecl", "MethodDecl", "StmList", "FormalList",
-  "FormalRest", "Type", "Stm", "Exp", "ExpList", "ExpRest", YY_NULL
+  "_WHILE", "_FOR", "_SYSTEMOP", "_CLASS", "_MAIN", "_PUBLIC", "_STATIC",
+  "_RETURN", "_EXTENDS", "_INT", "_BOOLEAN", "_VOID", "_STRING", "_TRUE",
+  "_FALSE", "_THIS", "_NEW", "_LENGTH", "_POINT", "_SEMICOLUMN", "_STAR",
+  "_ASSIGNMENT", "_WOW", "__COMMA", "_RL_BRACKET", "_RR_BRACKET",
+  "_SL_BRACKET", "_SR_BRACKET", "_FL_BRACKET", "_FR_BRACKET", "_OPINC",
+  "_OPDEC", "_OPPLUS", "_OPMINUS", "_OPMULT", "_OPDIV", "_OPAND",
+  "_OPLESS", "NEG", "$accept", "Program", "MainClass", "ClassDecl",
+  "ClassDeclList", "MethodDeclList", "VarDeclList", "VarDecl",
+  "MethodDecl", "StmList", "FormalList", "FormalRest", "Type", "SimpleStm",
+  "Stm", "Exp", "ExpList", "ExpRest", YY_NULL
 };
 #endif
 
@@ -580,19 +588,20 @@ static const yytype_uint16 yytoknum[] =
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
      285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
-     295,   296,   297,   298,   299
+     295,   296,   297,   298,   299,   300,   301
 };
 # endif
 
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    45,    46,    47,    48,    48,    48,    49,    49,    50,
-      50,    51,    51,    52,    53,    54,    54,    55,    55,    56,
-      56,    57,    57,    57,    57,    58,    58,    58,    58,    58,
-      58,    58,    59,    59,    59,    59,    59,    59,    59,    59,
-      59,    59,    59,    59,    59,    59,    59,    59,    59,    59,
-      59,    60,    60,    61,    61
+       0,    47,    48,    49,    50,    50,    50,    51,    51,    52,
+      52,    53,    53,    54,    55,    56,    56,    57,    57,    58,
+      58,    59,    59,    59,    59,    60,    60,    60,    60,    60,
+      61,    61,    61,    61,    61,    62,    62,    62,    62,    62,
+      62,    62,    62,    62,    62,    62,    62,    62,    62,    62,
+      62,    62,    62,    62,    62,    62,    62,    62,    63,    63,
+      64,    64
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
@@ -600,10 +609,11 @@ static const yytype_uint8 yyr2[] =
 {
        0,     2,     2,    17,     5,     6,     8,     2,     0,     2,
        0,     2,     0,     3,    13,     2,     0,     3,     0,     4,
-       0,     3,     1,     1,     1,     3,     7,     5,     5,     5,
-       4,     7,     3,     3,     3,     3,     3,     3,     4,     3,
-       6,     1,     1,     1,     1,     1,     1,     5,     4,     2,
-       3,     2,     0,     3,     0
+       0,     3,     1,     1,     1,     0,     1,     4,     3,     6,
+       3,     7,     5,     9,     2,     2,     2,     2,     2,     3,
+       3,     3,     3,     3,     3,     4,     3,     6,     1,     1,
+       1,     1,     1,     1,     5,     4,     2,     3,     2,     0,
+       3,     0
 };
 
 /* YYDEFACT[STATE-NAME] -- Default reduction number in state STATE-NUM.
@@ -616,146 +626,167 @@ static const yytype_uint8 yydefact[] =
       12,     4,    24,     0,    23,    22,     0,    11,    10,     0,
        0,    10,     0,     0,     5,     9,     0,     0,     0,     0,
       21,    13,     0,     6,    18,     0,     0,     0,     0,     0,
-      20,     0,    12,     0,    17,     0,    16,     0,     0,    24,
-       0,     0,     0,     0,    16,     0,    16,    20,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,    15,    19,
-       0,    45,    41,    42,    43,    44,    46,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,    25,     0,     3,     0,
-       0,    49,     0,     0,    30,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-      50,     0,    39,     0,    32,    33,    34,    35,    37,    36,
-       0,     0,    27,    28,    29,    14,    48,     0,    52,    38,
-       0,     0,    47,    54,     0,    31,    26,     0,    51,    40,
-      54,    53
+      20,     0,    12,     0,    17,     0,    16,     0,    25,    52,
+      48,    49,     0,     0,     0,     0,    50,    51,    53,     0,
+       0,     0,    16,     0,     0,     0,     0,    16,    26,    20,
+      52,     0,     0,     0,    35,    37,     0,     0,    25,     0,
+       0,     0,    52,    56,     0,     0,    36,    38,     0,    34,
+      15,     0,     0,     0,     0,     0,     0,     0,     0,    19,
+       0,    28,     0,     0,     0,     0,     0,     0,     0,    57,
+      30,     0,     0,    46,     0,    39,    40,    41,    42,    44,
+      43,     3,     0,    25,    25,     0,    27,    55,     0,     0,
+      59,    45,     0,     0,    32,     0,    54,    14,    61,     0,
+      29,    25,    25,     0,    58,    47,    31,     0,    61,    25,
+      60,    33
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int16 yydefgoto[] =
 {
-      -1,     2,     3,     7,     8,    26,    18,    27,    28,    65,
-      46,    54,    29,    66,    90,   144,   148
+      -1,     2,     3,     7,     8,    26,    18,    27,    28,    75,
+      46,    54,    29,    76,    77,    78,   149,   154
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -71
+#define YYPACT_NINF -86
 static const yytype_int16 yypact[] =
 {
-      11,    20,    26,    19,    -2,   -71,    42,    19,   -71,    51,
-      -3,   -71,    49,    43,     7,    62,    57,    60,   203,    99,
-     -71,   -71,   -71,    14,    87,   -71,    85,   -71,   120,   141,
-     100,   203,   151,   130,   -71,   -71,   116,   144,   138,   145,
-     -71,   -71,   153,   -71,    14,   172,   182,   202,   214,   187,
-     193,   185,   -71,    14,   -71,   189,    44,   229,     6,    50,
-     201,   204,   205,   206,     6,   219,     6,   193,    50,   198,
-      66,    66,    66,    66,    66,    66,   207,    66,   -71,   -71,
-     208,   -71,   -71,   -71,   -71,   -71,   -71,    48,    66,    66,
-      65,    75,    86,    97,   108,   119,   -71,   129,   -71,   209,
-     212,    -5,   140,     3,   -71,    66,    66,    66,    66,    66,
-      66,    66,   210,     6,     6,   213,   215,   211,   216,    66,
-     -71,   218,   -71,   150,    32,    32,    52,    52,    33,    -5,
-      66,   236,   -71,   -71,   -71,   -71,   -71,   160,    66,   -71,
-     170,     6,   -71,   188,   220,   -71,   -71,    66,   -71,   -71,
-     188,   -71
+      -6,     4,     9,    45,    23,   -86,    60,    45,   -86,    61,
+      32,   -86,    63,    92,    52,    89,    83,    80,   113,   120,
+     -86,   -86,   -86,    93,    99,   -86,    97,   -86,   122,   133,
+     105,   113,   135,   104,   -86,   -86,   117,   125,   110,   116,
+     -86,   -86,   126,   -86,    93,   115,   123,   158,   159,   127,
+     136,   141,   -86,    93,   -86,   132,    82,   166,    22,   172,
+     -86,   -86,   144,   145,   148,   157,   -86,   -86,   -86,     7,
+     161,   161,   119,   187,   189,   183,   175,   119,    38,   136,
+     -23,   167,   161,   161,   -86,   -86,   161,   161,   149,   161,
+     171,   173,    59,    81,   179,   177,   -86,   -86,   161,   -86,
+     -86,    16,   161,   161,   161,   161,   161,   161,   161,   -86,
+     178,    38,   191,   204,   217,   181,   230,   176,   161,   -86,
+     -86,   242,   184,   -86,   254,   152,   152,   -22,   -22,    68,
+      81,   -86,   198,    22,    22,   161,   -86,   -86,   266,   192,
+     161,   -86,   161,   211,   -86,   278,   -86,   -86,   298,   195,
+      38,    22,   149,   161,   -86,   -86,   -86,   206,   298,    22,
+     -86,   -86
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-     -71,   -71,   -71,   -71,   240,    54,    -9,   -71,   -71,    36,
-     -71,   184,     4,   -58,   -70,   -71,   102
+     -86,   -86,   -86,   -86,   233,    19,   -12,   -86,   -86,   -15,
+     -86,   162,    -2,   -85,   -58,   -69,   -86,    84
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
    positive, shift that token.  If negative, reduce the rule which
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
-#define YYTABLE_NINF -13
+#define YYTABLE_NINF -26
 static const yytype_int16 yytable[] =
 {
-      69,    91,    92,    93,    94,    95,   121,    97,    17,    68,
-     -12,    31,    60,    13,    61,    62,    63,    22,   101,   102,
-     -12,   103,     1,     4,   -12,   -12,     5,    32,   122,   105,
-       6,    24,    25,    14,     9,   123,   124,   125,   126,   127,
-     128,   129,    64,    56,   -12,    10,    16,    59,    47,   137,
-      60,    99,    61,    62,    63,   131,   132,    57,   103,   103,
-     140,    24,    25,    15,    12,   100,   105,   105,   143,    81,
-      82,    83,   108,   109,   110,   111,   111,   150,   103,    70,
-      64,    19,    35,   146,    71,    38,   105,    84,    85,    86,
-      87,   103,   104,    20,   110,   111,    88,    21,    89,   105,
-      76,   103,    78,   106,   107,   108,   109,   110,   111,   105,
-     112,    30,   103,   106,   107,   108,   109,   110,   111,   113,
-     105,    33,    34,   103,   106,   107,   108,   109,   110,   111,
-     114,   105,    37,    23,   103,   106,   107,   108,   109,   110,
-     111,   115,   105,    41,    36,   103,   106,   107,   108,   109,
-     110,   111,   116,   105,    39,   103,   117,   106,   107,   108,
-     109,   110,   111,   105,    42,    40,   103,   106,   107,   108,
-     109,   110,   111,   120,   105,    43,   103,    44,   106,   107,
-     108,   109,   110,   111,   105,   139,   103,    45,   106,   107,
-     108,   109,   110,   111,   105,   142,   103,   145,   106,   107,
-     108,   109,   110,   111,   105,    50,    22,    48,   106,   107,
-     108,   109,   110,   111,   103,    49,    23,    51,    55,   147,
-      24,    25,   105,    52,    53,    58,   106,   107,   108,   109,
-     110,   111,    67,    72,    77,    80,    73,    74,    75,   130,
-     133,   118,   134,   141,    96,    98,   119,    11,   135,   136,
-     138,    79,   151,   149
+      81,    93,    94,   115,   101,     1,    82,     4,    31,     5,
+      90,    83,   102,   111,   112,    84,    85,   113,   114,   122,
+     116,    32,   107,   108,    91,    80,    60,    61,    62,   121,
+      63,    64,    65,   124,   125,   126,   127,   128,   129,   130,
+      56,   123,    47,    66,    67,    68,    69,    35,    13,   138,
+      38,    57,    70,    17,    71,   -12,     6,    95,    72,     9,
+      73,    74,   100,    10,   101,   -12,   145,   157,    14,   -12,
+     -12,   148,   102,   150,    12,   143,   144,    15,   103,   104,
+     105,   106,   107,   108,   158,    59,    60,    61,    62,   -12,
+      63,    64,    65,   156,   101,    16,    22,    84,    85,    24,
+      25,   161,   102,    66,    67,    68,    69,   101,    19,   -25,
+      24,    25,    70,   108,    71,   102,    22,    21,    72,    20,
+      73,    74,    80,    60,    61,    62,    23,    63,    64,    65,
+      24,    25,    30,    33,    34,    23,    36,    37,    39,    40,
+      66,    67,    68,    69,    41,    42,   -25,    43,    44,    70,
+      48,    71,    80,    60,    61,    72,    49,    73,    74,    65,
+      45,    50,    51,    52,    92,    60,    61,    53,    58,    79,
+      66,    67,    68,    69,    55,   -24,    86,    87,   101,    70,
+      88,    71,    66,    67,    68,    69,   102,    73,    74,    89,
+      96,    70,    97,    71,   105,   106,   107,   108,    98,    73,
+      74,    82,    99,   117,   110,   101,    83,   118,   135,   137,
+      84,    85,   119,   102,   120,   131,   140,   101,   151,   103,
+     104,   105,   106,   107,   108,   102,   132,   142,   155,   147,
+     101,   103,   104,   105,   106,   107,   108,   133,   102,   159,
+      11,   109,   160,   101,   103,   104,   105,   106,   107,   108,
+     134,   102,     0,     0,     0,     0,   101,   103,   104,   105,
+     106,   107,   108,   136,   102,     0,     0,     0,   101,   139,
+     103,   104,   105,   106,   107,   108,   102,     0,     0,     0,
+     101,     0,   103,   104,   105,   106,   107,   108,   102,   141,
+       0,     0,   101,     0,   103,   104,   105,   106,   107,   108,
+     102,   146,     0,     0,   101,   152,   103,   104,   105,   106,
+     107,   108,   102,     0,     0,     0,     0,     0,   103,   104,
+     105,   106,   107,   108,   101,     0,     0,     0,     0,   153,
+       0,     0,   102,     0,     0,     0,     0,     0,   103,   104,
+     105,   106,   107,   108
 };
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-71)))
+  (!!((Yystate) == (-86)))
 
 #define yytable_value_is_error(Yytable_value) \
   YYID (0)
 
-static const yytype_uint8 yycheck[] =
+static const yytype_int16 yycheck[] =
 {
-      58,    71,    72,    73,    74,    75,     3,    77,     1,     3,
-       3,    20,     6,    16,     8,     9,    10,     3,    88,    89,
-      13,    26,    11,     3,    17,    18,     0,    23,    25,    34,
-      11,    17,    18,    36,    36,   105,   106,   107,   108,   109,
-     110,   111,    36,    52,    37,     3,     3,     3,    44,   119,
-       6,     3,     8,     9,    10,   113,   114,    53,    26,    26,
-     130,    17,    18,    14,    13,    17,    34,    34,   138,     3,
-       4,     5,    40,    41,    42,    43,    43,   147,    26,    29,
-      36,    19,    28,   141,    34,    31,    34,    21,    22,    23,
-      24,    26,    27,    36,    42,    43,    30,    37,    32,    34,
-      64,    26,    66,    38,    39,    40,    41,    42,    43,    34,
-      35,    12,    26,    38,    39,    40,    41,    42,    43,    33,
-      34,    34,    37,    26,    38,    39,    40,    41,    42,    43,
-      33,    34,    32,    13,    26,    38,    39,    40,    41,    42,
-      43,    33,    34,    27,     3,    26,    38,    39,    40,    41,
-      42,    43,    33,    34,     3,    26,    27,    38,    39,    40,
-      41,    42,    43,    34,    20,    35,    26,    38,    39,    40,
-      41,    42,    43,    33,    34,    37,    26,    32,    38,    39,
-      40,    41,    42,    43,    34,    35,    26,    34,    38,    39,
-      40,    41,    42,    43,    34,    35,    26,    27,    38,    39,
-      40,    41,    42,    43,    34,     3,     3,    35,    38,    39,
-      40,    41,    42,    43,    26,    33,    13,     3,    33,    31,
-      17,    18,    34,    36,    31,    36,    38,    39,    40,    41,
-      42,    43,     3,    32,    15,    37,    32,    32,    32,    29,
-      27,    32,    27,     7,    37,    37,    34,     7,    37,    33,
-      32,    67,   150,    33
+      58,    70,    71,    88,    26,    11,    29,     3,    20,     0,
+       3,    34,    34,    82,    83,    38,    39,    86,    87,     3,
+      89,    23,    44,    45,    17,     3,     4,     5,     6,    98,
+       8,     9,    10,   102,   103,   104,   105,   106,   107,   108,
+      52,    25,    44,    21,    22,    23,    24,    28,    16,   118,
+      31,    53,    30,     1,    32,     3,    11,    72,    36,    36,
+      38,    39,    77,     3,    26,    13,   135,   152,    36,    17,
+      18,   140,    34,   142,    13,   133,   134,    14,    40,    41,
+      42,    43,    44,    45,   153,     3,     4,     5,     6,    37,
+       8,     9,    10,   151,    26,     3,     3,    38,    39,    17,
+      18,   159,    34,    21,    22,    23,    24,    26,    19,    27,
+      17,    18,    30,    45,    32,    34,     3,    37,    36,    36,
+      38,    39,     3,     4,     5,     6,    13,     8,     9,    10,
+      17,    18,    12,    34,    37,    13,     3,    32,     3,    35,
+      21,    22,    23,    24,    27,    20,    27,    37,    32,    30,
+      35,    32,     3,     4,     5,    36,    33,    38,    39,    10,
+      34,     3,     3,    36,     3,     4,     5,    31,    36,     3,
+      21,    22,    23,    24,    33,     3,    32,    32,    26,    30,
+      32,    32,    21,    22,    23,    24,    34,    38,    39,    32,
+       3,    30,     3,    32,    42,    43,    44,    45,    15,    38,
+      39,    29,    27,    32,    37,    26,    34,    34,    27,    33,
+      38,    39,    33,    34,    37,    37,    32,    26,     7,    40,
+      41,    42,    43,    44,    45,    34,    35,    29,    33,    37,
+      26,    40,    41,    42,    43,    44,    45,    33,    34,    33,
+       7,    79,   158,    26,    40,    41,    42,    43,    44,    45,
+      33,    34,    -1,    -1,    -1,    -1,    26,    40,    41,    42,
+      43,    44,    45,    33,    34,    -1,    -1,    -1,    26,    27,
+      40,    41,    42,    43,    44,    45,    34,    -1,    -1,    -1,
+      26,    -1,    40,    41,    42,    43,    44,    45,    34,    35,
+      -1,    -1,    26,    -1,    40,    41,    42,    43,    44,    45,
+      34,    35,    -1,    -1,    26,    27,    40,    41,    42,    43,
+      44,    45,    34,    -1,    -1,    -1,    -1,    -1,    40,    41,
+      42,    43,    44,    45,    26,    -1,    -1,    -1,    -1,    31,
+      -1,    -1,    34,    -1,    -1,    -1,    -1,    -1,    40,    41,
+      42,    43,    44,    45
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    11,    46,    47,     3,     0,    11,    48,    49,    36,
-       3,    49,    13,    16,    36,    14,     3,     1,    51,    19,
-      36,    37,     3,    13,    17,    18,    50,    52,    53,    57,
-      12,    51,    57,    34,    37,    50,     3,    32,    50,     3,
-      35,    27,    20,    37,    32,    34,    55,    57,    35,    33,
-       3,     3,    36,    31,    56,    33,    51,    57,    36,     3,
-       6,     8,     9,    10,    36,    54,    58,     3,     3,    58,
-      29,    34,    32,    32,    32,    32,    54,    15,    54,    56,
-      37,     3,     4,     5,    21,    22,    23,    24,    30,    32,
-      59,    59,    59,    59,    59,    59,    37,    59,    37,     3,
-      17,    59,    59,    26,    27,    34,    38,    39,    40,    41,
-      42,    43,    35,    33,    33,    33,    33,    27,    32,    34,
-      33,     3,    25,    59,    59,    59,    59,    59,    59,    59,
-      29,    58,    58,    27,    27,    37,    33,    59,    32,    35,
-      59,     7,    35,    59,    60,    27,    58,    31,    61,    33,
-      59,    61
+       0,    11,    48,    49,     3,     0,    11,    50,    51,    36,
+       3,    51,    13,    16,    36,    14,     3,     1,    53,    19,
+      36,    37,     3,    13,    17,    18,    52,    54,    55,    59,
+      12,    53,    59,    34,    37,    52,     3,    32,    52,     3,
+      35,    27,    20,    37,    32,    34,    57,    59,    35,    33,
+       3,     3,    36,    31,    58,    33,    53,    59,    36,     3,
+       4,     5,     6,     8,     9,    10,    21,    22,    23,    24,
+      30,    32,    36,    38,    39,    56,    60,    61,    62,     3,
+       3,    61,    29,    34,    38,    39,    32,    32,    32,    32,
+       3,    17,     3,    62,    62,    56,     3,     3,    15,    27,
+      56,    26,    34,    40,    41,    42,    43,    44,    45,    58,
+      37,    62,    62,    62,    62,    60,    62,    32,    34,    33,
+      37,    62,     3,    25,    62,    62,    62,    62,    62,    62,
+      62,    37,    35,    33,    33,    27,    33,    33,    62,    27,
+      32,    35,    29,    61,    61,    62,    35,    37,    62,    63,
+      62,     7,    27,    31,    64,    33,    61,    60,    62,    33,
+      64,    61
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1672,325 +1703,367 @@ yyreduce:
     {
         case 2:
 /* Line 1792 of yacc.c  */
-#line 107 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 111 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {yyprogram = (yyval.Program) = new CProgram ((yyvsp[(1) - (2)].MainClass), (yyvsp[(2) - (2)].ClassDeclList));}
     break;
 
   case 3:
 /* Line 1792 of yacc.c  */
-#line 111 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 115 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.MainClass) = new CMainClass ((yyvsp[(2) - (17)].SymbolTable), (yyvsp[(12) - (17)].SymbolTable), (yyvsp[(15) - (17)].Stm));}
     break;
 
   case 4:
 /* Line 1792 of yacc.c  */
-#line 114 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 118 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     { fprintf( stderr, "[%d, %d] Class error!", (yylsp[(3) - (5)]).first_line, (yylsp[(3) - (5)]).first_column ); }
     break;
 
   case 5:
 /* Line 1792 of yacc.c  */
-#line 115 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 119 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.ClassDecl) = new CClassDecl ((yyvsp[(2) - (6)].SymbolTable), (yyvsp[(4) - (6)].VarDeclList), (yyvsp[(5) - (6)].MethodDeclList));}
     break;
 
   case 6:
 /* Line 1792 of yacc.c  */
-#line 116 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 120 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.ClassDecl) =  new CExClassDecl ((yyvsp[(2) - (8)].SymbolTable), (yyvsp[(4) - (8)].SymbolTable), (yyvsp[(6) - (8)].VarDeclList), (yyvsp[(7) - (8)].MethodDeclList));}
     break;
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 118 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 122 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.ClassDeclList) = new CClassDeclList((yyvsp[(1) - (2)].ClassDecl), (yyvsp[(2) - (2)].ClassDeclList));}
     break;
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 119 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 123 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.ClassDeclList)=0;}
     break;
 
   case 9:
 /* Line 1792 of yacc.c  */
-#line 121 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 125 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.MethodDeclList) = new CMethodDeclList((yyvsp[(1) - (2)].MethodDecl), (yyvsp[(2) - (2)].MethodDeclList));}
     break;
 
   case 10:
 /* Line 1792 of yacc.c  */
-#line 122 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 126 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.MethodDeclList)=0;}
     break;
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 124 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 128 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.VarDeclList) = new CVarDeclList((yyvsp[(2) - (2)].VarDecl), (yyvsp[(1) - (2)].VarDeclList));}
     break;
 
   case 12:
 /* Line 1792 of yacc.c  */
-#line 125 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 129 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.VarDeclList)=0;}
     break;
 
   case 13:
 /* Line 1792 of yacc.c  */
-#line 127 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 131 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.VarDecl) = new CVarDecl((yyvsp[(1) - (3)].SymbolTable), (yyvsp[(2) - (3)].SymbolTable));}
     break;
 
   case 14:
 /* Line 1792 of yacc.c  */
-#line 131 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 135 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.MethodDecl) = new CMethodDecl((yyvsp[(2) - (13)].SymbolTable), (yyvsp[(3) - (13)].SymbolTable), (yyvsp[(5) - (13)].FormalList), (yyvsp[(8) - (13)].VarDeclList), (yyvsp[(9) - (13)].StmList), (yyvsp[(11) - (13)].Exp));}
     break;
 
   case 15:
 /* Line 1792 of yacc.c  */
-#line 133 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 137 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.StmList) = new CStmList((yyvsp[(1) - (2)].Stm), (yyvsp[(2) - (2)].StmList));}
     break;
 
   case 16:
 /* Line 1792 of yacc.c  */
-#line 134 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 138 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.StmList)=0;}
     break;
 
   case 17:
 /* Line 1792 of yacc.c  */
-#line 136 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 140 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.FormalList) = new CFormalList((yyvsp[(1) - (3)].SymbolTable), (yyvsp[(2) - (3)].SymbolTable), (yyvsp[(3) - (3)].FormalList));}
     break;
 
   case 18:
 /* Line 1792 of yacc.c  */
-#line 137 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 141 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.FormalList)=0;}
     break;
 
   case 19:
 /* Line 1792 of yacc.c  */
-#line 139 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 143 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.FormalList) = new CFormalList((yyvsp[(2) - (4)].SymbolTable), (yyvsp[(3) - (4)].SymbolTable), (yyvsp[(4) - (4)].FormalList));}
     break;
 
   case 20:
 /* Line 1792 of yacc.c  */
-#line 140 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 144 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.FormalList)=0;}
     break;
 
   case 21:
 /* Line 1792 of yacc.c  */
-#line 143 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 147 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.SymbolTable) = "int[]";}
     break;
 
   case 22:
 /* Line 1792 of yacc.c  */
-#line 144 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 148 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.SymbolTable) = "boolean";}
     break;
 
   case 23:
 /* Line 1792 of yacc.c  */
-#line 145 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 149 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.SymbolTable) = "int";}
     break;
 
   case 24:
 /* Line 1792 of yacc.c  */
-#line 146 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 150 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.SymbolTable) = (yyvsp[(1) - (1)].SymbolTable);}
     break;
 
   case 25:
 /* Line 1792 of yacc.c  */
-#line 148 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Stm) = new CCompStm((yyvsp[(2) - (3)].StmList));}
+#line 153 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Stm) = new CEmptyStm();}
     break;
 
   case 26:
 /* Line 1792 of yacc.c  */
-#line 149 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Stm) = new CIfStm ((yyvsp[(3) - (7)].Exp), (yyvsp[(5) - (7)].Stm), (yyvsp[(7) - (7)].Stm));}
+#line 154 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Stm) = new CExpStm((yyvsp[(1) - (1)].Exp));}
     break;
 
   case 27:
 /* Line 1792 of yacc.c  */
-#line 150 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Stm) = new CWhStm ((yyvsp[(3) - (5)].Exp), (yyvsp[(5) - (5)].Stm));}
+#line 155 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Stm) = new CSOPStm ((yyvsp[(3) - (4)].Exp));}
     break;
 
   case 28:
 /* Line 1792 of yacc.c  */
-#line 151 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Stm) = new CSOPStm ((yyvsp[(3) - (5)].Exp));}
+#line 156 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Stm) = new CAsStm((yyvsp[(1) - (3)].SymbolTable), (yyvsp[(3) - (3)].Exp));}
     break;
 
   case 29:
 /* Line 1792 of yacc.c  */
-#line 152 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Stm) = new CSOPStm ((yyvsp[(3) - (5)].Exp));}
+#line 157 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Stm) = new CAsExpStm ((yyvsp[(1) - (6)].SymbolTable), (yyvsp[(3) - (6)].Exp), (yyvsp[(6) - (6)].Exp));}
     break;
 
   case 30:
 /* Line 1792 of yacc.c  */
-#line 153 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Stm) = new CAsStm((yyvsp[(1) - (4)].SymbolTable), (yyvsp[(3) - (4)].Exp));}
+#line 160 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Stm) = new CCompStm((yyvsp[(2) - (3)].StmList));}
     break;
 
   case 31:
 /* Line 1792 of yacc.c  */
-#line 154 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Stm) = new CAsExpStm ((yyvsp[(1) - (7)].SymbolTable), (yyvsp[(3) - (7)].Exp), (yyvsp[(6) - (7)].Exp));}
+#line 161 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Stm) = new CIfStm ((yyvsp[(3) - (7)].Exp), (yyvsp[(5) - (7)].Stm), (yyvsp[(7) - (7)].Stm));}
     break;
 
   case 32:
 /* Line 1792 of yacc.c  */
-#line 157 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    { (yyval.Exp) = new COpExp ((yyvsp[(1) - (3)].Exp), B_Plus, (yyvsp[(3) - (3)].Exp)) ;}
+#line 162 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Stm) = new CWhStm ((yyvsp[(3) - (5)].Exp), (yyvsp[(5) - (5)].Stm));}
     break;
 
   case 33:
 /* Line 1792 of yacc.c  */
-#line 158 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    { (yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Minus , (yyvsp[(3) - (3)].Exp)); }
+#line 163 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Stm) = new CForStm ((yyvsp[(3) - (9)].Stm), (yyvsp[(5) - (9)].Exp), (yyvsp[(7) - (9)].Stm), (yyvsp[(9) - (9)].Stm));}
     break;
 
   case 34:
 /* Line 1792 of yacc.c  */
-#line 159 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    { (yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Mult, (yyvsp[(3) - (3)].Exp)); }
+#line 164 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Stm) = (yyvsp[(1) - (2)].Stm);}
     break;
 
   case 35:
 /* Line 1792 of yacc.c  */
-#line 160 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Div, (yyvsp[(3) - (3)].Exp));}
+#line 167 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    { (yyval.Exp) = new CPostUnOpExp ((yyvsp[(1) - (2)].SymbolTable), 1) ;}
     break;
 
   case 36:
 /* Line 1792 of yacc.c  */
-#line 161 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Less, (yyvsp[(3) - (3)].Exp));}
+#line 168 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    { (yyval.Exp) = new CPreUnOpExp ((yyvsp[(2) - (2)].SymbolTable), 1) ;}
     break;
 
   case 37:
 /* Line 1792 of yacc.c  */
-#line 162 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_And, (yyvsp[(3) - (3)].Exp));}
+#line 169 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    { (yyval.Exp) = new CPostUnOpExp ((yyvsp[(1) - (2)].SymbolTable), -1) ;}
     break;
 
   case 38:
 /* Line 1792 of yacc.c  */
-#line 163 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new CExExp((yyvsp[(1) - (4)].Exp), (yyvsp[(3) - (4)].Exp));}
+#line 170 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    { (yyval.Exp) = new CPreUnOpExp ((yyvsp[(2) - (2)].SymbolTable), -1) ;}
     break;
 
   case 39:
 /* Line 1792 of yacc.c  */
-#line 164 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new CLenExp((yyvsp[(1) - (3)].Exp));}
+#line 171 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    { (yyval.Exp) = new COpExp ((yyvsp[(1) - (3)].Exp), B_Plus, (yyvsp[(3) - (3)].Exp)) ;}
     break;
 
   case 40:
 /* Line 1792 of yacc.c  */
-#line 165 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new CIdClExp ((yyvsp[(1) - (6)].Exp), (yyvsp[(3) - (6)].SymbolTable), (yyvsp[(5) - (6)].ExpList));}
+#line 172 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    { (yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Minus , (yyvsp[(3) - (3)].Exp)); }
     break;
 
   case 41:
 /* Line 1792 of yacc.c  */
-#line 166 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    { (yyval.Exp) = new CNExp ((yyvsp[(1) - (1)].IntV)); }
+#line 173 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    { (yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Mult, (yyvsp[(3) - (3)].Exp)); }
     break;
 
   case 42:
 /* Line 1792 of yacc.c  */
-#line 167 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    { (yyval.Exp) = new CStrExp ((yyvsp[(1) - (1)].StringV)); }
+#line 174 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Div, (yyvsp[(3) - (3)].Exp));}
     break;
 
   case 43:
 /* Line 1792 of yacc.c  */
-#line 168 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new CTrExp();}
+#line 175 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_Less, (yyvsp[(3) - (3)].Exp));}
     break;
 
   case 44:
 /* Line 1792 of yacc.c  */
-#line 169 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new CFExp();}
+#line 176 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new COpExp((yyvsp[(1) - (3)].Exp), B_And, (yyvsp[(3) - (3)].Exp));}
     break;
 
   case 45:
 /* Line 1792 of yacc.c  */
-#line 170 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    { (yyval.Exp) = new CIdExp ((yyvsp[(1) - (1)].SymbolTable));}
+#line 177 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new CExExp((yyvsp[(1) - (4)].Exp), (yyvsp[(3) - (4)].Exp));}
     break;
 
   case 46:
 /* Line 1792 of yacc.c  */
-#line 171 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new CThExp();}
+#line 178 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new CLenExp((yyvsp[(1) - (3)].Exp));}
     break;
 
   case 47:
 /* Line 1792 of yacc.c  */
-#line 172 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new CNewIntExp((yyvsp[(4) - (5)].Exp));}
+#line 179 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new CIdClExp ((yyvsp[(1) - (6)].Exp), (yyvsp[(3) - (6)].SymbolTable), (yyvsp[(5) - (6)].ExpList));}
     break;
 
   case 48:
 /* Line 1792 of yacc.c  */
-#line 173 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new CNewIdExp((yyvsp[(2) - (4)].SymbolTable));}
+#line 180 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    { (yyval.Exp) = new CNExp ((yyvsp[(1) - (1)].IntV)); }
     break;
 
   case 49:
 /* Line 1792 of yacc.c  */
-#line 174 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new CNotExp((yyvsp[(2) - (2)].Exp));}
+#line 181 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    { (yyval.Exp) = new CStrExp ((yyvsp[(1) - (1)].StringV)); }
     break;
 
   case 50:
 /* Line 1792 of yacc.c  */
-#line 175 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.Exp) = new CBrExp((yyvsp[(2) - (3)].Exp));}
+#line 182 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new CTrExp();}
     break;
 
   case 51:
 /* Line 1792 of yacc.c  */
-#line 177 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.ExpList) = new CExpList((yyvsp[(1) - (2)].Exp), (yyvsp[(2) - (2)].ExpList));}
+#line 183 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new CFExp();}
     break;
 
   case 52:
 /* Line 1792 of yacc.c  */
-#line 178 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.ExpList)=0;}
+#line 184 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    { (yyval.Exp) = new CIdExp ((yyvsp[(1) - (1)].SymbolTable));}
     break;
 
   case 53:
 /* Line 1792 of yacc.c  */
-#line 180 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
-    {(yyval.ExpList) = new CExpList((yyvsp[(2) - (3)].Exp), (yyvsp[(3) - (3)].ExpList));}
+#line 185 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new CThExp();}
     break;
 
   case 54:
 /* Line 1792 of yacc.c  */
-#line 181 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 186 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new CNewIntExp((yyvsp[(4) - (5)].Exp));}
+    break;
+
+  case 55:
+/* Line 1792 of yacc.c  */
+#line 187 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new CNewIdExp((yyvsp[(2) - (4)].SymbolTable));}
+    break;
+
+  case 56:
+/* Line 1792 of yacc.c  */
+#line 188 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new CNotExp((yyvsp[(2) - (2)].Exp));}
+    break;
+
+  case 57:
+/* Line 1792 of yacc.c  */
+#line 189 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.Exp) = new CBrExp((yyvsp[(2) - (3)].Exp));}
+    break;
+
+  case 58:
+/* Line 1792 of yacc.c  */
+#line 191 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.ExpList) = new CExpList((yyvsp[(1) - (2)].Exp), (yyvsp[(2) - (2)].ExpList));}
+    break;
+
+  case 59:
+/* Line 1792 of yacc.c  */
+#line 192 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.ExpList)=0;}
+    break;
+
+  case 60:
+/* Line 1792 of yacc.c  */
+#line 194 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
+    {(yyval.ExpList) = new CExpList((yyvsp[(2) - (3)].Exp), (yyvsp[(3) - (3)].ExpList));}
+    break;
+
+  case 61:
+/* Line 1792 of yacc.c  */
+#line 195 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
     {(yyval.ExpList)=0;}
     break;
 
 
 /* Line 1792 of yacc.c  */
-#line 1994 "syntax.cpp"
+#line 2067 "syntax.cpp"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2229,7 +2302,7 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 183 "C:\\Users\\Серёга\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 197 "C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt"
 
  
 void yyerror (char const * msg)

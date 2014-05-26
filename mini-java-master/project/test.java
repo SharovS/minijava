@@ -22,4 +22,14 @@ class Fac {
     c = a && b;
     return c;
     }
+	public boolean plusplus()
+    {
+		int num_inc;
+		boolean res;
+		num_inc = 1;
+		num_inc = num_inc++;
+		//num_inc++;
+		res = false;
+		return res;
+	}
 }

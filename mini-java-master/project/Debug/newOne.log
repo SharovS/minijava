@@ -1,25 +1,25 @@
-﻿Построение начато 25.05.2014 19:58:06.
-     1>Проект "C:\Users\Серёга\Desktop\java\minijava\mini-java-master\project\newOne.vcxproj" в узле 2 (целевые объекты Build).
-       Файл проекта содержит ToolsVersion="12.0". Возможно, этот набор инструментов неизвестен или отсутствует (в этом случае проблему можно устранить, установив подходящую версию MSBuild), либо для данной сборки определено конкретное значение ToolsVersion в параметрах политики. Проект обрабатывается как имеющий ToolsVersion="4.0". Дополнительные сведения см. по ссылке http://go.microsoft.com/fwlink/?LinkId=291333.
+﻿Построение начато 26.05.2014 9:22:07.
+     1>Проект "C:\Users\matt\Documents\Visual Studio 2012\Projects\minijava-hp\mini-java-master\project\newOne.vcxproj" в узле 2 (целевые объекты Build).
      1>CustomBuild:
          Performing Custom Build Tools
          Performing Custom Build Tools
-         C:\\Users\\╤хЁ╕ур\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt:119.23: warning: a ';' might be needed at the end of action code
-         C:\\Users\\╤хЁ╕ур\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt:119.23:     future versions of Bison will not add the ';'
-         C:\\Users\\╤хЁ╕ур\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt:122.34: warning: a ';' might be needed at the end of action code
-         C:\\Users\\╤хЁ╕ур\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt:122.34:     future versions of Bison will not add the ';'
-         C:\\Users\\╤хЁ╕ур\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt:125.31: warning: a ';' might be needed at the end of action code
-         C:\\Users\\╤хЁ╕ур\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt:125.31:     future versions of Bison will not add the ';'
-         C:\\Users\\╤хЁ╕ур\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt:134.33: warning: a ';' might be needed at the end of action code
-         C:\\Users\\╤хЁ╕ур\\Desktop\\java\\minijava\\mini-java-master\\project\\syntax.txt:134.33:     future versions of Bison will not add the ';'
+         C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt:123.23: warning: a ';' might be needed at the end of action code
+         C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt:123.23:     future versions of Bison will not add the ';'
+         C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt:126.34: warning: a ';' might be needed at the end of action code
+         C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt:126.34:     future versions of Bison will not add the ';'
+         C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt:129.31: warning: a ';' might be needed at the end of action code
+         C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt:129.31:     future versions of Bison will not add the ';'
+         C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt:138.33: warning: a ';' might be needed at the end of action code
+         C:\\Users\\matt\\Documents\\Visual Studio 2012\\Projects\\minijava-hp\\mini-java-master\\project\\syntax.txt:138.33:     future versions of Bison will not add the ';'
+         C:\Users\matt\Documents\Visual Studio 2012\Projects\minijava-hp\mini-java-master\project\syntax.txt: conflicts: 2 shift/reduce
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AssemblerGenerator.cpp BasicBlocks.cpp Canon.cpp Codegen.cpp Frame.cpp IntermediateTreePrinter.cpp Lexical.cpp main.cpp PrettyPrintVisitor.cpp SymbolTable.cpp Syntax.cpp Temp.cpp TraceSchedule.cpp Translator.cpp TypeCheckerVisitor.cpp
+         E:\Program Files (x86)2\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AssemblerGenerator.cpp BasicBlocks.cpp Canon.cpp Codegen.cpp Frame.cpp IntermediateTreePrinter.cpp Lexical.cpp main.cpp PrettyPrintVisitor.cpp SymbolTable.cpp Syntax.cpp Temp.cpp TraceSchedule.cpp Translator.cpp TypeCheckerVisitor.cpp
          TypeCheckerVisitor.cpp
          Translator.cpp
          TraceSchedule.cpp
          Temp.cpp
          Syntax.cpp
-     1>c:\users\серёга\desktop\java\minijava\mini-java-master\project\syntax.cpp(1364): warning C4065: оператор switch содержит метку "default", но не содержит ни одной метки "case"
+     1>c:\users\matt\documents\visual studio 2012\projects\minijava-hp\mini-java-master\project\syntax.cpp(1395): warning C4065: оператор switch содержит метку "default", но не содержит ни одной метки "case"
          SymbolTable.cpp
          PrettyPrintVisitor.cpp
          main.cpp
@@ -31,9 +31,9 @@
          BasicBlocks.cpp
          AssemblerGenerator.cpp
          Создание кода...
-     1>c:\users\серёга\desktop\java\minijava\mini-java-master\project\codegen.h(69): warning C4715: Codegen::munchExp: значение возвращается не при всех путях выполнения
+     1>c:\users\matt\documents\visual studio 2012\projects\minijava-hp\mini-java-master\project\codegen.h(69): warning C4715: Codegen::munchExp: значение возвращается не при всех путях выполнения
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Серёга\Desktop\java\minijava\mini-java-master\project\Debug\mj.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Серёга\Desktop\java\minijava\mini-java-master\project\Debug\mj.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Серёга\Desktop\java\minijava\mini-java-master\project\Debug\mj.lib" /MACHINE:X86 /SAFESEH Debug\AssemblerGenerator.obj
+         E:\Program Files (x86)2\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\matt\Documents\Visual Studio 2012\Projects\minijava-hp\mini-java-master\project\Debug\mj.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\matt\Documents\Visual Studio 2012\Projects\minijava-hp\mini-java-master\project\Debug\mj.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\matt\Documents\Visual Studio 2012\Projects\minijava-hp\mini-java-master\project\Debug\mj.lib" /MACHINE:X86 /SAFESEH Debug\AssemblerGenerator.obj
          Debug\BasicBlocks.obj
          Debug\Canon.obj
          Debug\Codegen.obj
@@ -48,10 +48,11 @@
          Debug\TraceSchedule.obj
          Debug\Translator.obj
          Debug\TypeCheckerVisitor.obj
+         LINK : не найден или не выполнена сборка C:\Users\matt\Documents\Visual Studio 2012\Projects\minijava-hp\mini-java-master\project\Debug\mj.exe при последней инкрементной компоновке; выполняется полная компоновка
      1>AssemblerGenerator.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
-         newOne.vcxproj -> C:\Users\Серёга\Desktop\java\minijava\mini-java-master\project\Debug\mj.exe
-     1>Построение проекта "C:\Users\Серёга\Desktop\java\minijava\mini-java-master\project\newOne.vcxproj" завершено (целевые объекты Build).
+         newOne.vcxproj -> C:\Users\matt\Documents\Visual Studio 2012\Projects\minijava-hp\mini-java-master\project\Debug\mj.exe
+     1>Построение проекта "C:\Users\matt\Documents\Visual Studio 2012\Projects\minijava-hp\mini-java-master\project\newOne.vcxproj" завершено (целевые объекты Build).
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:24.32
+Затраченное время: 00:00:18.13

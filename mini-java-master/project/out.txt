@@ -1,17 +1,23 @@
-3
 class Factorial { 
    public static Void main ( String [] a ) { 
-       System.out.println ( "®ÛW" ) ;
+       System.out.println ( new Fac (). ComputeFac ( 0 , 100  ) ) ;
    }
 }
 
 class Fac { 
-    public int ComputeFac ( ) { 
-        int a ;
-        a = 5;
-        System.out.println ( a ) ;
+    public int ComputeFac ( int from , int to ) { 
+        int res ;
+        while ( from < to )
+            {
+                res = from - from / 2 * 2;
+                if ( 0 < res )
+                    res = res;
+                else
+                    System.out.println ( from ) ;
+                from = from + 1;
+            }
 
-        return 1;
+        return 0;
     }
 
 }
@@ -37,8 +43,10 @@ Fac
 
 int ComputeFac
 (
+int from
+int to
 )
-int a
+int res
 
 
 _________
@@ -48,69 +56,42 @@ _________
 
 -----------CODE BEFORE CANONIZING--------------
 FacComputeFac
-ESEQ(SEQ(MOVE(TEMP(T0), 
-    CONST(5)), 
-    EXP(CALL(NAME(System.out.println), 
-        TEMP(T0)))), 
-    CONST(1))
---------------CANONIZING FINISHED-----------------
-
---------------------BLOCK-------------------------
- L1MOVE(TEMP(T0), 
-    CONST(5))EXP(CALL(NAME(System.out.println), 
-    TEMP(T0)))JUMP(L0, 
-    )
-----------------END OF BLOCK----------------
- L1MOVE(TEMP(T0), 
-    CONST(5))EXP(CALL(NAME(System.out.println), 
-    TEMP(T0)))JUMP(L0, 
-    ) L0
---------------CANONIZING CODE END------------
-
-----------------ASSEMBLER CODE---------------------
-L1:
-ADDI T1 <- 'r0+5
-ADD T0 <- T1 + r0
-ADD T2 <- T0 + r0
-CALL System.out.println
-L0:
-ADDI T3 <- 'r0+1
-MOVE rv <- T3
-
-----------------ASSEMBLER CODE FINISHED-------------------
-
------------CODE BEFORE CANONIZING--------------
-main
-ESEQ(EXP(CALL(NAME(System.out.println), 
-    CALL(NAME(L1916298011), 
-        CONST(3)))), 
+ESEQ(SEQ(SEQ( L3, 
+    CJUMP( < , MEM(BINOP( + , TEMP(fp), 
+        CONST(5))), 
+        MEM(BINOP( + , TEMP(fp), 
+            CONST(1))), 
+        L4, 
+        L5)), 
+    SEQ(SEQ( L4, 
+        SEQ(MOVE(TEMP(T1), 
+            BINOP( - , MEM(BINOP( + , TEMP(fp), 
+                CONST(5))), 
+                BINOP( * , BINOP( / , MEM(BINOP( + , TEMP(fp), 
+                    CONST(5))), 
+                    CONST(2)), 
+                    CONST(2)))), 
+            SEQ(SEQ(CJUMP( < , CONST(0), 
+                TEMP(T1), 
+                L0, 
+                L1), 
+                SEQ(SEQ(SEQ( L0, 
+                    MOVE(TEMP(T1), 
+                        TEMP(T1))), 
+                    JUMP(L2, 
+                        )), 
+                    SEQ(SEQ( L1, 
+                        EXP(CALL(NAME(system.out.println), 
+                            MEM(BINOP( + , TEMP(fp), 
+                                CONST(5)))))), 
+                         L2))), 
+                MOVE(MEM(BINOP( + , TEMP(fp), 
+                    CONST(5))), 
+                    BINOP( + , MEM(BINOP( + , TEMP(fp), 
+                        CONST(5))), 
+                        CONST(1)))))), 
+        SEQ(JUMP(L3, 
+            ), 
+             L5))), 
     CONST(0))
 --------------CANONIZING FINISHED-----------------
-
---------------------BLOCK-------------------------
- L3MOVE(TEMP(T4), 
-    CALL(NAME(L1916298011), 
-        CONST(3)))EXP(CALL(NAME(System.out.println), 
-    TEMP(T4)))JUMP(L2, 
-    )
-----------------END OF BLOCK----------------
- L3MOVE(TEMP(T4), 
-    CALL(NAME(L1916298011), 
-        CONST(3)))EXP(CALL(NAME(System.out.println), 
-    TEMP(T4)))JUMP(L2, 
-    ) L2
---------------CANONIZING CODE END------------
-
-----------------ASSEMBLER CODE---------------------
-L3:
-ADDI T6 <- 'r0+3
-ADD T5 <- T6 + r0
-CALL L1916298011
-ADD T4 <- 'r0 + rv
-ADD T7 <- T4 + r0
-CALL System.out.println
-L2:
-ADDI T8 <- 'r0+0
-MOVE rv <- T8
-
-----------------ASSEMBLER CODE FINISHED-------------------

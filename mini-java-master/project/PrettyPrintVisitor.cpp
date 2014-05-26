@@ -115,6 +115,20 @@ void PrettyPrintVisitor::Visit( const CWhStm& p )//while ( Exp ) Statement
 	identt.substr( 0, identt.length() - 4 );
 }
 
+void PrettyPrintVisitor::Visit( const CForStm& p )//for ( Statement; Exp; Statement ) Statement
+{
+	printf( "%sfor ( ", identt.c_str() );
+	p.GetInitStm()->Accept( this );
+	printf( "; " );
+	p.GetCheckExp()->Accept( this );
+	printf( "; " );
+	p.GetUpdateStm()->Accept( this );
+	printf( " )\n" );
+	identt += "    ";
+	p.GetBodyStm()->Accept( this );
+	identt.substr( 0, identt.length() - 4 );
+}
+
 void PrettyPrintVisitor::Visit( const CSOPStm& p )//System.out.println ( Exp ) ;
 {
 	printf( "%sSystem.out.println ( ", identt.c_str() );
@@ -157,6 +171,24 @@ void PrettyPrintVisitor::Visit( const COpExp& p )//Exp op Exp
 	p.GetExpSecond()->Accept( this );
 }
 
+void PrettyPrintVisitor::Visit( const CPreUnOpExp& p )//++id, --id
+{
+	if(p.GetValue() == 1) {
+		printf( "%s++%s", identt.c_str(), p.GetId().c_str() );
+	} else if(p.GetValue() == -1) {
+		printf( "%s--%s", identt.c_str(), p.GetId().c_str() );
+	}
+}
+
+void PrettyPrintVisitor::Visit( const CPostUnOpExp& p )//++id, --id
+{
+	if(p.GetValue() == 1) {
+		printf( "%s%s++", identt.c_str(), p.GetId().c_str() );
+	} else if(p.GetValue() == -1) {
+		printf( "%s%s--", identt.c_str(), p.GetId().c_str() );
+	}
+}
+
 void PrettyPrintVisitor::Visit( const CExExp& p )//Exp [ Exp ]
 {
 	p.GetExpFirst()->Accept( this );
@@ -188,7 +220,7 @@ void PrettyPrintVisitor::Visit( const CNExp& p )//num
 
 void PrettyPrintVisitor::Visit( const CStrExp& p )//str
 {
-	printf( "\"%s\"", p.GetStr() );
+	printf( "%s", p.GetStr() );
 }
 
 void PrettyPrintVisitor::Visit( const CTrExp& p )//true
@@ -293,4 +325,16 @@ void PrettyPrintVisitor::Visit( const CStmList& p )
 	if( p.GetTail() ) {
 		p.GetTail()->Accept( this );
 	}
+}
+
+void PrettyPrintVisitor::Visit( const CEmptyStm& p )
+{
+	// do nothing
+}
+
+void PrettyPrintVisitor::Visit( const CExpStm& p )
+{
+	printf( "%s", identt.c_str() );
+	p.GetExp()->Accept(this);
+	printf( ";" );
 }

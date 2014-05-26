@@ -4,6 +4,10 @@ Terminals unused in grammar
    NEG
 
 
+State 59 conflicts: 1 shift/reduce
+State 80 conflicts: 1 shift/reduce
+
+
 Grammar
 
     0 $accept: Program $end
@@ -43,127 +47,139 @@ Grammar
    22     | _INT
    23     | _ID
 
-   24 Stm: _FL_BRACKET StmList _FR_BRACKET
-   25    | _IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm
-   26    | _WHILE _RL_BRACKET Exp _RR_BRACKET Stm
-   27    | _SYSTEMOP _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN
-   28    | _SYSTEMOPWOLN _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN
-   29    | _ID _ASSIGNMENT Exp _SEMICOLUMN
-   30    | _ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN
+   24 SimpleStm: /* empty */
+   25          | Exp
+   26          | _SYSTEMOP _RL_BRACKET Exp _RR_BRACKET
+   27          | _ID _ASSIGNMENT Exp
+   28          | _ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp
 
-   31 Exp: Exp _OPPLUS Exp
-   32    | Exp _OPMINUS Exp
-   33    | Exp _OPMULT Exp
-   34    | Exp _OPDIV Exp
-   35    | Exp _OPLESS Exp
-   36    | Exp _OPAND Exp
-   37    | Exp _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp _POINT _LENGTH
-   39    | Exp _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-   40    | _NUM
-   41    | _STR
-   42    | _TRUE
-   43    | _FALSE
-   44    | _ID
-   45    | _THIS
-   46    | _NEW _INT _SL_BRACKET Exp _SR_BRACKET
-   47    | _NEW _ID _RL_BRACKET _RR_BRACKET
-   48    | _WOW Exp
-   49    | _RL_BRACKET Exp _RR_BRACKET
+   29 Stm: _FL_BRACKET StmList _FR_BRACKET
+   30    | _IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm
+   31    | _WHILE _RL_BRACKET Exp _RR_BRACKET Stm
+   32    | _FOR _RL_BRACKET SimpleStm _SEMICOLUMN Exp _SEMICOLUMN SimpleStm _RR_BRACKET Stm
+   33    | SimpleStm _SEMICOLUMN
 
-   50 ExpList: Exp ExpRest
-   51        | /* empty */
+   34 Exp: _ID _OPINC
+   35    | _OPINC _ID
+   36    | _ID _OPDEC
+   37    | _OPDEC _ID
+   38    | Exp _OPPLUS Exp
+   39    | Exp _OPMINUS Exp
+   40    | Exp _OPMULT Exp
+   41    | Exp _OPDIV Exp
+   42    | Exp _OPLESS Exp
+   43    | Exp _OPAND Exp
+   44    | Exp _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp _POINT _LENGTH
+   46    | Exp _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+   47    | _NUM
+   48    | _STR
+   49    | _TRUE
+   50    | _FALSE
+   51    | _ID
+   52    | _THIS
+   53    | _NEW _INT _SL_BRACKET Exp _SR_BRACKET
+   54    | _NEW _ID _RL_BRACKET _RR_BRACKET
+   55    | _WOW Exp
+   56    | _RL_BRACKET Exp _RR_BRACKET
 
-   52 ExpRest: __COMMA Exp ExpRest
-   53        | /* empty */
+   57 ExpList: Exp ExpRest
+   58        | /* empty */
+
+   59 ExpRest: __COMMA Exp ExpRest
+   60        | /* empty */
 
 
 Terminals, with rules where they appear
 
 $end (0) 0
 error (256) 3
-_ID (258) 2 3 4 5 12 13 16 18 23 29 30 39 44 47
-_NUM (259) 40
-_STR (260) 41
-_IF (261) 25
-_ELSE (262) 25
-_WHILE (263) 26
-_SYSTEMOP (264) 27
-_SYSTEMOPWOLN (265) 28
+_ID (258) 2 3 4 5 12 13 16 18 23 27 28 34 35 36 37 46 51 54
+_NUM (259) 47
+_STR (260) 48
+_IF (261) 30
+_ELSE (262) 30
+_WHILE (263) 31
+_FOR (264) 32
+_SYSTEMOP (265) 26
 _CLASS (266) 2 3 4 5
 _MAIN (267) 2
 _PUBLIC (268) 2 13
 _STATIC (269) 2
 _RETURN (270) 13
 _EXTENDS (271) 5
-_INT (272) 20 22 46
+_INT (272) 20 22 53
 _BOOLEAN (273) 21
 _VOID (274) 2
 _STRING (275) 2
-_TRUE (276) 42
-_FALSE (277) 43
-_THIS (278) 45
-_NEW (279) 46 47
-_LENGTH (280) 38
-_POINT (281) 38 39
-_SEMICOLUMN (282) 12 13 27 28 29 30
+_TRUE (276) 49
+_FALSE (277) 50
+_THIS (278) 52
+_NEW (279) 53 54
+_LENGTH (280) 45
+_POINT (281) 45 46
+_SEMICOLUMN (282) 12 13 32 33
 _STAR (283)
-_ASSIGNMENT (284) 29 30
-_WOW (285) 48
-__COMMA (286) 18 52
-_RL_BRACKET (287) 2 13 25 26 27 28 39 47 49
-_RR_BRACKET (288) 2 13 25 26 27 28 39 47 49
-_SL_BRACKET (289) 2 20 30 37 46
-_SR_BRACKET (290) 2 20 30 37 46
-_FL_BRACKET (291) 2 3 4 5 13 24
-_FR_BRACKET (292) 2 3 4 5 13 24
-_OPPLUS (293) 31
-_OPMINUS (294) 32
-_OPMULT (295) 33
-_OPDIV (296) 34
-_OPAND (297) 36
-_OPLESS (298) 35
-NEG (299)
+_ASSIGNMENT (284) 27 28
+_WOW (285) 55
+__COMMA (286) 18 59
+_RL_BRACKET (287) 2 13 26 30 31 32 46 54 56
+_RR_BRACKET (288) 2 13 26 30 31 32 46 54 56
+_SL_BRACKET (289) 2 20 28 44 53
+_SR_BRACKET (290) 2 20 28 44 53
+_FL_BRACKET (291) 2 3 4 5 13 29
+_FR_BRACKET (292) 2 3 4 5 13 29
+_OPINC (293) 34 35
+_OPDEC (294) 36 37
+_OPPLUS (295) 38
+_OPMINUS (296) 39
+_OPMULT (297) 40
+_OPDIV (298) 41
+_OPAND (299) 43
+_OPLESS (300) 42
+NEG (301)
 
 
 Nonterminals, with rules where they appear
 
-$accept (45)
+$accept (47)
     on left: 0
-Program (46)
+Program (48)
     on left: 1, on right: 0
-MainClass (47)
+MainClass (49)
     on left: 2, on right: 1
-ClassDecl (48)
+ClassDecl (50)
     on left: 3 4 5, on right: 6
-ClassDeclList (49)
+ClassDeclList (51)
     on left: 6 7, on right: 1 6
-MethodDeclList (50)
+MethodDeclList (52)
     on left: 8 9, on right: 4 5 8
-VarDeclList (51)
+VarDeclList (53)
     on left: 10 11, on right: 4 5 10 13
-VarDecl (52)
+VarDecl (54)
     on left: 12, on right: 10
-MethodDecl (53)
+MethodDecl (55)
     on left: 13, on right: 8
-StmList (54)
-    on left: 14 15, on right: 13 14 24
-FormalList (55)
+StmList (56)
+    on left: 14 15, on right: 13 14 29
+FormalList (57)
     on left: 16 17, on right: 13
-FormalRest (56)
+FormalRest (58)
     on left: 18 19, on right: 16 18
-Type (57)
+Type (59)
     on left: 20 21 22 23, on right: 12 13 16 18
-Stm (58)
-    on left: 24 25 26 27 28 29 30, on right: 2 14 25 26
-Exp (59)
-    on left: 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48
-    49, on right: 13 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 46
-    48 49 50 52
-ExpList (60)
-    on left: 50 51, on right: 39
-ExpRest (61)
-    on left: 52 53, on right: 50 52
+SimpleStm (60)
+    on left: 24 25 26 27 28, on right: 32 33
+Stm (61)
+    on left: 29 30 31 32 33, on right: 2 14 30 31 32
+Exp (62)
+    on left: 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51
+    52 53 54 55 56, on right: 13 25 26 27 28 30 31 32 38 39 40 41 42
+    43 44 45 46 53 55 56 57 59
+ExpList (63)
+    on left: 57 58, on right: 46
+ExpRest (64)
+    on left: 59 60, on right: 57 59
 
 
 State 0
@@ -643,126 +659,314 @@ State 56
    10 VarDeclList: VarDeclList . VarDecl
    13 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET _FL_BRACKET VarDeclList . StmList _RETURN Exp _SEMICOLUMN _FR_BRACKET
 
-    _ID            shift, and go to state 59
-    _IF            shift, and go to state 60
-    _WHILE         shift, and go to state 61
-    _SYSTEMOP      shift, and go to state 62
-    _SYSTEMOPWOLN  shift, and go to state 63
-    _INT           shift, and go to state 24
-    _BOOLEAN       shift, and go to state 25
-    _FL_BRACKET    shift, and go to state 64
+    _ID          shift, and go to state 59
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _IF          shift, and go to state 62
+    _WHILE       shift, and go to state 63
+    _FOR         shift, and go to state 64
+    _SYSTEMOP    shift, and go to state 65
+    _INT         shift, and go to state 24
+    _BOOLEAN     shift, and go to state 25
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _FL_BRACKET  shift, and go to state 72
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
 
-    $default  reduce using rule 15 (StmList)
+    _SEMICOLUMN  reduce using rule 24 (SimpleStm)
+    $default     reduce using rule 15 (StmList)
 
-    VarDecl  go to state 27
-    StmList  go to state 65
-    Type     go to state 29
-    Stm      go to state 66
+    VarDecl    go to state 27
+    StmList    go to state 75
+    Type       go to state 29
+    SimpleStm  go to state 76
+    Stm        go to state 77
+    Exp        go to state 78
 
 
 State 57
 
    18 FormalRest: __COMMA Type . _ID FormalRest
 
-    _ID  shift, and go to state 67
+    _ID  shift, and go to state 79
 
 
 State 58
 
     2 MainClass: _CLASS _ID _FL_BRACKET _PUBLIC _STATIC _VOID _MAIN _RL_BRACKET _STRING _SL_BRACKET _SR_BRACKET _ID _RR_BRACKET _FL_BRACKET . Stm _FR_BRACKET _FR_BRACKET
 
-    _ID            shift, and go to state 68
-    _IF            shift, and go to state 60
-    _WHILE         shift, and go to state 61
-    _SYSTEMOP      shift, and go to state 62
-    _SYSTEMOPWOLN  shift, and go to state 63
-    _FL_BRACKET    shift, and go to state 64
+    _ID          shift, and go to state 80
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _IF          shift, and go to state 62
+    _WHILE       shift, and go to state 63
+    _FOR         shift, and go to state 64
+    _SYSTEMOP    shift, and go to state 65
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _FL_BRACKET  shift, and go to state 72
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
 
-    Stm  go to state 69
+    $default  reduce using rule 24 (SimpleStm)
+
+    SimpleStm  go to state 76
+    Stm        go to state 81
+    Exp        go to state 78
 
 
 State 59
 
    23 Type: _ID .
-   29 Stm: _ID . _ASSIGNMENT Exp _SEMICOLUMN
-   30    | _ID . _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN
+   27 SimpleStm: _ID . _ASSIGNMENT Exp
+   28          | _ID . _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp
+   34 Exp: _ID . _OPINC
+   36    | _ID . _OPDEC
+   51    | _ID .
 
-    _ASSIGNMENT  shift, and go to state 70
-    _SL_BRACKET  shift, and go to state 71
+    _ASSIGNMENT  shift, and go to state 82
+    _SL_BRACKET  shift, and go to state 83
+    _OPINC       shift, and go to state 84
+    _OPDEC       shift, and go to state 85
 
-    $default  reduce using rule 23 (Type)
+    _ID          reduce using rule 23 (Type)
+    _SL_BRACKET  [reduce using rule 51 (Exp)]
+    $default     reduce using rule 51 (Exp)
 
 
 State 60
 
-   25 Stm: _IF . _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm
+   47 Exp: _NUM .
 
-    _RL_BRACKET  shift, and go to state 72
+    $default  reduce using rule 47 (Exp)
 
 
 State 61
 
-   26 Stm: _WHILE . _RL_BRACKET Exp _RR_BRACKET Stm
+   48 Exp: _STR .
 
-    _RL_BRACKET  shift, and go to state 73
+    $default  reduce using rule 48 (Exp)
 
 
 State 62
 
-   27 Stm: _SYSTEMOP . _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN
+   30 Stm: _IF . _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm
 
-    _RL_BRACKET  shift, and go to state 74
+    _RL_BRACKET  shift, and go to state 86
 
 
 State 63
 
-   28 Stm: _SYSTEMOPWOLN . _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN
+   31 Stm: _WHILE . _RL_BRACKET Exp _RR_BRACKET Stm
 
-    _RL_BRACKET  shift, and go to state 75
+    _RL_BRACKET  shift, and go to state 87
 
 
 State 64
 
-   24 Stm: _FL_BRACKET . StmList _FR_BRACKET
+   32 Stm: _FOR . _RL_BRACKET SimpleStm _SEMICOLUMN Exp _SEMICOLUMN SimpleStm _RR_BRACKET Stm
 
-    _ID            shift, and go to state 68
-    _IF            shift, and go to state 60
-    _WHILE         shift, and go to state 61
-    _SYSTEMOP      shift, and go to state 62
-    _SYSTEMOPWOLN  shift, and go to state 63
-    _FL_BRACKET    shift, and go to state 64
-
-    $default  reduce using rule 15 (StmList)
-
-    StmList  go to state 76
-    Stm      go to state 66
+    _RL_BRACKET  shift, and go to state 88
 
 
 State 65
 
-   13 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET _FL_BRACKET VarDeclList StmList . _RETURN Exp _SEMICOLUMN _FR_BRACKET
+   26 SimpleStm: _SYSTEMOP . _RL_BRACKET Exp _RR_BRACKET
 
-    _RETURN  shift, and go to state 77
+    _RL_BRACKET  shift, and go to state 89
 
 
 State 66
 
-   14 StmList: Stm . StmList
+   49 Exp: _TRUE .
 
-    _ID            shift, and go to state 68
-    _IF            shift, and go to state 60
-    _WHILE         shift, and go to state 61
-    _SYSTEMOP      shift, and go to state 62
-    _SYSTEMOPWOLN  shift, and go to state 63
-    _FL_BRACKET    shift, and go to state 64
-
-    $default  reduce using rule 15 (StmList)
-
-    StmList  go to state 78
-    Stm      go to state 66
+    $default  reduce using rule 49 (Exp)
 
 
 State 67
+
+   50 Exp: _FALSE .
+
+    $default  reduce using rule 50 (Exp)
+
+
+State 68
+
+   52 Exp: _THIS .
+
+    $default  reduce using rule 52 (Exp)
+
+
+State 69
+
+   53 Exp: _NEW . _INT _SL_BRACKET Exp _SR_BRACKET
+   54    | _NEW . _ID _RL_BRACKET _RR_BRACKET
+
+    _ID   shift, and go to state 90
+    _INT  shift, and go to state 91
+
+
+State 70
+
+   55 Exp: _WOW . Exp
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 93
+
+
+State 71
+
+   56 Exp: _RL_BRACKET . Exp _RR_BRACKET
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 94
+
+
+State 72
+
+   29 Stm: _FL_BRACKET . StmList _FR_BRACKET
+
+    _ID          shift, and go to state 80
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _IF          shift, and go to state 62
+    _WHILE       shift, and go to state 63
+    _FOR         shift, and go to state 64
+    _SYSTEMOP    shift, and go to state 65
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _FL_BRACKET  shift, and go to state 72
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    _SEMICOLUMN  reduce using rule 24 (SimpleStm)
+    $default     reduce using rule 15 (StmList)
+
+    StmList    go to state 95
+    SimpleStm  go to state 76
+    Stm        go to state 77
+    Exp        go to state 78
+
+
+State 73
+
+   35 Exp: _OPINC . _ID
+
+    _ID  shift, and go to state 96
+
+
+State 74
+
+   37 Exp: _OPDEC . _ID
+
+    _ID  shift, and go to state 97
+
+
+State 75
+
+   13 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET _FL_BRACKET VarDeclList StmList . _RETURN Exp _SEMICOLUMN _FR_BRACKET
+
+    _RETURN  shift, and go to state 98
+
+
+State 76
+
+   33 Stm: SimpleStm . _SEMICOLUMN
+
+    _SEMICOLUMN  shift, and go to state 99
+
+
+State 77
+
+   14 StmList: Stm . StmList
+
+    _ID          shift, and go to state 80
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _IF          shift, and go to state 62
+    _WHILE       shift, and go to state 63
+    _FOR         shift, and go to state 64
+    _SYSTEMOP    shift, and go to state 65
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _FL_BRACKET  shift, and go to state 72
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    _SEMICOLUMN  reduce using rule 24 (SimpleStm)
+    $default     reduce using rule 15 (StmList)
+
+    StmList    go to state 100
+    SimpleStm  go to state 76
+    Stm        go to state 77
+    Exp        go to state 78
+
+
+State 78
+
+   25 SimpleStm: Exp .
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+    $default  reduce using rule 25 (SimpleStm)
+
+
+State 79
 
    18 FormalRest: __COMMA Type _ID . FormalRest
 
@@ -770,1148 +974,1258 @@ State 67
 
     $default  reduce using rule 19 (FormalRest)
 
-    FormalRest  go to state 79
+    FormalRest  go to state 109
 
 
-State 68
+State 80
 
-   29 Stm: _ID . _ASSIGNMENT Exp _SEMICOLUMN
-   30    | _ID . _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN
+   27 SimpleStm: _ID . _ASSIGNMENT Exp
+   28          | _ID . _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp
+   34 Exp: _ID . _OPINC
+   36    | _ID . _OPDEC
+   51    | _ID .
 
-    _ASSIGNMENT  shift, and go to state 70
-    _SL_BRACKET  shift, and go to state 71
+    _ASSIGNMENT  shift, and go to state 82
+    _SL_BRACKET  shift, and go to state 83
+    _OPINC       shift, and go to state 84
+    _OPDEC       shift, and go to state 85
+
+    _SL_BRACKET  [reduce using rule 51 (Exp)]
+    $default     reduce using rule 51 (Exp)
 
 
-State 69
+State 81
 
     2 MainClass: _CLASS _ID _FL_BRACKET _PUBLIC _STATIC _VOID _MAIN _RL_BRACKET _STRING _SL_BRACKET _SR_BRACKET _ID _RR_BRACKET _FL_BRACKET Stm . _FR_BRACKET _FR_BRACKET
 
-    _FR_BRACKET  shift, and go to state 80
+    _FR_BRACKET  shift, and go to state 110
 
 
-State 70
+State 82
 
-   29 Stm: _ID _ASSIGNMENT . Exp _SEMICOLUMN
+   27 SimpleStm: _ID _ASSIGNMENT . Exp
 
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
 
-    Exp  go to state 90
-
-
-State 71
-
-   30 Stm: _ID _SL_BRACKET . Exp _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 91
+    Exp  go to state 111
 
 
-State 72
+State 83
 
-   25 Stm: _IF _RL_BRACKET . Exp _RR_BRACKET Stm _ELSE Stm
+   28 SimpleStm: _ID _SL_BRACKET . Exp _SR_BRACKET _ASSIGNMENT Exp
 
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
 
-    Exp  go to state 92
-
-
-State 73
-
-   26 Stm: _WHILE _RL_BRACKET . Exp _RR_BRACKET Stm
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 93
+    Exp  go to state 112
 
 
-State 74
+State 84
 
-   27 Stm: _SYSTEMOP _RL_BRACKET . Exp _RR_BRACKET _SEMICOLUMN
+   34 Exp: _ID _OPINC .
 
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 94
+    $default  reduce using rule 34 (Exp)
 
 
-State 75
+State 85
 
-   28 Stm: _SYSTEMOPWOLN _RL_BRACKET . Exp _RR_BRACKET _SEMICOLUMN
+   36 Exp: _ID _OPDEC .
 
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 95
+    $default  reduce using rule 36 (Exp)
 
 
-State 76
+State 86
 
-   24 Stm: _FL_BRACKET StmList . _FR_BRACKET
+   30 Stm: _IF _RL_BRACKET . Exp _RR_BRACKET Stm _ELSE Stm
 
-    _FR_BRACKET  shift, and go to state 96
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 113
 
 
-State 77
+State 87
+
+   31 Stm: _WHILE _RL_BRACKET . Exp _RR_BRACKET Stm
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 114
+
+
+State 88
+
+   32 Stm: _FOR _RL_BRACKET . SimpleStm _SEMICOLUMN Exp _SEMICOLUMN SimpleStm _RR_BRACKET Stm
+
+    _ID          shift, and go to state 80
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _SYSTEMOP    shift, and go to state 65
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    $default  reduce using rule 24 (SimpleStm)
+
+    SimpleStm  go to state 115
+    Exp        go to state 78
+
+
+State 89
+
+   26 SimpleStm: _SYSTEMOP _RL_BRACKET . Exp _RR_BRACKET
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 116
+
+
+State 90
+
+   54 Exp: _NEW _ID . _RL_BRACKET _RR_BRACKET
+
+    _RL_BRACKET  shift, and go to state 117
+
+
+State 91
+
+   53 Exp: _NEW _INT . _SL_BRACKET Exp _SR_BRACKET
+
+    _SL_BRACKET  shift, and go to state 118
+
+
+State 92
+
+   34 Exp: _ID . _OPINC
+   36    | _ID . _OPDEC
+   51    | _ID .
+
+    _OPINC  shift, and go to state 84
+    _OPDEC  shift, and go to state 85
+
+    $default  reduce using rule 51 (Exp)
+
+
+State 93
+
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+   55    | _WOW Exp .
+
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+
+    $default  reduce using rule 55 (Exp)
+
+
+State 94
+
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+   56    | _RL_BRACKET Exp . _RR_BRACKET
+
+    _POINT       shift, and go to state 101
+    _RR_BRACKET  shift, and go to state 119
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+
+State 95
+
+   29 Stm: _FL_BRACKET StmList . _FR_BRACKET
+
+    _FR_BRACKET  shift, and go to state 120
+
+
+State 96
+
+   35 Exp: _OPINC _ID .
+
+    $default  reduce using rule 35 (Exp)
+
+
+State 97
+
+   37 Exp: _OPDEC _ID .
+
+    $default  reduce using rule 37 (Exp)
+
+
+State 98
 
    13 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET _FL_BRACKET VarDeclList StmList _RETURN . Exp _SEMICOLUMN _FR_BRACKET
 
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
 
-    Exp  go to state 97
+    Exp  go to state 121
 
 
-State 78
+State 99
+
+   33 Stm: SimpleStm _SEMICOLUMN .
+
+    $default  reduce using rule 33 (Stm)
+
+
+State 100
 
    14 StmList: Stm StmList .
 
     $default  reduce using rule 14 (StmList)
 
 
-State 79
+State 101
+
+   45 Exp: Exp _POINT . _LENGTH
+   46    | Exp _POINT . _ID _RL_BRACKET ExpList _RR_BRACKET
+
+    _ID      shift, and go to state 122
+    _LENGTH  shift, and go to state 123
+
+
+State 102
+
+   44 Exp: Exp _SL_BRACKET . Exp _SR_BRACKET
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 124
+
+
+State 103
+
+   38 Exp: Exp _OPPLUS . Exp
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 125
+
+
+State 104
+
+   39 Exp: Exp _OPMINUS . Exp
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 126
+
+
+State 105
+
+   40 Exp: Exp _OPMULT . Exp
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 127
+
+
+State 106
+
+   41 Exp: Exp _OPDIV . Exp
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 128
+
+
+State 107
+
+   43 Exp: Exp _OPAND . Exp
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 129
+
+
+State 108
+
+   42 Exp: Exp _OPLESS . Exp
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 130
+
+
+State 109
 
    18 FormalRest: __COMMA Type _ID FormalRest .
 
     $default  reduce using rule 18 (FormalRest)
 
 
-State 80
+State 110
 
     2 MainClass: _CLASS _ID _FL_BRACKET _PUBLIC _STATIC _VOID _MAIN _RL_BRACKET _STRING _SL_BRACKET _SR_BRACKET _ID _RR_BRACKET _FL_BRACKET Stm _FR_BRACKET . _FR_BRACKET
 
-    _FR_BRACKET  shift, and go to state 98
+    _FR_BRACKET  shift, and go to state 131
 
 
-State 81
+State 111
 
-   44 Exp: _ID .
+   27 SimpleStm: _ID _ASSIGNMENT Exp .
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
 
-    $default  reduce using rule 44 (Exp)
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
 
-
-State 82
-
-   40 Exp: _NUM .
-
-    $default  reduce using rule 40 (Exp)
-
-
-State 83
-
-   41 Exp: _STR .
-
-    $default  reduce using rule 41 (Exp)
-
-
-State 84
-
-   42 Exp: _TRUE .
-
-    $default  reduce using rule 42 (Exp)
+    $default  reduce using rule 27 (SimpleStm)
 
 
-State 85
+State 112
 
-   43 Exp: _FALSE .
+   28 SimpleStm: _ID _SL_BRACKET Exp . _SR_BRACKET _ASSIGNMENT Exp
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
 
-    $default  reduce using rule 43 (Exp)
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _SR_BRACKET  shift, and go to state 132
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
 
 
-State 86
+State 113
 
-   45 Exp: _THIS .
+   30 Stm: _IF _RL_BRACKET Exp . _RR_BRACKET Stm _ELSE Stm
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+
+    _POINT       shift, and go to state 101
+    _RR_BRACKET  shift, and go to state 133
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+
+State 114
+
+   31 Stm: _WHILE _RL_BRACKET Exp . _RR_BRACKET Stm
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+
+    _POINT       shift, and go to state 101
+    _RR_BRACKET  shift, and go to state 134
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+
+State 115
+
+   32 Stm: _FOR _RL_BRACKET SimpleStm . _SEMICOLUMN Exp _SEMICOLUMN SimpleStm _RR_BRACKET Stm
+
+    _SEMICOLUMN  shift, and go to state 135
+
+
+State 116
+
+   26 SimpleStm: _SYSTEMOP _RL_BRACKET Exp . _RR_BRACKET
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+
+    _POINT       shift, and go to state 101
+    _RR_BRACKET  shift, and go to state 136
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+
+State 117
+
+   54 Exp: _NEW _ID _RL_BRACKET . _RR_BRACKET
+
+    _RR_BRACKET  shift, and go to state 137
+
+
+State 118
+
+   53 Exp: _NEW _INT _SL_BRACKET . Exp _SR_BRACKET
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 138
+
+
+State 119
+
+   56 Exp: _RL_BRACKET Exp _RR_BRACKET .
+
+    $default  reduce using rule 56 (Exp)
+
+
+State 120
+
+   29 Stm: _FL_BRACKET StmList _FR_BRACKET .
+
+    $default  reduce using rule 29 (Stm)
+
+
+State 121
+
+   13 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET _FL_BRACKET VarDeclList StmList _RETURN Exp . _SEMICOLUMN _FR_BRACKET
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+
+    _POINT       shift, and go to state 101
+    _SEMICOLUMN  shift, and go to state 139
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+
+State 122
+
+   46 Exp: Exp _POINT _ID . _RL_BRACKET ExpList _RR_BRACKET
+
+    _RL_BRACKET  shift, and go to state 140
+
+
+State 123
+
+   45 Exp: Exp _POINT _LENGTH .
 
     $default  reduce using rule 45 (Exp)
 
 
-State 87
+State 124
 
-   46 Exp: _NEW . _INT _SL_BRACKET Exp _SR_BRACKET
-   47    | _NEW . _ID _RL_BRACKET _RR_BRACKET
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   44    | Exp _SL_BRACKET Exp . _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
 
-    _ID   shift, and go to state 99
-    _INT  shift, and go to state 100
-
-
-State 88
-
-   48 Exp: _WOW . Exp
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 101
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _SR_BRACKET  shift, and go to state 141
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
 
 
-State 89
+State 125
 
-   49 Exp: _RL_BRACKET . Exp _RR_BRACKET
+   38 Exp: Exp . _OPPLUS Exp
+   38    | Exp _OPPLUS Exp .
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
 
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
 
-    Exp  go to state 102
-
-
-State 90
-
-   29 Stm: _ID _ASSIGNMENT Exp . _SEMICOLUMN
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SEMICOLUMN  shift, and go to state 104
-    _SL_BRACKET  shift, and go to state 105
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
+    $default  reduce using rule 38 (Exp)
 
 
-State 91
+State 126
 
-   30 Stm: _ID _SL_BRACKET Exp . _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   39    | Exp _OPMINUS Exp .
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
 
-    _POINT       shift, and go to state 103
-    _SL_BRACKET  shift, and go to state 105
-    _SR_BRACKET  shift, and go to state 112
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
 
-
-State 92
-
-   25 Stm: _IF _RL_BRACKET Exp . _RR_BRACKET Stm _ELSE Stm
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _RR_BRACKET  shift, and go to state 113
-    _SL_BRACKET  shift, and go to state 105
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
+    $default  reduce using rule 39 (Exp)
 
 
-State 93
+State 127
 
-   26 Stm: _WHILE _RL_BRACKET Exp . _RR_BRACKET Stm
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   40    | Exp _OPMULT Exp .
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
 
-    _POINT       shift, and go to state 103
-    _RR_BRACKET  shift, and go to state 114
-    _SL_BRACKET  shift, and go to state 105
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+    $default  reduce using rule 40 (Exp)
 
 
-State 94
+State 128
 
-   27 Stm: _SYSTEMOP _RL_BRACKET Exp . _RR_BRACKET _SEMICOLUMN
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   41    | Exp _OPDIV Exp .
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
 
-    _POINT       shift, and go to state 103
-    _RR_BRACKET  shift, and go to state 115
-    _SL_BRACKET  shift, and go to state 105
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+    $default  reduce using rule 41 (Exp)
 
 
-State 95
+State 129
 
-   28 Stm: _SYSTEMOPWOLN _RL_BRACKET Exp . _RR_BRACKET _SEMICOLUMN
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   43    | Exp _OPAND Exp .
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
 
-    _POINT       shift, and go to state 103
-    _RR_BRACKET  shift, and go to state 116
-    _SL_BRACKET  shift, and go to state 105
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _OPLESS      shift, and go to state 108
+
+    $default  reduce using rule 43 (Exp)
 
 
-State 96
+State 130
 
-   24 Stm: _FL_BRACKET StmList _FR_BRACKET .
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   42    | Exp _OPLESS Exp .
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
 
-    $default  reduce using rule 24 (Stm)
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
 
-
-State 97
-
-   13 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET _FL_BRACKET VarDeclList StmList _RETURN Exp . _SEMICOLUMN _FR_BRACKET
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SEMICOLUMN  shift, and go to state 117
-    _SL_BRACKET  shift, and go to state 105
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
+    $default  reduce using rule 42 (Exp)
 
 
-State 98
+State 131
 
     2 MainClass: _CLASS _ID _FL_BRACKET _PUBLIC _STATIC _VOID _MAIN _RL_BRACKET _STRING _SL_BRACKET _SR_BRACKET _ID _RR_BRACKET _FL_BRACKET Stm _FR_BRACKET _FR_BRACKET .
 
     $default  reduce using rule 2 (MainClass)
 
 
-State 99
-
-   47 Exp: _NEW _ID . _RL_BRACKET _RR_BRACKET
-
-    _RL_BRACKET  shift, and go to state 118
-
-
-State 100
-
-   46 Exp: _NEW _INT . _SL_BRACKET Exp _SR_BRACKET
-
-    _SL_BRACKET  shift, and go to state 119
-
-
-State 101
-
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-   48    | _WOW Exp .
-
-    _POINT       shift, and go to state 103
-    _SL_BRACKET  shift, and go to state 105
-
-    $default  reduce using rule 48 (Exp)
-
-
-State 102
-
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-   49    | _RL_BRACKET Exp . _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _RR_BRACKET  shift, and go to state 120
-    _SL_BRACKET  shift, and go to state 105
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
-
-
-State 103
-
-   38 Exp: Exp _POINT . _LENGTH
-   39    | Exp _POINT . _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _ID      shift, and go to state 121
-    _LENGTH  shift, and go to state 122
-
-
-State 104
-
-   29 Stm: _ID _ASSIGNMENT Exp _SEMICOLUMN .
-
-    $default  reduce using rule 29 (Stm)
-
-
-State 105
-
-   37 Exp: Exp _SL_BRACKET . Exp _SR_BRACKET
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 123
-
-
-State 106
-
-   31 Exp: Exp _OPPLUS . Exp
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 124
-
-
-State 107
-
-   32 Exp: Exp _OPMINUS . Exp
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 125
-
-
-State 108
-
-   33 Exp: Exp _OPMULT . Exp
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 126
-
-
-State 109
-
-   34 Exp: Exp _OPDIV . Exp
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 127
-
-
-State 110
-
-   36 Exp: Exp _OPAND . Exp
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 128
-
-
-State 111
-
-   35 Exp: Exp _OPLESS . Exp
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 129
-
-
-State 112
-
-   30 Stm: _ID _SL_BRACKET Exp _SR_BRACKET . _ASSIGNMENT Exp _SEMICOLUMN
-
-    _ASSIGNMENT  shift, and go to state 130
-
-
-State 113
-
-   25 Stm: _IF _RL_BRACKET Exp _RR_BRACKET . Stm _ELSE Stm
-
-    _ID            shift, and go to state 68
-    _IF            shift, and go to state 60
-    _WHILE         shift, and go to state 61
-    _SYSTEMOP      shift, and go to state 62
-    _SYSTEMOPWOLN  shift, and go to state 63
-    _FL_BRACKET    shift, and go to state 64
-
-    Stm  go to state 131
-
-
-State 114
-
-   26 Stm: _WHILE _RL_BRACKET Exp _RR_BRACKET . Stm
-
-    _ID            shift, and go to state 68
-    _IF            shift, and go to state 60
-    _WHILE         shift, and go to state 61
-    _SYSTEMOP      shift, and go to state 62
-    _SYSTEMOPWOLN  shift, and go to state 63
-    _FL_BRACKET    shift, and go to state 64
-
-    Stm  go to state 132
-
-
-State 115
-
-   27 Stm: _SYSTEMOP _RL_BRACKET Exp _RR_BRACKET . _SEMICOLUMN
-
-    _SEMICOLUMN  shift, and go to state 133
-
-
-State 116
-
-   28 Stm: _SYSTEMOPWOLN _RL_BRACKET Exp _RR_BRACKET . _SEMICOLUMN
-
-    _SEMICOLUMN  shift, and go to state 134
-
-
-State 117
-
-   13 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET _FL_BRACKET VarDeclList StmList _RETURN Exp _SEMICOLUMN . _FR_BRACKET
-
-    _FR_BRACKET  shift, and go to state 135
-
-
-State 118
-
-   47 Exp: _NEW _ID _RL_BRACKET . _RR_BRACKET
-
-    _RR_BRACKET  shift, and go to state 136
-
-
-State 119
-
-   46 Exp: _NEW _INT _SL_BRACKET . Exp _SR_BRACKET
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 137
-
-
-State 120
-
-   49 Exp: _RL_BRACKET Exp _RR_BRACKET .
-
-    $default  reduce using rule 49 (Exp)
-
-
-State 121
-
-   39 Exp: Exp _POINT _ID . _RL_BRACKET ExpList _RR_BRACKET
-
-    _RL_BRACKET  shift, and go to state 138
-
-
-State 122
-
-   38 Exp: Exp _POINT _LENGTH .
-
-    $default  reduce using rule 38 (Exp)
-
-
-State 123
-
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   37    | Exp _SL_BRACKET Exp . _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SL_BRACKET  shift, and go to state 105
-    _SR_BRACKET  shift, and go to state 139
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
-
-
-State 124
-
-   31 Exp: Exp . _OPPLUS Exp
-   31    | Exp _OPPLUS Exp .
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SL_BRACKET  shift, and go to state 105
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
-
-    $default  reduce using rule 31 (Exp)
-
-
-State 125
-
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   32    | Exp _OPMINUS Exp .
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SL_BRACKET  shift, and go to state 105
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
-
-    $default  reduce using rule 32 (Exp)
-
-
-State 126
-
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   33    | Exp _OPMULT Exp .
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SL_BRACKET  shift, and go to state 105
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
-
-    $default  reduce using rule 33 (Exp)
-
-
-State 127
-
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   34    | Exp _OPDIV Exp .
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SL_BRACKET  shift, and go to state 105
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
-
-    $default  reduce using rule 34 (Exp)
-
-
-State 128
-
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   36    | Exp _OPAND Exp .
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SL_BRACKET  shift, and go to state 105
-    _OPLESS      shift, and go to state 111
-
-    $default  reduce using rule 36 (Exp)
-
-
-State 129
-
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   35    | Exp _OPLESS Exp .
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SL_BRACKET  shift, and go to state 105
-
-    $default  reduce using rule 35 (Exp)
-
-
-State 130
-
-   30 Stm: _ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT . Exp _SEMICOLUMN
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 140
-
-
-State 131
-
-   25 Stm: _IF _RL_BRACKET Exp _RR_BRACKET Stm . _ELSE Stm
-
-    _ELSE  shift, and go to state 141
-
-
 State 132
 
-   26 Stm: _WHILE _RL_BRACKET Exp _RR_BRACKET Stm .
+   28 SimpleStm: _ID _SL_BRACKET Exp _SR_BRACKET . _ASSIGNMENT Exp
 
-    $default  reduce using rule 26 (Stm)
+    _ASSIGNMENT  shift, and go to state 142
 
 
 State 133
 
-   27 Stm: _SYSTEMOP _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN .
+   30 Stm: _IF _RL_BRACKET Exp _RR_BRACKET . Stm _ELSE Stm
 
-    $default  reduce using rule 27 (Stm)
+    _ID          shift, and go to state 80
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _IF          shift, and go to state 62
+    _WHILE       shift, and go to state 63
+    _FOR         shift, and go to state 64
+    _SYSTEMOP    shift, and go to state 65
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _FL_BRACKET  shift, and go to state 72
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    $default  reduce using rule 24 (SimpleStm)
+
+    SimpleStm  go to state 76
+    Stm        go to state 143
+    Exp        go to state 78
 
 
 State 134
 
-   28 Stm: _SYSTEMOPWOLN _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN .
+   31 Stm: _WHILE _RL_BRACKET Exp _RR_BRACKET . Stm
 
-    $default  reduce using rule 28 (Stm)
+    _ID          shift, and go to state 80
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _IF          shift, and go to state 62
+    _WHILE       shift, and go to state 63
+    _FOR         shift, and go to state 64
+    _SYSTEMOP    shift, and go to state 65
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _FL_BRACKET  shift, and go to state 72
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    $default  reduce using rule 24 (SimpleStm)
+
+    SimpleStm  go to state 76
+    Stm        go to state 144
+    Exp        go to state 78
 
 
 State 135
+
+   32 Stm: _FOR _RL_BRACKET SimpleStm _SEMICOLUMN . Exp _SEMICOLUMN SimpleStm _RR_BRACKET Stm
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 145
+
+
+State 136
+
+   26 SimpleStm: _SYSTEMOP _RL_BRACKET Exp _RR_BRACKET .
+
+    $default  reduce using rule 26 (SimpleStm)
+
+
+State 137
+
+   54 Exp: _NEW _ID _RL_BRACKET _RR_BRACKET .
+
+    $default  reduce using rule 54 (Exp)
+
+
+State 138
+
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+   53    | _NEW _INT _SL_BRACKET Exp . _SR_BRACKET
+
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _SR_BRACKET  shift, and go to state 146
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+
+State 139
+
+   13 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET _FL_BRACKET VarDeclList StmList _RETURN Exp _SEMICOLUMN . _FR_BRACKET
+
+    _FR_BRACKET  shift, and go to state 147
+
+
+State 140
+
+   46 Exp: Exp _POINT _ID _RL_BRACKET . ExpList _RR_BRACKET
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    $default  reduce using rule 58 (ExpList)
+
+    Exp      go to state 148
+    ExpList  go to state 149
+
+
+State 141
+
+   44 Exp: Exp _SL_BRACKET Exp _SR_BRACKET .
+
+    $default  reduce using rule 44 (Exp)
+
+
+State 142
+
+   28 SimpleStm: _ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT . Exp
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 150
+
+
+State 143
+
+   30 Stm: _IF _RL_BRACKET Exp _RR_BRACKET Stm . _ELSE Stm
+
+    _ELSE  shift, and go to state 151
+
+
+State 144
+
+   31 Stm: _WHILE _RL_BRACKET Exp _RR_BRACKET Stm .
+
+    $default  reduce using rule 31 (Stm)
+
+
+State 145
+
+   32 Stm: _FOR _RL_BRACKET SimpleStm _SEMICOLUMN Exp . _SEMICOLUMN SimpleStm _RR_BRACKET Stm
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+
+    _POINT       shift, and go to state 101
+    _SEMICOLUMN  shift, and go to state 152
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+
+State 146
+
+   53 Exp: _NEW _INT _SL_BRACKET Exp _SR_BRACKET .
+
+    $default  reduce using rule 53 (Exp)
+
+
+State 147
 
    13 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET _FL_BRACKET VarDeclList StmList _RETURN Exp _SEMICOLUMN _FR_BRACKET .
 
     $default  reduce using rule 13 (MethodDecl)
 
 
-State 136
-
-   47 Exp: _NEW _ID _RL_BRACKET _RR_BRACKET .
-
-    $default  reduce using rule 47 (Exp)
-
-
-State 137
-
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-   46    | _NEW _INT _SL_BRACKET Exp . _SR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SL_BRACKET  shift, and go to state 105
-    _SR_BRACKET  shift, and go to state 142
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
-
-
-State 138
-
-   39 Exp: Exp _POINT _ID _RL_BRACKET . ExpList _RR_BRACKET
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    $default  reduce using rule 51 (ExpList)
-
-    Exp      go to state 143
-    ExpList  go to state 144
-
-
-State 139
-
-   37 Exp: Exp _SL_BRACKET Exp _SR_BRACKET .
-
-    $default  reduce using rule 37 (Exp)
-
-
-State 140
-
-   30 Stm: _ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp . _SEMICOLUMN
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-
-    _POINT       shift, and go to state 103
-    _SEMICOLUMN  shift, and go to state 145
-    _SL_BRACKET  shift, and go to state 105
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
-
-
-State 141
-
-   25 Stm: _IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE . Stm
-
-    _ID            shift, and go to state 68
-    _IF            shift, and go to state 60
-    _WHILE         shift, and go to state 61
-    _SYSTEMOP      shift, and go to state 62
-    _SYSTEMOPWOLN  shift, and go to state 63
-    _FL_BRACKET    shift, and go to state 64
-
-    Stm  go to state 146
-
-
-State 142
-
-   46 Exp: _NEW _INT _SL_BRACKET Exp _SR_BRACKET .
-
-    $default  reduce using rule 46 (Exp)
-
-
-State 143
-
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-   50 ExpList: Exp . ExpRest
-
-    _POINT       shift, and go to state 103
-    __COMMA      shift, and go to state 147
-    _SL_BRACKET  shift, and go to state 105
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
-
-    $default  reduce using rule 53 (ExpRest)
-
-    ExpRest  go to state 148
-
-
-State 144
-
-   39 Exp: Exp _POINT _ID _RL_BRACKET ExpList . _RR_BRACKET
-
-    _RR_BRACKET  shift, and go to state 149
-
-
-State 145
-
-   30 Stm: _ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN .
-
-    $default  reduce using rule 30 (Stm)
-
-
-State 146
-
-   25 Stm: _IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm .
-
-    $default  reduce using rule 25 (Stm)
-
-
-State 147
-
-   52 ExpRest: __COMMA . Exp ExpRest
-
-    _ID          shift, and go to state 81
-    _NUM         shift, and go to state 82
-    _STR         shift, and go to state 83
-    _TRUE        shift, and go to state 84
-    _FALSE       shift, and go to state 85
-    _THIS        shift, and go to state 86
-    _NEW         shift, and go to state 87
-    _WOW         shift, and go to state 88
-    _RL_BRACKET  shift, and go to state 89
-
-    Exp  go to state 150
-
-
 State 148
 
-   50 ExpList: Exp ExpRest .
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+   57 ExpList: Exp . ExpRest
 
-    $default  reduce using rule 50 (ExpList)
+    _POINT       shift, and go to state 101
+    __COMMA      shift, and go to state 153
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+    $default  reduce using rule 60 (ExpRest)
+
+    ExpRest  go to state 154
 
 
 State 149
 
-   39 Exp: Exp _POINT _ID _RL_BRACKET ExpList _RR_BRACKET .
+   46 Exp: Exp _POINT _ID _RL_BRACKET ExpList . _RR_BRACKET
 
-    $default  reduce using rule 39 (Exp)
+    _RR_BRACKET  shift, and go to state 155
 
 
 State 150
 
-   31 Exp: Exp . _OPPLUS Exp
-   32    | Exp . _OPMINUS Exp
-   33    | Exp . _OPMULT Exp
-   34    | Exp . _OPDIV Exp
-   35    | Exp . _OPLESS Exp
-   36    | Exp . _OPAND Exp
-   37    | Exp . _SL_BRACKET Exp _SR_BRACKET
-   38    | Exp . _POINT _LENGTH
-   39    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
-   52 ExpRest: __COMMA Exp . ExpRest
+   28 SimpleStm: _ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp .
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
 
-    _POINT       shift, and go to state 103
-    __COMMA      shift, and go to state 147
-    _SL_BRACKET  shift, and go to state 105
-    _OPPLUS      shift, and go to state 106
-    _OPMINUS     shift, and go to state 107
-    _OPMULT      shift, and go to state 108
-    _OPDIV       shift, and go to state 109
-    _OPAND       shift, and go to state 110
-    _OPLESS      shift, and go to state 111
+    _POINT       shift, and go to state 101
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
 
-    $default  reduce using rule 53 (ExpRest)
-
-    ExpRest  go to state 151
+    $default  reduce using rule 28 (SimpleStm)
 
 
 State 151
 
-   52 ExpRest: __COMMA Exp ExpRest .
+   30 Stm: _IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE . Stm
 
-    $default  reduce using rule 52 (ExpRest)
+    _ID          shift, and go to state 80
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _IF          shift, and go to state 62
+    _WHILE       shift, and go to state 63
+    _FOR         shift, and go to state 64
+    _SYSTEMOP    shift, and go to state 65
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _FL_BRACKET  shift, and go to state 72
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    $default  reduce using rule 24 (SimpleStm)
+
+    SimpleStm  go to state 76
+    Stm        go to state 156
+    Exp        go to state 78
+
+
+State 152
+
+   32 Stm: _FOR _RL_BRACKET SimpleStm _SEMICOLUMN Exp _SEMICOLUMN . SimpleStm _RR_BRACKET Stm
+
+    _ID          shift, and go to state 80
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _SYSTEMOP    shift, and go to state 65
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    $default  reduce using rule 24 (SimpleStm)
+
+    SimpleStm  go to state 157
+    Exp        go to state 78
+
+
+State 153
+
+   59 ExpRest: __COMMA . Exp ExpRest
+
+    _ID          shift, and go to state 92
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    Exp  go to state 158
+
+
+State 154
+
+   57 ExpList: Exp ExpRest .
+
+    $default  reduce using rule 57 (ExpList)
+
+
+State 155
+
+   46 Exp: Exp _POINT _ID _RL_BRACKET ExpList _RR_BRACKET .
+
+    $default  reduce using rule 46 (Exp)
+
+
+State 156
+
+   30 Stm: _IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm .
+
+    $default  reduce using rule 30 (Stm)
+
+
+State 157
+
+   32 Stm: _FOR _RL_BRACKET SimpleStm _SEMICOLUMN Exp _SEMICOLUMN SimpleStm . _RR_BRACKET Stm
+
+    _RR_BRACKET  shift, and go to state 159
+
+
+State 158
+
+   38 Exp: Exp . _OPPLUS Exp
+   39    | Exp . _OPMINUS Exp
+   40    | Exp . _OPMULT Exp
+   41    | Exp . _OPDIV Exp
+   42    | Exp . _OPLESS Exp
+   43    | Exp . _OPAND Exp
+   44    | Exp . _SL_BRACKET Exp _SR_BRACKET
+   45    | Exp . _POINT _LENGTH
+   46    | Exp . _POINT _ID _RL_BRACKET ExpList _RR_BRACKET
+   59 ExpRest: __COMMA Exp . ExpRest
+
+    _POINT       shift, and go to state 101
+    __COMMA      shift, and go to state 153
+    _SL_BRACKET  shift, and go to state 102
+    _OPPLUS      shift, and go to state 103
+    _OPMINUS     shift, and go to state 104
+    _OPMULT      shift, and go to state 105
+    _OPDIV       shift, and go to state 106
+    _OPAND       shift, and go to state 107
+    _OPLESS      shift, and go to state 108
+
+    $default  reduce using rule 60 (ExpRest)
+
+    ExpRest  go to state 160
+
+
+State 159
+
+   32 Stm: _FOR _RL_BRACKET SimpleStm _SEMICOLUMN Exp _SEMICOLUMN SimpleStm _RR_BRACKET . Stm
+
+    _ID          shift, and go to state 80
+    _NUM         shift, and go to state 60
+    _STR         shift, and go to state 61
+    _IF          shift, and go to state 62
+    _WHILE       shift, and go to state 63
+    _FOR         shift, and go to state 64
+    _SYSTEMOP    shift, and go to state 65
+    _TRUE        shift, and go to state 66
+    _FALSE       shift, and go to state 67
+    _THIS        shift, and go to state 68
+    _NEW         shift, and go to state 69
+    _WOW         shift, and go to state 70
+    _RL_BRACKET  shift, and go to state 71
+    _FL_BRACKET  shift, and go to state 72
+    _OPINC       shift, and go to state 73
+    _OPDEC       shift, and go to state 74
+
+    $default  reduce using rule 24 (SimpleStm)
+
+    SimpleStm  go to state 76
+    Stm        go to state 161
+    Exp        go to state 78
+
+
+State 160
+
+   59 ExpRest: __COMMA Exp ExpRest .
+
+    $default  reduce using rule 59 (ExpRest)
+
+
+State 161
+
+   32 Stm: _FOR _RL_BRACKET SimpleStm _SEMICOLUMN Exp _SEMICOLUMN SimpleStm _RR_BRACKET Stm .
+
+    $default  reduce using rule 32 (Stm)

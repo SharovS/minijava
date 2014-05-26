@@ -119,6 +119,24 @@ void CTypeCheckerVisitor::Visit( const CWhStm& p )
 	p.GetStm()->Accept( this );
 }
 
+//for ( Statement; Exp; Statement ) Statement
+
+void CTypeCheckerVisitor::Visit( const CForStm& p )
+{
+	p.GetInitStm()->Accept(this);
+	p.GetCheckExp()->Accept( this );//Должен быть bool
+	if( lastType != "boolean" ) {
+		isError = true;
+		std::string methodName( (table->getCurrMethod())->getName() );
+		std::string className( (table->getCurrClass())->getName() );
+		const char* mN = methodName.c_str();
+		const char* cN = className.c_str();
+		printf( "Error in for(Exp): incorrect type of Exp \n Location: method %s in Class %s\n\n", mN, cN );
+	}
+	p.GetUpdateStm()->Accept(this);
+	p.GetBodyStm()->Accept( this );
+}
+
 //System.out.println ( Exp ) ;
 
 void CTypeCheckerVisitor::Visit( const CSOPStm& p )
@@ -212,6 +230,38 @@ void CTypeCheckerVisitor::Visit( const COpExp& p )
 	//{
 	//	lastType = "int";
 	//}
+}
+
+//++id, --id
+
+void CTypeCheckerVisitor::Visit( const CPreUnOpExp& p )
+{
+	if(table->getCurrMethod()->findTVar(p.GetId()) != "int" && table->getCurrClass()->findTVar(p.GetId(), table) != "int") {
+		isError = true;
+		std::string methodName( (table->getCurrMethod())->getName() );
+		std::string className( (table->getCurrClass())->getName() );
+		const char* mN = methodName.c_str();
+		const char* cN = className.c_str();
+		printf( "Error in unary operation: %s expected to be int\n -Location: id %s, method %s in Class %s\n\n",
+			p.GetId(), p.GetId(), mN, cN );
+	}
+	lastType = "int";
+}
+
+//id++, id--
+
+void CTypeCheckerVisitor::Visit( const CPostUnOpExp& p )
+{
+	if(table->getCurrMethod()->findTVar(p.GetId()) != "int" && table->getCurrClass()->findTVar(p.GetId(), table) != "int") {
+		isError = true;
+		std::string methodName( (table->getCurrMethod())->getName() );
+		std::string className( (table->getCurrClass())->getName() );
+		const char* mN = methodName.c_str();
+		const char* cN = className.c_str();
+		printf( "Error in unary operation: %s expected to be int\n -Location: id %s, method %s in Class %s\n\n",
+			p.GetId(), p.GetId(), mN, cN );
+	}
+	lastType = "int";
 }
 
 //Exp [ Exp ]
@@ -493,6 +543,16 @@ void CTypeCheckerVisitor::Visit( const CStmList& p )
 	if( p.GetTail() ) {
 		p.GetTail()->Accept( this );
 	}
+}
+
+void CTypeCheckerVisitor::Visit( const CEmptyStm& p )
+{
+	// do nothing
+}
+
+void CTypeCheckerVisitor::Visit( const CExpStm& p )
+{
+	p.GetExp()->Accept( this );
 }
 
 bool CTypeCheckerVisitor::wasError()
