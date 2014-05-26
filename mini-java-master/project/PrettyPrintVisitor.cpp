@@ -343,5 +343,5 @@ void PrettyPrintVisitor::Visit( const CExpStm& p )
 {
 	printf( "%s", identt.c_str() );
 	p.GetExp()->Accept(this);
-	printf( ";" );
+	printf( ";\n" );
 }

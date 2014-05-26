@@ -153,7 +153,7 @@ Type:           _INT _SL_BRACKET _SR_BRACKET {$$ = "int[]";}
 ;
 
 SimpleStm:     /*empty*/ {$$ = new CEmptyStm();}
-			   /*|Exp {$$ = new CExpStm($1);}*/
+			   |Exp {$$ = new CExpStm($1);}
 			   |_SYSTEMOP _RL_BRACKET Exp _RR_BRACKET {$$ = new CSOPStm ($3);}
 			   |_SYSTEMOPWOLN _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN {$$ = new CSOPStm ($3);}
                |_ID _ASSIGNMENT Exp {$$ = new CAsStm($1, $3);}
