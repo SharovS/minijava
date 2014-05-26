@@ -8,12 +8,17 @@ class CClassDecl;
 class CExClassDecl;
 class CVarDecl;
 class CMethodDecl;
+class CEmptyStm;
+class CExpStm;
 class CCompStm;
 class CIfStm;
 class CWhStm;
+class CForStm;
 class CSOPStm;
 class CAsStm;
 class CAsExpStm;
+class CPreUnOpExp;
+class CPostUnOpExp;
 class COpExp;
 class CExExp;
 class CLenExp;
@@ -49,9 +54,12 @@ public:
 	virtual void Visit( const CCompStm& p ) = 0;
 	virtual void Visit( const CIfStm& p ) = 0;
 	virtual void Visit( const CWhStm& p ) = 0;
+	virtual void Visit( const CForStm& p ) = 0;
 	virtual void Visit( const CSOPStm& p ) = 0;
 	virtual void Visit( const CAsStm& p ) = 0;
 	virtual void Visit( const CAsExpStm& p ) = 0;
+	virtual void Visit( const CPreUnOpExp& p ) = 0;
+	virtual void Visit( const CPostUnOpExp& p ) = 0;
 	virtual void Visit( const COpExp& p ) = 0;
 	virtual void Visit( const CExExp& p ) = 0;
 	virtual void Visit( const CLenExp& p ) = 0;
@@ -74,6 +82,8 @@ public:
 	virtual void Visit( const CMethodDeclList& p ) = 0;
 	virtual void Visit( const CStmList& p ) = 0;
 	virtual void Visit( const CVarDeclExp& p ) = 0;
+	virtual void Visit( const CEmptyStm& p ) = 0;
+	virtual void Visit( const CExpStm& p ) = 0;
 };
 
 //--------------------------------------------------------------------------------------
@@ -315,6 +325,29 @@ private:
 
 //--------------------------------------------------------------------------------------
 
+//empty statement, such as ";" or as initial\update statements in for(;a<b;)
+class CEmptyStm : public IStm {
+public:
+	CEmptyStm() {}
+	~CEmptyStm() {}
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+};
+
+//--------------------------------------------------------------------------------------
+
+// Exp;
+class CExpStm : public IStm {
+public:
+	CExpStm(const IExp *_exp): exp(_exp) {}
+	~CExpStm() {}
+	const IExp* GetExp() const { return exp; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const IExp *exp;
+};
+
+//-------------------------------------------------------------------------------------
+
 //{ Statement* }
 class CCompStm : public IStm {
 public:
@@ -356,6 +389,25 @@ public:
 private:
 	const IExp *m;
 	const IStm *n;
+};
+
+//--------------------------------------------------------------------------------------
+
+//for ( Statament; Exp; Statement ) Statement
+class CForStm : public IStm {
+public:
+	CForStm( const IStm *_init, const IExp *_check, const IStm *_update, const IStm *_body ) : init(_init), check(_check), update(_update), body(_body) {};
+	CForStm() {}
+	const IStm* GetInitStm() const { return init; }
+	const IExp* GetCheckExp() const { return check; }
+	const IStm* GetUpdateStm() const { return update; }
+	const IStm* GetBodyStm() const { return body; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const IStm *init;
+	const IExp *check;
+	const IStm *update;
+	const IStm *body;
 };
 
 //--------------------------------------------------------------------------------------
@@ -428,6 +480,36 @@ private:
 
 //--------------------------------------------------------------------------------------
 
+//id++, id--
+class CPostUnOpExp :public IExp {
+public:
+	CPostUnOpExp( const std::string _id, int _value ) : id( _id ), value(_value) {}
+	~CPostUnOpExp() {}
+	const std::string GetId() const { return id; }
+	const int GetValue() const { return value; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const std::string id;
+	const int value;
+};
+
+//--------------------------------------------------------------------------------------
+
+//++id, --id
+class CPreUnOpExp :public IExp {
+public:
+	CPreUnOpExp( const std::string _id, int _value ) : id( _id ), value(_value) {}
+	~CPreUnOpExp() {}
+	const std::string GetId() const { return id; }
+	const int GetValue() const { return value; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const std::string id;
+	const int value;
+};
+
+//--------------------------------------------------------------------------------------
+
 //Exp op Exp
 class COpExp :public IExp {
 public:
@@ -442,6 +524,7 @@ private:
 	CBinop op;
 	const IExp *c;
 };
+
 
 //--------------------------------------------------------------------------------------
 

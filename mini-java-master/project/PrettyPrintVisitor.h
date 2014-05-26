@@ -16,9 +16,12 @@ public:
 	void Visit( const CCompStm& p );
 	void Visit( const CIfStm& p );
 	void Visit( const CWhStm& p );
+	void Visit( const CForStm& p );
 	void Visit( const CSOPStm& p );
 	void Visit( const CAsStm& p );
 	void Visit( const CAsExpStm& p );
+	void Visit( const CPreUnOpExp& p );
+	void Visit( const CPostUnOpExp& p );
 	void Visit( const COpExp& p );
 	void Visit( const CExExp& p );
 	void Visit( const CLenExp& p );
@@ -43,5 +46,7 @@ public:
 	void Visit( const CMethodDeclList& p );
 	void Visit( const CStmList& p );
 	void Visit( const CVarDeclExp& p );
+	void Visit( const CEmptyStm& p );
+	void Visit( const CExpStm& p );
 };
 

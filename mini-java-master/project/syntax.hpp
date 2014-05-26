@@ -52,42 +52,45 @@ extern int yydebug;
      _IF = 261,
      _ELSE = 262,
      _WHILE = 263,
-     _SYSTEMOP = 264,
-     _SYSTEMOPWOLN = 265,
-     _CLASS = 266,
-     _MAIN = 267,
-     _PUBLIC = 268,
-     _STATIC = 269,
-     _RETURN = 270,
-     _EXTENDS = 271,
-     _INT = 272,
-     _BOOLEAN = 273,
-     _VOID = 274,
-     _STRING = 275,
-     _TRUE = 276,
-     _FALSE = 277,
-     _THIS = 278,
-     _NEW = 279,
-     _LENGTH = 280,
-     _POINT = 281,
-     _SEMICOLUMN = 282,
-     _STAR = 283,
-     _ASSIGNMENT = 284,
-     _WOW = 285,
-     __COMMA = 286,
-     _RL_BRACKET = 287,
-     _RR_BRACKET = 288,
-     _SL_BRACKET = 289,
-     _SR_BRACKET = 290,
-     _FL_BRACKET = 291,
-     _FR_BRACKET = 292,
-     _OPPLUS = 293,
-     _OPMINUS = 294,
-     _OPMULT = 295,
-     _OPDIV = 296,
-     _OPAND = 297,
-     _OPLESS = 298,
-     NEG = 299
+     _FOR = 264,
+     _SYSTEMOP = 265,
+     _SYSTEMOPWOLN = 266,
+     _CLASS = 267,
+     _MAIN = 268,
+     _PUBLIC = 269,
+     _STATIC = 270,
+     _RETURN = 271,
+     _EXTENDS = 272,
+     _INT = 273,
+     _BOOLEAN = 274,
+     _VOID = 275,
+     _STRING = 276,
+     _TRUE = 277,
+     _FALSE = 278,
+     _THIS = 279,
+     _NEW = 280,
+     _LENGTH = 281,
+     _POINT = 282,
+     _SEMICOLUMN = 283,
+     _STAR = 284,
+     _ASSIGNMENT = 285,
+     _WOW = 286,
+     __COMMA = 287,
+     _RL_BRACKET = 288,
+     _RR_BRACKET = 289,
+     _SL_BRACKET = 290,
+     _SR_BRACKET = 291,
+     _FL_BRACKET = 292,
+     _FR_BRACKET = 293,
+     _OPINC = 294,
+     _OPDEC = 295,
+     _OPPLUS = 296,
+     _OPMINUS = 297,
+     _OPMULT = 298,
+     _OPDIV = 299,
+     _OPAND = 300,
+     _OPLESS = 301,
+     NEG = 302
    };
 #endif
 
@@ -96,7 +99,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 84 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt"
+#line 89 "C:\\Users\\Антон\\Documents\\GitHub\\minijava\\mini-java-master\\project\\syntax.txt"
 
  int IntV;
  char* StringV;
@@ -120,7 +123,7 @@ typedef union YYSTYPE
 
 
 /* Line 2058 of yacc.c  */
-#line 124 "syntax.hpp"
+#line 127 "syntax.hpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
