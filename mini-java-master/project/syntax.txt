@@ -16,6 +16,7 @@
 %token _IF
 %token _ELSE
 %token _WHILE
+%token _FOR
 %token _SYSTEMOP
 %token _SYSTEMOPWOLN
 
@@ -49,6 +50,8 @@
 %token _SR_BRACKET
 %token _FL_BRACKET
 %token _FR_BRACKET
+%token _OPINC
+%token _OPDEC
 %token <Binop> _OPPLUS
 %token <Binop> _OPMINUS
 %token <Binop> _OPMULT
@@ -60,6 +63,7 @@
 %left _OPMULT _OPDIV
 %left _OPAND
 %left _OPLESS
+%left _OPINC _OPDEC
 %left NEG     /* negation--unary minus */
 %nonassoc _WOW
 %left _POINT _SL_BRACKET
@@ -75,6 +79,7 @@
 %type <FormalList> FormalList
 %type <FormalList> FormalRest
 %type <SymbolTable> Type
+%type <Stm> SimpleStm
 %type <Stm> Stm
 %type <StmList> StmList
 %type <Exp> Exp 
@@ -125,6 +130,7 @@ VarDeclList: VarDeclList VarDecl {$$ = new CVarDeclList($2, $1);}
              | /*empty*/ {$$=0}
 ;
 VarDecl: Type _ID _SEMICOLUMN {$$ = new CVarDecl($1, $2);}
+	   
 ;
 MethodDecl: _PUBLIC Type _ID _RL_BRACKET FormalList _RR_BRACKET 
             _FL_BRACKET VarDeclList StmList _RETURN Exp _SEMICOLUMN _FR_BRACKET 
@@ -145,16 +151,27 @@ Type:           _INT _SL_BRACKET _SR_BRACKET {$$ = "int[]";}
                |_INT {$$ = "int";}
                |_ID {$$ = $1;}
 ;
-Stm:           _FL_BRACKET StmList _FR_BRACKET {$$ = new CCompStm($2);}
-               |_IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm {$$ = new CIfStm ($3, $5, $7);}
-               |_WHILE _RL_BRACKET Exp _RR_BRACKET Stm {$$ = new CWhStm ($3, $5);}
-               |_SYSTEMOP _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN {$$ = new CSOPStm ($3);}
+
+SimpleStm:     /*empty*/ {$$ = new CEmptyStm();}
+			   |Exp {$$ = new CExpStm($1);}
+			   |_SYSTEMOP _RL_BRACKET Exp _RR_BRACKET {$$ = new CSOPStm ($3);}
 			   |_SYSTEMOPWOLN _RL_BRACKET Exp _RR_BRACKET _SEMICOLUMN {$$ = new CSOPStm ($3);}
-               |_ID _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CAsStm($1, $3);}
-               |_ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CAsExpStm ($1, $3, $6);}
+               |_ID _ASSIGNMENT Exp {$$ = new CAsStm($1, $3);}
+               |_ID _SL_BRACKET Exp _SR_BRACKET _ASSIGNMENT Exp {$$ = new CAsExpStm ($1, $3, $6);}
 ;
 
-Exp: Exp _OPPLUS Exp     { $$ = new COpExp ($1, B_Plus, $3) ;} 
+Stm:           _FL_BRACKET StmList _FR_BRACKET {$$ = new CCompStm($2);}
+               |_IF _RL_BRACKET Exp _RR_BRACKET Stm _ELSE Stm {$$ = new CIfStm ($3, $5, $7);}
+			   |_FOR _RL_BRACKET SimpleStm _SEMICOLUMN Exp _SEMICOLUMN SimpleStm _RR_BRACKET Stm {$$ = new CForStm ($3, $5, $7, $9);}
+               |SimpleStm _SEMICOLUMN {$$ = $1;}
+			   | Type _ID _ASSIGNMENT Exp _SEMICOLUMN {$$ = new CVarDeclExp($1, new CAsStm($2, $4));}
+;
+
+Exp: _ID _OPINC     { $$ = new CPostUnOpExp ($1, 1) ;} 
+	 | _OPINC _ID     { $$ = new CPreUnOpExp ($2, 1) ;}
+	 | _ID _OPDEC     { $$ = new CPostUnOpExp ($1, -1) ;}
+	 | _OPDEC _ID     { $$ = new CPreUnOpExp ($2, -1) ;}
+	 | Exp _OPPLUS Exp     { $$ = new COpExp ($1, B_Plus, $3) ;} 
      | Exp _OPMINUS Exp    { $$ = new COpExp($1, B_Minus , $3); } 
      | Exp _OPMULT Exp     { $$ = new COpExp($1, B_Mult, $3); } 
      | Exp _OPDIV Exp        {$$ = new COpExp($1, B_Div, $3);}

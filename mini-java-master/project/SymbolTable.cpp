@@ -568,6 +568,18 @@ void CSTVisitor::Visit( const CVarDecl& p )
 	}
 }
 
+void CSTVisitor::Visit( const CVarDeclExp& p ) 
+{
+	CVar* var = new CVar( p.GetType(), p.GetId(), 0 );
+	if( CurrClass == 0 ) {
+		assert( false );
+	} else if( CurrMethod == 0 ) {
+		CurrClass->addVar( var );
+	} else {
+		CurrMethod->addLoc( var );
+	}
+}
+
 void CSTVisitor::Visit( const CMethodDecl& p )
 {
 	CMethod* meth = new CMethod( p.GetType(), p.GetId(), 0, 0, 0 );
@@ -597,6 +609,11 @@ void CSTVisitor::Visit( const CWhStm& p )
 	assert( false );
 }
 
+void CSTVisitor::Visit( const CForStm& p )
+{
+	assert( false );
+}
+
 void CSTVisitor::Visit( const CSOPStm& p )
 {
 	assert( false );
@@ -613,6 +630,16 @@ void CSTVisitor::Visit( const CAsExpStm& p )
 }
 
 void CSTVisitor::Visit( const COpExp& p )
+{
+	assert( false );
+}
+
+void CSTVisitor::Visit( const CPreUnOpExp& p )
+{
+	assert( false );
+}
+
+void CSTVisitor::Visit( const CPostUnOpExp& p )
 {
 	assert( false );
 }
@@ -730,6 +757,16 @@ void CSTVisitor::Visit( const CMethodDeclList& p )
 }
 
 void CSTVisitor::Visit( const CStmList& p )
+{
+	assert( false );
+}
+
+void CSTVisitor::Visit( const CEmptyStm& p )
+{
+	assert( false );
+}
+
+void CSTVisitor::Visit( const CExpStm& p )
 {
 	assert( false );
 }

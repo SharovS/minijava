@@ -55,6 +55,39 @@ void CTypeCheckerVisitor::Visit( const CVarDecl& p )
 	assert( false );
 }
 
+//Type id = Exp
+
+void CTypeCheckerVisitor::Visit( const CVarDeclExp& p ) 
+{
+	CVar* var = new CVar( p.GetType(), p.GetId(), 0 );
+	if(table->getCurrClass() == 0 ) {
+		assert( false );
+	} else if( table->getCurrMethod() == 0 ) {
+		table->getCurrClass()->addVar( var );
+	} else {
+		table->getCurrMethod()->addLoc( var );
+	}
+
+	p.GetExp()->Accept( this );
+	std::string st = p.GetType();
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ne to vernyli!!!!!!
+	//std::string st( table->Lookup( p.GetId() ) );
+	if( lastType != st ) {
+		isError = true;
+		std::string methodName( (table->getCurrMethod())->getName() );
+		std::string className( (table->getCurrClass())->getName() );
+		const char* mN = methodName.c_str();
+		const char* cN = className.c_str();
+		printf( "Error in assignment: different types of id (%s) & Exp (%s) \n"
+			" Location: id %s, method %s in Class %s\n\n", st.c_str(), lastType.c_str(),
+			(p.GetId()).c_str(), mN, cN );
+		assert( false );
+	}
+
+
+}
+
+
 //public Type id ( FormalList ) { VarDecl* Statement* return Exp ;}
 
 void CTypeCheckerVisitor::Visit( const CMethodDecl& p )
@@ -64,6 +97,7 @@ void CTypeCheckerVisitor::Visit( const CMethodDecl& p )
 	CClass* currClass( table->getCurrClass() );
 	table->EnterMethod( currClass->FindMethod( p.GetId(), table ) );
 	//p.GetFormalList()->Accept(this); //это по€вл€етс€ при построении таблицы
+
 	if( p.GetStmList() ) {
 		p.GetStmList()->Accept( this );
 	}
@@ -117,6 +151,24 @@ void CTypeCheckerVisitor::Visit( const CWhStm& p )
 		printf( "Error in while(Exp): incorrect type of Exp \n Location: method %s in Class %s\n\n", mN, cN );
 	}
 	p.GetStm()->Accept( this );
+}
+
+//for ( Statement; Exp; Statement ) Statement
+
+void CTypeCheckerVisitor::Visit( const CForStm& p )
+{
+	p.GetInitStm()->Accept(this);
+	p.GetCheckExp()->Accept( this );//ƒолжен быть bool
+	if( lastType != "boolean" ) {
+		isError = true;
+		std::string methodName( (table->getCurrMethod())->getName() );
+		std::string className( (table->getCurrClass())->getName() );
+		const char* mN = methodName.c_str();
+		const char* cN = className.c_str();
+		printf( "Error in for(Exp): incorrect type of Exp \n Location: method %s in Class %s\n\n", mN, cN );
+	}
+	p.GetUpdateStm()->Accept(this);
+	p.GetBodyStm()->Accept( this );
 }
 
 //System.out.println ( Exp ) ;
@@ -212,6 +264,38 @@ void CTypeCheckerVisitor::Visit( const COpExp& p )
 	//{
 	//	lastType = "int";
 	//}
+}
+
+//++id, --id
+
+void CTypeCheckerVisitor::Visit( const CPreUnOpExp& p )
+{
+	if(table->getCurrMethod()->findTVar(p.GetId()) != "int" && table->getCurrClass()->findTVar(p.GetId(), table) != "int") {
+		isError = true;
+		std::string methodName( (table->getCurrMethod())->getName() );
+		std::string className( (table->getCurrClass())->getName() );
+		const char* mN = methodName.c_str();
+		const char* cN = className.c_str();
+		printf( "Error in unary operation: %s expected to be int\n -Location: id %s, method %s in Class %s\n\n",
+			p.GetId(), p.GetId(), mN, cN );
+	}
+	lastType = "int";
+}
+
+//id++, id--
+
+void CTypeCheckerVisitor::Visit( const CPostUnOpExp& p )
+{
+	if(table->getCurrMethod()->findTVar(p.GetId()) != "int" && table->getCurrClass()->findTVar(p.GetId(), table) != "int") {
+		isError = true;
+		std::string methodName( (table->getCurrMethod())->getName() );
+		std::string className( (table->getCurrClass())->getName() );
+		const char* mN = methodName.c_str();
+		const char* cN = className.c_str();
+		printf( "Error in unary operation: %s expected to be int\n -Location: id %s, method %s in Class %s\n\n",
+			p.GetId(), p.GetId(), mN, cN );
+	}
+	lastType = "int";
 }
 
 //Exp [ Exp ]
@@ -500,6 +584,16 @@ void CTypeCheckerVisitor::Visit( const CStmList& p )
 	if( p.GetTail() ) {
 		p.GetTail()->Accept( this );
 	}
+}
+
+void CTypeCheckerVisitor::Visit( const CEmptyStm& p )
+{
+	// do nothing
+}
+
+void CTypeCheckerVisitor::Visit( const CExpStm& p )
+{
+	p.GetExp()->Accept( this );
 }
 
 bool CTypeCheckerVisitor::wasError()

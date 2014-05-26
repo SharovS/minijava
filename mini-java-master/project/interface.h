@@ -9,12 +9,17 @@ class CClassDecl;
 class CExClassDecl;
 class CVarDecl;
 class CMethodDecl;
+class CEmptyStm;
+class CExpStm;
 class CCompStm;
 class CIfStm;
 class CWhStm;
+class CForStm;
 class CSOPStm;
 class CAsStm;
 class CAsExpStm;
+class CPreUnOpExp;
+class CPostUnOpExp;
 class COpExp;
 class CExExp;
 class CLenExp;
@@ -36,6 +41,7 @@ class CClassDeclList;
 class CVarDeclList;
 class CMethodDeclList;
 class CStmList;
+class CVarDeclExp;
 
 class IVisitor {
 public:
@@ -49,9 +55,12 @@ public:
 	virtual void Visit( const CCompStm& p ) = 0;
 	virtual void Visit( const CIfStm& p ) = 0;
 	virtual void Visit( const CWhStm& p ) = 0;
+	virtual void Visit( const CForStm& p ) = 0;
 	virtual void Visit( const CSOPStm& p ) = 0;
 	virtual void Visit( const CAsStm& p ) = 0;
 	virtual void Visit( const CAsExpStm& p ) = 0;
+	virtual void Visit( const CPreUnOpExp& p ) = 0;
+	virtual void Visit( const CPostUnOpExp& p ) = 0;
 	virtual void Visit( const COpExp& p ) = 0;
 	virtual void Visit( const CExExp& p ) = 0;
 	virtual void Visit( const CLenExp& p ) = 0;
@@ -73,6 +82,9 @@ public:
 	virtual void Visit( const CVarDeclList& p ) = 0;
 	virtual void Visit( const CMethodDeclList& p ) = 0;
 	virtual void Visit( const CStmList& p ) = 0;
+	virtual void Visit( const CVarDeclExp& p ) = 0;
+	virtual void Visit( const CEmptyStm& p ) = 0;
+	virtual void Visit( const CExpStm& p ) = 0;
 };
 
 //--------------------------------------------------------------------------------------
@@ -278,7 +290,9 @@ private:
 //Type id
 class CVarDecl : public IVarDecl {
 public:
-	CVarDecl( const std::string _m, const std::string _a ) : m( _m ), a( _a ) {}
+	CVarDecl( const std::string _m, const std::string _a ) : m( _m ), a( _a ) {
+		hasExp = false;
+	}
 	~CVarDecl() {}
 	const std::string GetType() const { return m; }
 	const std::string GetId() const { return a; }
@@ -286,6 +300,7 @@ public:
 private:
 	const std::string m;
 	const std::string a;
+	bool hasExp;
 };
 
 //--------------------------------------------------------------------------------------
@@ -314,6 +329,29 @@ private:
 };
 
 //--------------------------------------------------------------------------------------
+
+//empty statement, such as ";" or as initial\update statements in for(;a<b;)
+class CEmptyStm : public IStm {
+public:
+	CEmptyStm() {}
+	~CEmptyStm() {}
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+};
+
+//--------------------------------------------------------------------------------------
+
+// Exp;
+class CExpStm : public IStm {
+public:
+	CExpStm(const IExp *_exp): exp(_exp) {}
+	~CExpStm() {}
+	const IExp* GetExp() const { return exp; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const IExp *exp;
+};
+
+//-------------------------------------------------------------------------------------
 
 //{ Statement* }
 class CCompStm : public IStm {
@@ -360,6 +398,25 @@ private:
 
 //--------------------------------------------------------------------------------------
 
+//for ( Statament; Exp; Statement ) Statement
+class CForStm : public IStm {
+public:
+	CForStm( const IStm *_init, const IExp *_check, const IStm *_update, const IStm *_body ) : init(_init), check(_check), update(_update), body(_body) {};
+	CForStm() {}
+	const IStm* GetInitStm() const { return init; }
+	const IExp* GetCheckExp() const { return check; }
+	const IStm* GetUpdateStm() const { return update; }
+	const IStm* GetBodyStm() const { return body; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const IStm *init;
+	const IExp *check;
+	const IStm *update;
+	const IStm *body;
+};
+
+//--------------------------------------------------------------------------------------
+
 //System.out.println ( Exp ) ;
 class CSOPStm : public IStm {
 public:
@@ -388,6 +445,29 @@ private:
 
 //--------------------------------------------------------------------------------------
 
+//Type id = Exp ;
+class CVarDeclExp : public IStm {
+public:
+	CVarDeclExp( const std::string _a, const CAsStm *_m ) : a( _a ),  m( _m ) {		
+	};
+	~CVarDeclExp() {}
+	const std::string GetType() const { return a; }
+	const std::string GetId() const { return m->GetId(); }
+	const IExp* GetExp() const { return m->GetExp(); }
+	void Accept( IVisitor* visitor ) const { 
+		//visitor->Visit( new CVarDecl( a, b ) );
+		visitor->Visit( *this ); 
+	}
+	const CAsStm* GetAsStm() const { return m; } 
+private:
+	const std::string a;
+	const std::string b;
+	const CAsStm* m;
+};
+
+
+//--------------------------------------------------------------------------------------
+
 //id [ Exp ]= Exp
 class CAsExpStm : public IStm {
 public:
@@ -401,6 +481,36 @@ private:
 	const std::string a;
 	const IExp *m;
 	const IExp *n;
+};
+
+//--------------------------------------------------------------------------------------
+
+//id++, id--
+class CPostUnOpExp :public IExp {
+public:
+	CPostUnOpExp( const std::string _id, int _value ) : id( _id ), value(_value) {}
+	~CPostUnOpExp() {}
+	const std::string GetId() const { return id; }
+	const int GetValue() const { return value; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const std::string id;
+	const int value;
+};
+
+//--------------------------------------------------------------------------------------
+
+//++id, --id
+class CPreUnOpExp :public IExp {
+public:
+	CPreUnOpExp( const std::string _id, int _value ) : id( _id ), value(_value) {}
+	~CPreUnOpExp() {}
+	const std::string GetId() const { return id; }
+	const int GetValue() const { return value; }
+	void Accept( IVisitor* visitor ) const { visitor->Visit( *this ); }
+private:
+	const std::string id;
+	const int value;
 };
 
 //--------------------------------------------------------------------------------------
@@ -419,6 +529,7 @@ private:
 	CBinop op;
 	const IExp *c;
 };
+
 
 //--------------------------------------------------------------------------------------
 

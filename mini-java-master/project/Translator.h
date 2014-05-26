@@ -51,9 +51,12 @@ namespace Translation
 		void Visit( const CCompStm& p );
 		void Visit( const CIfStm& p );
 		void Visit( const CWhStm& p );
+		void Visit( const CForStm& p );
 		void Visit( const CSOPStm& p );
 		void Visit( const CAsStm& p );
 		void Visit( const CAsExpStm& p );
+		void Visit( const CPreUnOpExp& p );
+		void Visit( const CPostUnOpExp& p );
 		void Visit( const COpExp& p );
 		void Visit( const CExExp& p );
 		void Visit( const CLenExp& p );
@@ -75,6 +78,10 @@ namespace Translation
 		void Visit( const CVarDeclList& p );//done
 		void Visit( const CMethodDeclList& p );//done
 		void Visit( const CStmList& p );//done
+		void Visit( const CVarDeclExp& p );
+		void Visit( const CEmptyStm& p );
+		void Visit( const CExpStm& p );
+
 		bool checkClassVariable( Exp* prv, std::string name );
 	private:
 		CProgramFragment * Frag;

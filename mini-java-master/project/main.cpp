@@ -37,11 +37,12 @@ int main()
 	// Строим таблицу символов
 	CSTVisitor STBuilder;
 	yyprogram->Accept( &STBuilder );
-	STBuilder.GetTable()->Print();
+	
 
 	//Type cheking
 	CTypeCheckerVisitor typeCheker( STBuilder.GetTable() );
 	yyprogram->Accept( &typeCheker );//!!!!
+	STBuilder.GetTable()->Print();
 	cout << "------------Type cheking completed-----------" << endl;
 
 	if( !typeCheker.wasError() ) {

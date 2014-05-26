@@ -5,7 +5,7 @@ public static void main(String[] a) {
 }
 class Fac {
     public int ComputeFac(int from, int to) {
-    	int res;
+    	int res = 0;
         while ( from < to ){
         	res = from - from / 2 * 2;
         	if ( 0 < res )
