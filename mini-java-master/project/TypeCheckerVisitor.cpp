@@ -304,6 +304,13 @@ void CTypeCheckerVisitor::Visit( const CNExp& p )
 
 void CTypeCheckerVisitor::Visit( const CStrExp& p )
 {
+	stringConsts += ".word ";
+	stringConsts += std::to_string(p.GetStr().length());
+	stringConsts += "\nL";
+	stringConsts += p.GetId();
+	stringConsts += ": .ascii \"";
+	stringConsts += p.GetStr();
+	stringConsts += "\"\n";
 	lastType = "string";
 }
 

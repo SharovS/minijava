@@ -42,6 +42,8 @@ public:
 	void Visit( const CStmList& p );
 
 	bool wasError();
+	
+	std::string stringConsts;
 private:
 	CSTable* table;
 	bool isError;

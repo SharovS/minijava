@@ -492,9 +492,10 @@ namespace Translation
 	{
 		Temp::CLabel* stringLabel = new Temp::CLabel("L" + p.GetId() );
 		Tree::IExp* length = new Tree::CONST( p.GetStr().length() );
-		Tree::IExp* res = /*new Tree::EXP( new Tree::NAME( stringLabel ) );*/ ExternalCall( new Tree::NAME( stringLabel ), new Tree::ExpList( length, 0 ) );
+		Tree::IExp* res = new Tree::NAME( stringLabel ); /* ExternalCall( new Tree::NAME( stringLabel ), new Tree::ExpList( length, 0 ) );*/
 		// возвращаем exp
-		Previous = new Ex( res/*new Tree::ESEQ(res, length)*/ );
+		//Previous = new Ex( res/*new Tree::ESEQ(res, length)*/ );
+		Previous = new Ex(res);
 	}
 
 	void Translator::Visit( const CTrExp& p ) //true

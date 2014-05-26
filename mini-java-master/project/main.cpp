@@ -89,6 +89,7 @@ int main()
 
 			cout << endl;
 			cout << "----------------ASSEMBLER CODE---------------------" << endl;
+			cout << typeCheker.stringConsts << std::endl;
 			// генерируем ассемблерный код
 			Codegen code( Frag->funcFrame );
 			Frag->assemblerCode = code.generateCode( Frag );

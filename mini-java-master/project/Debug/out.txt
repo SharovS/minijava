@@ -1,14 +1,12 @@
-5
-9
+3
 class Factorial { 
    public static Void main ( String [] a ) { 
-       System.out.println ( "¤ñ¥" ) ;
+       System.out.println ( 123 ) ;
    }
 }
 
 class Fac { 
     public int ComputeFac ( ) { 
-        System.out.println ( "Lê¥" ) ;
 
         return 1;
     }
@@ -46,63 +44,42 @@ _________
 
 -----------CODE BEFORE CANONIZING--------------
 FacComputeFac
-ESEQ(EXP(CALL(NAME(System.out.println), 
-    NAME(L2974667336))), 
+ESEQ(EXP(CONST(0)), 
     CONST(1))
 --------------CANONIZING FINISHED-----------------
-
---------------------BLOCK-------------------------
- L1EXP(CALL(NAME(System.out.println), 
-    NAME(L2974667336)))JUMP(L0, 
-    )
-----------------END OF BLOCK----------------
- L1EXP(CALL(NAME(System.out.println), 
-    NAME(L2974667336)))JUMP(L0, 
-    ) L0
+ L0
 --------------CANONIZING CODE END------------
 
 ----------------ASSEMBLER CODE---------------------
-.word 5
-L1335831723: .ascii "hello"
-.word 9
-L2974667336: .ascii "factorial"
-
-L1:
-ADD T0 <- L2974667336 + r0
-CALL System.out.println
 L0:
-ADDI T1 <- 'r0+1
-MOVE rv <- T1
+ADDI T0 <- 'r0+1
+MOVE rv <- T0
 
 ----------------ASSEMBLER CODE FINISHED-------------------
 
 -----------CODE BEFORE CANONIZING--------------
 main
 ESEQ(EXP(CALL(NAME(System.out.println), 
-    NAME(L1335831723))), 
+    CONST(-842150451))), 
     CONST(0))
 --------------CANONIZING FINISHED-----------------
 
 --------------------BLOCK-------------------------
- L3EXP(CALL(NAME(System.out.println), 
-    NAME(L1335831723)))JUMP(L2, 
+ L2EXP(CALL(NAME(System.out.println), 
+    CONST(-842150451)))JUMP(L1, 
     )
 ----------------END OF BLOCK----------------
- L3EXP(CALL(NAME(System.out.println), 
-    NAME(L1335831723)))JUMP(L2, 
-    ) L2
+ L2EXP(CALL(NAME(System.out.println), 
+    CONST(-842150451)))JUMP(L1, 
+    ) L1
 --------------CANONIZING CODE END------------
 
 ----------------ASSEMBLER CODE---------------------
-.word 5
-L1335831723: .ascii "hello"
-.word 9
-L2974667336: .ascii "factorial"
-
-L3:
-ADD T2 <- L1335831723 + r0
-CALL System.out.println
 L2:
+ADDI T2 <- 'r0+-842150451
+ADD T1 <- T2 + r0
+CALL System.out.println
+L1:
 ADDI T3 <- 'r0+0
 MOVE rv <- T3
 
